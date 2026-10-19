@@ -8,16 +8,29 @@ import { createEmailTemplates } from './email-templates.js';
 
 let database;
 let databaseType = 'sqlite';
+let mongodbConfigured = Boolean(config.mongodbUri);
 
 if (config.mongodbUri) {
   try {
     database = await createMongoDatabase(config.mongodbUri);
     databaseType = 'mongodb';
+    console.info(JSON.stringify({
+      event: 'mongodb_connected',
+      uri: config.mongodbUri.replace(/:[^:]*@/, ':****@'),
+    }));
   } catch (mongoError) {
-    console.error('Failed to connect to MongoDB, falling back to SQLite:', mongoError.message);
+    console.error(JSON.stringify({
+      event: 'mongodb_connection_failed',
+      error: mongoError.message,
+      fallback: 'sqlite',
+    }));
     database = createDatabase(config.databasePath);
   }
 } else {
+  console.warn(JSON.stringify({
+    event: 'mongodb_not_configured',
+    message: 'MONGODB_URI is not set. Using SQLite as degraded fallback. Set MONGODB_URI to use MongoDB as the primary database.',
+  }));
   database = createDatabase(config.databasePath);
 }
 
@@ -57,6 +70,7 @@ const server = app.listen(config.port, () => {
     environment: config.environment,
     trustProxyHops: config.trustProxyHops,
     database: databaseType,
+    mongodbConfigured,
     smtpConfigured: Boolean(config.smtp),
   }));
   outbox.start();

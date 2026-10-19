@@ -128,11 +128,11 @@ export default function Contact() {
                   {contactDetails.email}
                 </span>
               </a>
-              <a href={`mailto:${contactDetails.emailSupport}`}>
+              <a href={`mailto:${contactDetails.salesEmail}`}>
                 <span className="contact-details__icon"><Mail size={18} /></span>
                 <span>
                   <small>Corporate / Support</small>
-                  {contactDetails.emailSupport}
+                  {contactDetails.salesEmail}
                 </span>
               </a>
               <a
