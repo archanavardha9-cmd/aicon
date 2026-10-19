@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-10-19T07:31:11Z",
+  "generatedOnPlatform": "win32",
+  "projectType": "webapp",
+  "setup": [
+    {
+      "command": "npm",
+      "args": ["ci"],
+      "timeoutSeconds": 600
+    },
+    {
+      "command": "npm",
+      "args": ["ci"],
+      "cwd": "C:\\Users\\hp\\OneDrive\\Desktop\\aicon\\server",
+      "timeoutSeconds": 600
+    }
+  ],
+  "assertions": [
+    {
+      "name": "production-build",
+      "kind": "process",
+      "command": "npm",
+      "args": ["run", "build"],
+      "verificationMethod": "exit-code",
+      "expected": "0",
+      "timeoutSeconds": 180
+    },
+    {
+      "name": "eslint",
+      "kind": "process",
+      "command": "npm",
+      "args": ["run", "lint"],
+      "verificationMethod": "exit-code",
+      "expected": "0",
+      "timeoutSeconds": 120
+    },
+    {
+      "name": "tests-pass",
+      "kind": "process",
+      "command": "npm",
+      "args": ["test"],
+      "verificationMethod": "test-results",
+      "expected": "0",
+      "timeoutSeconds": 120
+    },
+    {
+      "name": "server-lint",
+      "kind": "process",
+      "command": "npm",
+      "args": ["run", "lint"],
+      "cwd": "C:\\Users\\hp\\OneDrive\\Desktop\\aicon\\server",
+      "verificationMethod": "exit-code",
+      "expected": "0",
+      "timeoutSeconds": 120
+    },
+    {
+      "name": "server-tests-pass",
+      "kind": "process",
+      "command": "npm",
+      "args": ["test"],
+      "cwd": "C:\\Users\\hp\\OneDrive\\Desktop\\aicon\\server",
+      "verificationMethod": "test-results",
+      "expected": "0",
+      "timeoutSeconds": 120
+    },
+    {
+      "name": "home-route-serves",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": ["run", "dev", "--", "--host", "127.0.0.1", "--port", "4175", "--strictPort"],
+      "url": "http://127.0.0.1:4175/",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 90
+    },
+    {
+      "name": "catalogue-route-serves",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": ["run", "dev", "--", "--host", "127.0.0.1", "--port", "4175", "--strictPort"],
+      "url": "http://127.0.0.1:4175/products?category=televisions&q=led",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 90
+    },
+    {
+      "name": "about-route-serves",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": ["run", "dev", "--", "--host", "127.0.0.1", "--port", "4175", "--strictPort"],
+      "url": "http://127.0.0.1:4175/about",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 90
+    },
+    {
+      "name": "contact-route-serves",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": ["run", "dev", "--", "--host", "127.0.0.1", "--port", "4175", "--strictPort"],
+      "url": "http://127.0.0.1:4175/contact?category=air-coolers",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 90
+    },
+    {
+      "name": "api-health-200",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": ["run", "start"],
+      "cwd": "C:\\Users\\hp\\OneDrive\\Desktop\\aicon\\server",
+      "env": {
+        "NODE_ENV": "test",
+        "PORT": "4310",
+        "TRUST_PROXY_HOPS": "0",
+        "DATABASE_URL": ":memory:",
+        "CLIENT_ORIGINS": "http://localhost:5173"
+      },
+      "url": "http://127.0.0.1:4310/api/health",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 90
+    },
+    {
+      "name": "api-categories-200",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": ["run", "start"],
+      "cwd": "C:\\Users\\hp\\OneDrive\\Desktop\\aicon\\server",
+      "env": {
+        "NODE_ENV": "test",
+        "PORT": "4310",
+        "TRUST_PROXY_HOPS": "0",
+        "DATABASE_URL": ":memory:",
+        "CLIENT_ORIGINS": "http://localhost:5173"
+      },
+      "url": "http://127.0.0.1:4310/api/categories",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 90
+    },
+    {
+      "name": "api-products-200",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": ["run", "start"],
+      "cwd": "C:\\Users\\hp\\OneDrive\\Desktop\\aicon\\server",
+      "env": {
+        "NODE_ENV": "test",
+        "PORT": "4310",
+        "TRUST_PROXY_HOPS": "0",
+        "DATABASE_URL": ":memory:",
+        "CLIENT_ORIGINS": "http://localhost:5173"
+      },
+      "url": "http://127.0.0.1:4310/api/products",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 90
+    }
+  ]
+}

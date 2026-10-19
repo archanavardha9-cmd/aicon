@@ -1,0 +1,56 @@
+{
+  "updatedAt": "2026-10-19T08:31:53.327Z",
+  "totalProductsWithImages": 10,
+  "images": [
+    {
+      "filename": "aicon-4k-smart-tv.jpg",
+      "path": "/images/products/aicon-4k-smart-tv.jpg",
+      "sizeBytes": 63851
+    },
+    {
+      "filename": "aicon-aeroflow-ceiling-fan.jpg",
+      "path": "/images/products/aicon-aeroflow-ceiling-fan.jpg",
+      "sizeBytes": 432379
+    },
+    {
+      "filename": "aicon-air-cooler.jpg",
+      "path": "/images/products/aicon-air-cooler.jpg",
+      "sizeBytes": 11157
+    },
+    {
+      "filename": "aicon-desert-cooler-70l.jpg",
+      "path": "/images/products/aicon-desert-cooler-70l.jpg",
+      "sizeBytes": 491746
+    },
+    {
+      "filename": "aicon-inverter-split-ac.jpg",
+      "path": "/images/products/aicon-inverter-split-ac.jpg",
+      "sizeBytes": 431554
+    },
+    {
+      "filename": "aicon-semi-automatic-washing-machine.jpg",
+      "path": "/images/products/aicon-semi-automatic-washing-machine.jpg",
+      "sizeBytes": 11603
+    },
+    {
+      "filename": "aicon-smart-mixer-grinder-750w.jpg",
+      "path": "/images/products/aicon-smart-mixer-grinder-750w.jpg",
+      "sizeBytes": 506935
+    },
+    {
+      "filename": "aicon-split-air-conditioner.jpg",
+      "path": "/images/products/aicon-split-air-conditioner.jpg",
+      "sizeBytes": 5686
+    },
+    {
+      "filename": "aicon-storage-water-heater-25l.jpg",
+      "path": "/images/products/aicon-storage-water-heater-25l.jpg",
+      "sizeBytes": 408346
+    },
+    {
+      "filename": "aicon-twin-tub-washing-machine.jpg",
+      "path": "/images/products/aicon-twin-tub-washing-machine.jpg",
+      "sizeBytes": 505299
+    }
+  ]
+}
