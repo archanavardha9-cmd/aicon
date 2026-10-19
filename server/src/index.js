@@ -2,10 +2,25 @@ import nodemailer from 'nodemailer';
 import { createApp } from './app.js';
 import { config } from './config.js';
 import { createDatabase } from './database.js';
+import { createMongoDatabase } from './mongo-database.js';
 import { createEmailOutbox } from './email-outbox.js';
 import { createEmailTemplates } from './email-templates.js';
 
-const database = createDatabase(config.databasePath);
+let database;
+let databaseType = 'sqlite';
+
+if (config.mongodbUri) {
+  try {
+    database = await createMongoDatabase(config.mongodbUri);
+    databaseType = 'mongodb';
+  } catch (mongoError) {
+    console.error('Failed to connect to MongoDB, falling back to SQLite:', mongoError.message);
+    database = createDatabase(config.databasePath);
+  }
+} else {
+  database = createDatabase(config.databasePath);
+}
+
 const templates = createEmailTemplates();
 let transporter = null;
 
@@ -41,7 +56,7 @@ const server = app.listen(config.port, () => {
     port: config.port,
     environment: config.environment,
     trustProxyHops: config.trustProxyHops,
-    database: config.databasePath === ':memory:' ? 'in-memory' : 'sqlite',
+    database: databaseType,
     smtpConfigured: Boolean(config.smtp),
   }));
   outbox.start();

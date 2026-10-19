@@ -12,6 +12,7 @@ const configSchema = z.object({
   PORT: z.coerce.number().int().min(1).max(65535).default(3001),
   TRUST_PROXY_HOPS: z.coerce.number().int().min(0).max(5).default(0),
   DATABASE_URL: z.string().trim().min(1).default('./data/aicon.sqlite'),
+  MONGODB_URI: z.string().trim().default(''),
   CLIENT_ORIGINS: z.string().default('http://localhost:5173,http://127.0.0.1:5173'),
   SMTP_HOST: z.string().trim().default(''),
   SMTP_PORT: z.string().trim().default(''),
@@ -98,6 +99,7 @@ export const config = Object.freeze({
   serverDirectory,
   clientDirectory: path.resolve(serverDirectory, '..', 'client'),
   databasePath,
+  mongodbUri: env.MONGODB_URI,
   clientOrigins,
   smtp: smtpConfigured
     ? Object.freeze({

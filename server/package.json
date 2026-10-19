@@ -20,6 +20,7 @@
     "express": "^5.1.0",
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
+    "mongoose": "^9.11.2",
     "nodemailer": "^10.1.7",
     "zod": "^4.1.12"
   },
@@ -27,6 +28,7 @@
     "better-sqlite3@12.11.1": true
   },
   "devDependencies": {
+    "mongodb-memory-server": "^11.3.0",
     "sharp": "^0.35.5"
   }
 }
