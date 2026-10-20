@@ -140,7 +140,7 @@ export function createApp({
     next();
   });
 
-  app.get('/api/health', (_request, response) => {
+  app.get('/api/health', asyncRoute(async (_request, response) => {
     if (!database.checkConnection()) {
       const error = new Error('The database is not available.');
       error.code = 'DATABASE_UNAVAILABLE';
@@ -154,33 +154,33 @@ export function createApp({
         smtpConfigured: Boolean(config.smtp),
       },
     });
-  });
+  }));
 
-  app.get('/api/categories', (request, response) => {
+  app.get('/api/categories', asyncRoute(async (request, response) => {
     const parsed = listQuerySchema.pick({ q: true, category: true }).safeParse(request.query);
 
     if (!parsed.success) {
       return invalidRequest(response, parsed.error);
     }
 
-    const categories = database.listCategories(parsed.data);
+    const categories = await database.listCategories(parsed.data);
     return response.json({ data: categories, meta: { total: categories.length } });
-  });
+  }));
 
-  app.get('/api/products', (request, response) => {
+  app.get('/api/products', asyncRoute(async (request, response) => {
     const parsed = listQuerySchema.safeParse(request.query);
 
     if (!parsed.success) {
       return invalidRequest(response, parsed.error);
     }
 
-    if (parsed.data.category && !database.getCategory(parsed.data.category)) {
+    if (parsed.data.category && !await database.getCategory(parsed.data.category)) {
       return response.status(400).json({
         error: { code: 'UNKNOWN_CATEGORY', message: 'The selected category does not exist.' },
       });
     }
 
-    const result = database.listProducts(parsed.data);
+    const result = await database.listProducts(parsed.data);
     return response.json({
       data: result.data,
       meta: {
@@ -189,10 +189,10 @@ export function createApp({
         offset: parsed.data.offset,
       },
     });
-  });
+  }));
 
-  app.get('/api/products/:productId', (request, response) => {
-    const product = database.getProduct(request.params.productId);
+  app.get('/api/products/:productId', asyncRoute(async (request, response) => {
+    const product = await database.getProduct(request.params.productId);
 
     if (!product) {
       return response.status(404).json({
@@ -201,10 +201,10 @@ export function createApp({
     }
 
     return response.json({ data: product });
-  });
+  }));
 
   function handleEnquiry(kind) {
-    return (request, response) => {
+    return async (request, response) => {
       const parsed = enquirySchema.safeParse(request.body);
 
       if (!parsed.success) {
@@ -255,7 +255,7 @@ export function createApp({
         requestHash: requestHash({ ...input, kind }),
       };
 
-      const result = database.createEnquiry(enquiry, {
+      const result = await database.createEnquiry(enquiry, {
         notificationEmail: config.smtp?.notificationEmail || '',
         templates,
       });
@@ -289,7 +289,7 @@ export function createApp({
         });
       }
 
-      const statuses = database.getEmailStatuses(result.enquiry.id);
+      const statuses = await database.getEmailStatuses(result.enquiry.id);
       const allSent = statuses.length === 2 && statuses.every((item) => item.status === 'sent');
 
       const notifications = allSent
@@ -314,8 +314,8 @@ export function createApp({
     };
   }
 
-  app.post('/api/enquiries', enquiryRateLimit, handleEnquiry('product'));
-  app.post('/api/contact', enquiryRateLimit, handleEnquiry('contact'));
+  app.post('/api/enquiries', enquiryRateLimit, asyncRoute(handleEnquiry('product')));
+  app.post('/api/contact', enquiryRateLimit, asyncRoute(handleEnquiry('contact')));
 
   app.use('/api', (_request, response) => response.status(404).json({
     error: { code: 'ROUTE_NOT_FOUND', message: 'This API route was not found.' },
@@ -337,7 +337,7 @@ export function createApp({
         if (error) {
           next(error);
         }
-      });
+    });
     });
   }
 

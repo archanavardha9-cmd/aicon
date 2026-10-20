@@ -10,7 +10,7 @@ const enquirySchema = new mongoose.Schema(
     categoryId: { type: String, ref: 'Category' },
     productId: { type: String, ref: 'Product' },
     message: { type: String, required: true },
-    idempotencyKey: { type: String, unique: true, sparse: true, index: true },
+    idempotencyKey: { type: String },
     requestHash: { type: String, required: true },
   },
   {
@@ -25,6 +25,11 @@ const enquirySchema = new mongoose.Schema(
       },
     },
   }
+);
+
+enquirySchema.index(
+  { idempotencyKey: 1 },
+  { unique: true, partialFilterExpression: { idempotencyKey: { $type: 'string' } } }
 );
 
 enquirySchema.virtual('id').get(function () {

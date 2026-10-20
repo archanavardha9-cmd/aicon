@@ -1,8 +1,4 @@
 import mongoose from 'mongoose';
-import { Category } from './models/Category.js';
-import { Product } from './models/Product.js';
-import { Enquiry } from './models/Enquiry.js';
-import { EmailOutbox } from './models/EmailOutbox.js';
 import { categories as seedCategoriesList } from '../../client/src/data/categories.js';
 import { initialProducts as seedProductsList } from '../../client/src/data/products.js';
 
@@ -34,7 +30,18 @@ function serializeProduct(doc) {
 }
 
 export async function createMongoDatabase(mongoUri, { recoverInterruptedJobs = true } = {}) {
+  // Clear cached models to ensure latest schema (including sparse indexes) is used
+  for (const name of ['Category', 'Product', 'Enquiry', 'EmailOutbox']) {
+    if (mongoose.models[name]) delete mongoose.models[name];
+  }
+
   await mongoose.connect(mongoUri);
+
+  // Dynamically import models after cache clearing
+  const { Category } = await import('./models/Category.js');
+  const { Product } = await import('./models/Product.js');
+  const { Enquiry } = await import('./models/Enquiry.js');
+  const { EmailOutbox } = await import('./models/EmailOutbox.js');
 
   // Seed categories idempotently
   for (const cat of seedCategoriesList) {
