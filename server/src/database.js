@@ -15,6 +15,8 @@ const schema = `
     terms TEXT NOT NULL DEFAULT '',
     icon TEXT NOT NULL,
     tone TEXT NOT NULL,
+    image TEXT,
+    description TEXT,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
   );
 
@@ -98,13 +100,15 @@ export function createDatabase(databasePath, { recoverInterruptedJobs = true } =
   db.exec(schema);
 
   const seedCategory = db.prepare(`
-    INSERT INTO categories (id, label, terms, icon, tone)
-    VALUES (@id, @label, @terms, @icon, @tone)
+    INSERT INTO categories (id, label, terms, icon, tone, image, description)
+    VALUES (@id, @label, @terms, @icon, @tone, @image, @description)
     ON CONFLICT(id) DO UPDATE SET
       label = excluded.label,
       terms = excluded.terms,
       icon = excluded.icon,
-      tone = excluded.tone
+      tone = excluded.tone,
+      image = excluded.image,
+      description = excluded.description
   `);
   const seedCategories = db.transaction((items) => {
     for (const category of items) {
@@ -151,14 +155,14 @@ export function createDatabase(databasePath, { recoverInterruptedJobs = true } =
 
   const categoryStatements = {
     list: db.prepare(`
-      SELECT c.id, c.label, c.terms, c.icon, c.tone,
+      SELECT c.id, c.label, c.terms, c.icon, c.tone, c.image, c.description,
         (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.active = 1) AS productCount
       FROM categories c
       WHERE (@category = '' OR c.id = @category)
         AND (@query = '' OR lower(c.label || ' ' || c.terms) LIKE @pattern ESCAPE '\\')
       ORDER BY c.label COLLATE NOCASE
     `),
-    find: db.prepare('SELECT id, label, terms, icon, tone FROM categories WHERE id = ?'),
+    find: db.prepare('SELECT id, label, terms, icon, tone, image, description FROM categories WHERE id = ?'),
   };
 
   const productStatements = {

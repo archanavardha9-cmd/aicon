@@ -14,16 +14,9 @@ if (config.mongodbUri) {
   try {
     database = await createMongoDatabase(config.mongodbUri);
     databaseType = 'mongodb';
-    console.info(JSON.stringify({
-      event: 'mongodb_connected',
-      uri: config.mongodbUri.replace(/:[^:]*@/, ':****@'),
-    }));
+    console.info('MongoDB connected successfully');
   } catch (mongoError) {
-    console.error(JSON.stringify({
-      event: 'mongodb_connection_failed',
-      error: mongoError.message,
-      fallback: 'sqlite',
-    }));
+    console.error('MongoDB connection failed');
     database = createDatabase(config.databasePath);
   }
 } else {

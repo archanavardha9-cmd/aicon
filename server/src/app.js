@@ -37,6 +37,8 @@ function requestHash(input) {
     message: input.message,
   });
 
+  
+
   return createHash('sha256').update(canonical).digest('hex');
 }
 
@@ -156,6 +158,7 @@ export function createApp({
     });
   }));
 
+
   app.get('/api/categories', asyncRoute(async (request, response) => {
     const parsed = listQuerySchema.pick({ q: true, category: true }).safeParse(request.query);
 
@@ -174,7 +177,7 @@ export function createApp({
       return invalidRequest(response, parsed.error);
     }
 
-    if (parsed.data.category && !await database.getCategory(parsed.data.category)) {
+    if (parsed.data.category && !(await database.getCategory(parsed.data.category))) {
       return response.status(400).json({
         error: { code: 'UNKNOWN_CATEGORY', message: 'The selected category does not exist.' },
       });
@@ -337,7 +340,7 @@ export function createApp({
         if (error) {
           next(error);
         }
-    });
+      });
     });
   }
 
@@ -360,12 +363,12 @@ export function createApp({
 
     const formatted = formatError(error);
 
-    logger.error(JSON.stringify({
-      event: 'api_request_failed',
-      method: request.method,
-      path: request.path,
-      errorCode: formatted.code,
-    }));
+  logger.error(JSON.stringify({
+    event: 'api_request_failed',
+    method: request.method,
+    path: request.path,
+    errorCode: formatted.code,
+  }));
 
     return response.status(formatted.status).json({
       error: { code: formatted.code, message: formatted.message },

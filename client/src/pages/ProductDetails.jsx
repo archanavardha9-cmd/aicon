@@ -42,6 +42,8 @@ export default function ProductDetails() {
     return () => controller.abort();
   }, [productId]);
 
+  const [imageError, setImageError] = useState(false);
+  const handleImageError = () => setImageError(true);
   const specifications = product?.specifications
     ? Object.entries(product.specifications).filter(([, value]) => value !== null && value !== '')
     : [];
@@ -69,9 +71,9 @@ export default function ProductDetails() {
             </div>
           ) : product ? (
             <article className="product-detail__layout">
-              <div className="product-detail__visual">
-                {product.imagePath ? (
-                  <img src={product.imagePath} alt={product.name} />
+              <div className="product-detail__visual" key={productId}>
+                {product.imagePath && !imageError ? (
+                  <img src={product.imagePath} alt={product.name} onError={handleImageError} />
                 ) : (
                   <div className="product-card__image-placeholder" role="img" aria-label="Product photograph not available">
                     <span>Product photograph not available</span>

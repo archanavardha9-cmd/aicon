@@ -110,6 +110,8 @@ export async function createMongoDatabase(mongoUri, { recoverInterruptedJobs = t
             terms: cat.terms,
             icon: cat.icon,
             tone: cat.tone,
+            image: cat.image,
+            description: cat.description,
             productCount: count,
           };
         })
@@ -117,8 +119,8 @@ export async function createMongoDatabase(mongoUri, { recoverInterruptedJobs = t
       return categoriesWithCount;
     },
     getCategory: async (id) => {
-      const cat = await Category.findById(id).lean();
-      return cat ? { id: cat._id, label: cat.label, terms: cat.terms, icon: cat.icon, tone: cat.tone } : null;
+    const cat = await Category.findById(id).lean();
+    return cat ? { id: cat._id, label: cat.label, terms: cat.terms, icon: cat.icon, tone: cat.tone, image: cat.image, description: cat.description } : null;
     },
     listProducts: async ({ q = '', query = '', category = '', sort = 'name', limit = 24, offset = 0 } = {}) => {
       const normalizedQuery = (q || query).trim();

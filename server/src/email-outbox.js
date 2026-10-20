@@ -10,8 +10,10 @@ export function createEmailOutbox({ database, transporter, fromEmail, logger = c
     active = true;
 
     try {
-      for (const job of database.getDueEmailJobs()) {
-        if (!database.claimEmailJob(job.id)) {
+      const jobs = await database.getDueEmailJobs();
+      for (const job of jobs) {
+        const claimed = await database.claimEmailJob(job.id);
+        if (!claimed) {
           continue;
         }
 
@@ -23,10 +25,10 @@ export function createEmailOutbox({ database, transporter, fromEmail, logger = c
             html: job.html,
             text: job.text,
           });
-          database.markEmailSent(job.id);
+          await database.markEmailSent(job.id);
         } catch (error) {
           const code = typeof error?.code === 'string' ? error.code : 'SMTP_DELIVERY_FAILED';
-          database.markEmailFailed(job.id, job.attempts + 1, code);
+          await database.markEmailFailed(job.id, job.attempts + 1, code);
           logger.error(JSON.stringify({
             event: 'email_delivery_failed',
             outboxId: job.id,
