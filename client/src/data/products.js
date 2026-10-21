@@ -5,7 +5,7 @@ export const initialProducts = [
     name: 'AICON 55" 4K Ultra HD Smart LED TV',
     modelNumber: 'ACTV-55UHD',
     description: 'Frameless bezel-less 4K Ultra HD Smart TV featuring HDR10 vivid contrast, integrated Dolby Audio sound system, voice command smart remote, and seamless smartphone screen mirroring.',
-    imagePath: '/images/products/aicon-4k-smart-tv.jpg',
+    imagePath: '/images/products/aicon-4k-smart-tv.png',
     specifications: {
       'Screen Size': '55 Inch (139 cm)',
       'Resolution': '4K Ultra HD (3840 x 2160)',
@@ -21,7 +21,7 @@ export const initialProducts = [
     name: 'AICON 43" Full HD Smart LED TV',
     modelNumber: 'ACTV-43FHD',
     description: 'Slim bezel Full HD Smart television with dynamic contrast enhancement, surround sound speaker system, built-in popular streaming apps, and screen casting support.',
-    imagePath: '/images/products/aicon-4k-smart-tv.jpg',
+    imagePath: '/images/products/aicon-4k-smart-tv.png',
     specifications: {
       'Screen Size': '43 Inch (108 cm)',
       'Resolution': 'Full HD (1920 x 1080)',
@@ -37,7 +37,7 @@ export const initialProducts = [
     name: 'AICON 8.0 kg Semi-Automatic Twin Tub Washing Machine',
     modelNumber: 'ACWM-80ST',
     description: 'Durable twin-tub semi-automatic washer with high-torque roller pulsator for deep cleaning, rust-free polymer cabinet, high-speed spin dryer, and multi-program wash timer.',
-    imagePath: '/images/products/aicon-twin-tub-washing-machine.jpg',
+    imagePath: '/images/products/aicon-twin-tub-washing-machine.png',
     specifications: {
       'Wash Capacity': '8.0 kg',
       'Spin Capacity': '5.5 kg',
@@ -53,7 +53,7 @@ export const initialProducts = [
     name: 'AICON 7.0 kg Semi-Automatic Washing Machine',
     modelNumber: 'ACWM-70ST',
     description: 'Compact and powerful semi-automatic washing machine designed for efficient water and energy usage with rapid spin-drying.',
-    imagePath: '/images/products/aicon-semi-automatic-washing-machine.jpg',
+    imagePath: '/images/products/aicon-semi-automatic-washing-machine.png',
     specifications: {
       'Capacity': '7.0 kg',
       'Motor': 'Copper Winding Motor with Thermal Overload Protection',
@@ -68,7 +68,7 @@ export const initialProducts = [
     name: 'AICON 70L Heavy-Duty Desert Air Cooler',
     modelNumber: 'ACAC-70D',
     description: 'Heavy-duty desert cooler with 70L water capacity, 3-sided dense honeycomb cooling pads, large ice chamber, and high-velocity air throw for large rooms.',
-    imagePath: '/images/products/aicon-desert-cooler-70l.jpg',
+    imagePath: '/images/products/aicon-desert-cooler-70l.png',
     specifications: {
       'Tank Capacity': '70 Litres',
       'Air Throw Distance': 'Up to 45 Feet',
@@ -84,7 +84,7 @@ export const initialProducts = [
     name: 'AICON 45L Tower Air Cooler',
     modelNumber: 'ACAC-45P',
     description: 'Modern compact air cooler with multi-speed blower, honeycomb evaporative cooling, water level indicator, and silent motor operation.',
-    imagePath: '/images/products/aicon-air-cooler.jpg',
+    imagePath: '/images/products/aicon-air-cooler.png',
     specifications: {
       'Tank Capacity': '45 Litres',
       'Air Throw': '30 Feet',
@@ -99,7 +99,7 @@ export const initialProducts = [
     name: 'AICON 1.5 Ton 5-Star Inverter Split Air Conditioner',
     modelNumber: 'ACAC-15INV',
     description: 'High-efficiency 5-star inverter split air conditioner with 100% copper condenser, rapid turbo cooling, PM 2.5 air filter, and eco-friendly R32 refrigerant.',
-    imagePath: '/images/products/aicon-inverter-split-ac.jpg',
+    imagePath: '/images/products/aicon-inverter-split-ac.png',
     specifications: {
       'Cooling Capacity': '1.5 Ton (5100 Watts)',
       'Energy Rating': '5-Star Inverter',
@@ -114,7 +114,7 @@ export const initialProducts = [
     name: 'AICON AeroFlow 1200mm High-Speed Ceiling Fan',
     modelNumber: 'ACFN-1200AF',
     description: 'High-speed 3-blade aerodynamic ceiling fan with 100% copper winding motor, double ball bearings for whisper-quiet performance, and anti-dust powder coating.',
-    imagePath: '/images/products/aicon-aeroflow-ceiling-fan.jpg',
+    imagePath: '/images/products/aicon-aeroflow-ceiling-fan.png',
     specifications: {
       'Sweep Size': '1200 mm (48 Inch)',
       'Air Delivery': '230 m³/min',
@@ -131,7 +131,7 @@ export const initialProducts = [
     name: 'AICON 750W Heavy-Duty Mixer Grinder (3 Jars)',
     modelNumber: 'ACMG-750P',
     description: 'Commercial-grade 750W copper motor mixer grinder featuring 3 food-grade stainless steel jars, machine-ground blades, 3-speed rotary dial with pulse, and auto overload cut-off.',
-    imagePath: '/images/products/aicon-smart-mixer-grinder-750w.jpg',
+    imagePath: '/images/products/aicon-smart-mixer-grinder-750w.png',
     specifications: {
       'Motor Power': '750 Watts Pure Copper Motor',
       'Jars Included': '1.5L Wet Jar, 1.0L Dry Jar, 0.4L Chutney Jar',
@@ -146,7 +146,7 @@ export const initialProducts = [
     name: 'AICON 25L Digital Storage Water Heater (Geyser)',
     modelNumber: 'ACWH-25DS',
     description: 'Energy-efficient 25L storage water heater with glass-lined anti-corrosive inner tank, 8-bar pressure rating suitable for high-rise apartments, and digital temperature indicator.',
-    imagePath: '/images/products/aicon-storage-water-heater-25l.jpg',
+    imagePath: '/images/products/aicon-storage-water-heater-25l.png',
     specifications: {
       'Capacity': '25 Litres',
       'Power': '2000 Watts Heating Element',

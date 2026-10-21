@@ -167,8 +167,7 @@ export default function Contact() {
             </div>
 
             <div className="form-notice" role="note">
-              Your enquiry is saved by the AICON website. Email notifications
-              are handled by the server, with delivery status shown after submission.
+              Your enquiry is saved by the AICON website.
             </div>
 
             <form className="enquiry-form" onSubmit={submitForm}>

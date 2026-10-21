@@ -50,7 +50,7 @@ export default function Hero() {
             <div className="hero__product-backdrop" aria-hidden="true" />
             <img
               className="hero__product-image"
-              src="/images/products/aicon-4k-smart-tv.jpg"
+              src="/images/products/aicon-4k-smart-tv.png"
               alt="AICON 55 Inch 4K Ultra HD Smart LED TV"
               fetchPriority="high"
             />

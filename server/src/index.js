@@ -55,7 +55,7 @@ const outbox = createEmailOutbox({
   fromEmail: config.smtp?.fromEmail,
 });
 
-const app = createApp({ database, config });
+const app = createApp({ database, config, outbox });
 const server = app.listen(config.port, () => {
   console.info(JSON.stringify({
     event: 'server_started',

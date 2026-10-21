@@ -5,7 +5,7 @@ export const categories = [
     terms: 'television televisions tv led',
     icon: 'television',
     tone: 'blue',
-    image: '/images/products/aicon-4k-smart-tv.jpg',
+    image: '/images/products/aicon-4k-smart-tv.png',
     description: 'Frameless 4K Ultra HD and Full HD Smart displays with vivid HDR contrast and Dolby Audio.',
   },
   {
@@ -14,7 +14,7 @@ export const categories = [
     terms: 'washing machine washing-machines laundry',
     icon: 'washing',
     tone: 'sage',
-    image: '/images/products/aicon-semi-automatic-washing-machine.jpg',
+    image: '/images/products/aicon-semi-automatic-washing-machine.png',
     description: 'Durable twin-tub semi-automatic washers with high-torque pulsators and rust-free cabinets.',
   },
   {
@@ -23,7 +23,7 @@ export const categories = [
     terms: 'air cooler air-coolers cooling',
     icon: 'cooler',
     tone: 'ice',
-    image: '/images/products/aicon-air-cooler.jpg',
+    image: '/images/products/aicon-air-cooler.png',
     description: 'High-air-delivery desert coolers and efficient inverter split air conditioners.',
   },
   {
@@ -32,7 +32,7 @@ export const categories = [
     terms: 'fan fans',
     icon: 'fan',
     tone: 'clay',
-    image: '/images/products/aicon-aeroflow-ceiling-fan.jpg',
+    image: '/images/products/aicon-aeroflow-ceiling-fan.png',
     description: 'High-speed aerodynamically balanced ceiling fans with 100% pure copper winding.',
   },
   {
@@ -41,7 +41,7 @@ export const categories = [
     terms: 'kitchen appliance appliances cooking',
     icon: 'kitchen',
     tone: 'ochre',
-    image: '/images/products/aicon-smart-mixer-grinder-750w.jpg',
+    image: '/images/products/aicon-smart-mixer-grinder-750w.png',
     description: 'Heavy-duty 750W mixer grinders with hardened stainless steel blades and overload protection.',
   },
   {
@@ -50,7 +50,7 @@ export const categories = [
     terms: 'water heating heater heaters',
     icon: 'heating',
     tone: 'plum',
-    image: '/images/products/aicon-storage-water-heater-25l.jpg',
+    image: '/images/products/aicon-storage-water-heater-25l.png',
     description: 'High-pressure storage geysers with corrosion-resistant tanks and advanced thermal cut-off.',
   },
 ];

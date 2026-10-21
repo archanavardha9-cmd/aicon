@@ -78,6 +78,7 @@ export function createApp({
   database,
   config = defaultConfig,
   logger = console,
+  outbox = null,
 } = {}) {
   if (!database) {
     throw new Error('createApp requires a configured database.');
@@ -295,6 +296,9 @@ export function createApp({
       const statuses = await database.getEmailStatuses(result.enquiry.id);
       const allSent = statuses.length === 2 && statuses.every((item) => item.status === 'sent');
 
+      // Trigger immediate email processing without blocking the response
+      void outbox?.processPending();
+
       const notifications = allSent
         ? 'sent'
         : config.smtp
@@ -308,10 +312,10 @@ export function createApp({
           notifications,
           duplicate: result.duplicate,
           message: allSent
-            ? 'Your enquiry was saved and notifications were sent.'
+            ? 'Thank you! Your enquiry has been submitted successfully.'
             : config.smtp
-              ? 'Your enquiry was saved. Email delivery is pending and will be retried automatically.'
-              : 'Your enquiry was saved. Email delivery will begin once SMTP is configured.',
+              ? 'Thank you! Your enquiry has been submitted successfully.'
+              : 'Thank you! Your enquiry has been submitted successfully.',
         },
       });
     };
