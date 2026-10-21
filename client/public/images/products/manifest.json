@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-10-19T10:04:26.245Z",
-  "totalProductsWithImages": 10,
+  "totalProductsWithImages": 13,
   "images": [
     {
       "filename": "aicon-4k-smart-tv.jpg",
@@ -51,6 +51,21 @@
       "filename": "aicon-twin-tub-washing-machine.jpg",
       "path": "/images/products/aicon-twin-tub-washing-machine.jpg",
       "sizeBytes": 505299
+    },
+    {
+      "filename": "aicon-split-ac-1t.jpg",
+      "path": "/images/products/aicon-split-ac-1t.jpg",
+      "sizeBytes": 210247
+    },
+    {
+      "filename": "aicon-juicer-mixer-grinder.jpg",
+      "path": "/images/products/aicon-juicer-mixer-grinder.jpg",
+      "sizeBytes": 401373
+    },
+    {
+      "filename": "aicon-dry-iron.jpg",
+      "path": "/images/products/aicon-dry-iron.jpg",
+      "sizeBytes": 275653
     }
   ]
 }

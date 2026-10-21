@@ -154,6 +154,52 @@ export const initialProducts = [
       'Pressure Rating': '8 Bar (High-Rise Compatible)',
       'Display': 'Digital Temperature Readout',
       'Safety Systems': 'Multi-function Valve & Thermal Cut-off'
-    }
-  }
+    },
+  },
+    // New products added from Facebook
+    {
+      id: 'aicon-split-ac-1t',
+      categoryId: 'air-coolers',
+      name: 'AICON 1.0 Ton Split Air Conditioner',
+      modelNumber: 'ACAC-10T',
+      description: 'Energy-efficient 1.0 Ton split AC with copper condenser, turbo cooling, PM2.5 filter, and eco-friendly R32 refrigerant.',
+      imagePath: '/images/products/aicon-split-ac-1t.jpg',
+      specifications: {
+        "Cooling Capacity": "1.0 Ton (3400 Watts)",
+        "Energy Rating": "5-Star Inverter",
+        "Condenser": "100% Copper Coil",
+        "Filtration": "PM 2.5 Air Purification",
+        "Modes": "Turbo Cool, Eco Mode, Sleep Mode, Dry Mode"
+      }
+    },
+    {
+      id: 'aicon-juicer-mixer-grinder-550w',
+      categoryId: 'kitchen-appliances',
+      name: 'AICON 550W Juicer Mixer Grinder',
+      modelNumber: 'ACMG-550',
+      description: 'Compact 550W juicer mixer grinder with 3 stainless steel jars and overload protection.',
+      imagePath: '/images/products/aicon-juicer-mixer-grinder.jpg',
+      specifications: {
+        "Motor Power": "550 Watts",
+        "Jars Included": "1.5L Wet Jar, 0.5L Dry Jar, 0.25L Chutney Jar",
+        "Jar Material": "Stainless Steel",
+        "Speed Control": "3 Speeds with Pulse",
+        "Safety": "Overload Protector"
+      }
+    },
+    {
+      id: 'aicon-dry-iron-750w',
+      categoryId: 'kitchen-appliances',
+      name: 'AICON 750W Dry Iron',
+      modelNumber: 'ACDI-750',
+      description: 'Professional 750W dry iron with steam boost and anti-calc technology.',
+      imagePath: '/images/products/aicon-dry-iron.jpg',
+      specifications: {
+        "Power": "750 Watts",
+        "Sole Plate": "Stainless Steel",
+        "Steam Boost": "Yes",
+        "Anti-Calc": "Yes",
+        "Temperature Settings": "200°C"
+      }
+    },
 ];

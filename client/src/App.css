@@ -167,7 +167,7 @@
   grid-template-columns: .91fr 1.09fr;
   align-items: center;
   gap: clamp(45px, 7vw, 112px);
-  padding-block: 64px 49px;
+  padding-block: 32px 49px;
 }
 
 .hero__copy {
@@ -314,7 +314,7 @@
   width: 100%;
   max-width: 710px;
   margin: 0;
-  padding: 0 0 29px 22px;
+  padding: 0;
 }
 
 .hero__photo-frame {
@@ -2083,7 +2083,7 @@
   }
 
   .hero__visual {
-    padding-left: 13px;
+    padding-left: 0;
   }
 
   .hero__floating-note {
@@ -2165,7 +2165,7 @@
     min-height: auto;
     grid-template-columns: 1fr;
     gap: 31px;
-    padding-block: 52px 24px;
+    padding-block: 32px 24px;
   }
 
   .hero__copy {
@@ -2199,9 +2199,9 @@
   }
 
   .hero__visual {
-    width: calc(100% - 12px);
-    margin-left: 12px;
-    padding: 0 0 23px 8px;
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
   }
 
   .hero__photo-frame {

@@ -69,8 +69,8 @@ test('MongoDB: getCategory returns null for unknown', async () => {
 
 test('MongoDB: seeds 10 products on creation', async () => {
   const result = await database.listProducts({ limit: 100 });
-  assert.equal(result.total, 10);
-  assert.equal(result.data.length, 10);
+  assert.equal(result.total, 13);
+  assert.equal(result.data.length, 13);
 });
 
 test('MongoDB: listProducts filters by category', async () => {
@@ -125,7 +125,7 @@ test('MongoDB: seeding is idempotent (no duplicates on re-init)', async () => {
   const categories = await database.listCategories();
   const products = await database.listProducts({ limit: 100 });
   assert.equal(categories.length, 6);
-  assert.equal(products.total, 10);
+  assert.equal(products.total, 13);
 });
 
 // --- Enquiry Creation and Persistence ---
