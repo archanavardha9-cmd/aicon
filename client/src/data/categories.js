@@ -47,11 +47,20 @@ export const categories = [
   {
     id: 'water-heating',
     label: 'Water Heating',
-    terms: 'water heating heater heaters',
+    terms: 'water heating heater heaters geyser immersion',
     icon: 'heating',
     tone: 'plum',
     image: '/images/products/aicon-storage-water-heater-25l.png',
-    description: 'High-pressure storage geysers with corrosion-resistant tanks and advanced thermal cut-off.',
+    description: 'High-pressure storage geysers, immersion rods, and advanced thermal cut-off water heating solutions.',
+  },
+  {
+    id: 'room-heating',
+    label: 'Room Heating',
+    terms: 'room heater heaters sun quartz carbon warmth winter',
+    icon: 'heating',
+    tone: 'ember',
+    image: '/images/products/aicon-sun-heater-14.png',
+    description: 'Carbon sun heaters and quartz metal heaters with tip-over safety, oscillation, and efficient warmth.',
   },
 ];
 

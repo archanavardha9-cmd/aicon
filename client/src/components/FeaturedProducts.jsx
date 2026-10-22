@@ -4,8 +4,23 @@ import { Link } from 'react-router-dom';
 import { fetchProducts } from '../services/api';
 import { initialProducts } from '../data/products';
 
+const FEATURED_IDS = [
+  'aicon-4k-uhd-smart-led-tv-55',
+  'aicon-inverter-split-ac-15t',
+  'aicon-semi-auto-twin-tub-8kg',
+  'aicon-sun-heater-14',
+  'aicon-electric-kettle-1.5l',
+  'aicon-smart-mixer-grinder-750w',
+];
+
+function getCuratedFeatured() {
+  return FEATURED_IDS
+    .map((id) => initialProducts.find((p) => p.id === id))
+    .filter(Boolean);
+}
+
 export default function FeaturedProducts() {
-  const [products, setProducts] = useState(initialProducts.slice(0, 6));
+  const [products, setProducts] = useState(getCuratedFeatured);
 
   useEffect(() => {
     const controller = new AbortController();

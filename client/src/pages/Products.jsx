@@ -200,7 +200,7 @@ export default function Products() {
           <a className="button button--gold" href="#collection">
             Browse collection <ArrowRight size={17} />
           </a>
-          <span className="page-intro__folio" aria-hidden="true">01 / 06</span>
+          <span className="page-intro__folio" aria-hidden="true">01 / 07</span>
         </div>
       </section>
 

@@ -31,20 +31,19 @@ export const initialProducts = [
       'Connectivity': '2 HDMI Ports, 2 USB Ports, Audio Out'
     }
   },
-  {
-    id: 'aicon-semi-auto-twin-tub-8kg',
-    categoryId: 'washing-machines',
-    name: 'AICON 8.0 kg Semi-Automatic Twin Tub Washing Machine',
-    modelNumber: 'ACWM-80ST',
-    description: 'Durable twin-tub semi-automatic washer with high-torque roller pulsator for deep cleaning, rust-free polymer cabinet, high-speed spin dryer, and multi-program wash timer.',
-    imagePath: '/images/products/aicon-twin-tub-washing-machine.png',
+{
+    id: 'aicon-inverter-split-ac-15t',
+    categoryId: 'air-coolers',
+    name: 'AICON 1.5 Ton 5-Star Inverter Split Air Conditioner',
+    modelNumber: 'ACAC-15INV',
+    description: 'High-efficiency 5-star inverter split air conditioner with 100% copper condenser, rapid turbo cooling, PM 2.5 air filter, and eco-friendly R32 refrigerant.',
+    imagePath: '/images/products/aicon-inverter-split-ac.png',
     specifications: {
-      'Wash Capacity': '8.0 kg',
-      'Spin Capacity': '5.5 kg',
-      'Body Material': '100% Rust-Proof High-Grade Polymer',
-      'Pulsator Type': 'High-Torque Roller Pulsator',
-      'Wash Programs': 'Gentle, Normal, Heavy',
-      'Special Features': 'Magic Lint Filter, Collar Scrubber, Buzzer Alert'
+      'Cooling Capacity': '1.5 Ton (5100 Watts)',
+      'Energy Rating': '5-Star Inverter',
+      'Condenser': '100% Inner-Grooved Copper Coil',
+      'Filtration': 'PM 2.5 Air Purification Filter',
+      'Modes': 'Turbo Cool, Eco Mode, Sleep Mode, Dry Mode'
     }
   },
   {
@@ -94,18 +93,19 @@ export const initialProducts = [
     }
   },
   {
-    id: 'aicon-inverter-split-ac-15t',
-    categoryId: 'air-coolers',
-    name: 'AICON 1.5 Ton 5-Star Inverter Split Air Conditioner',
-    modelNumber: 'ACAC-15INV',
-    description: 'High-efficiency 5-star inverter split air conditioner with 100% copper condenser, rapid turbo cooling, PM 2.5 air filter, and eco-friendly R32 refrigerant.',
-    imagePath: '/images/products/aicon-inverter-split-ac.png',
+    id: 'aicon-semi-auto-twin-tub-8kg',
+    categoryId: 'washing-machines',
+    name: 'AICON 8.0 kg Semi-Automatic Twin Tub Washing Machine',
+    modelNumber: 'ACWM-80ST',
+    description: 'Durable twin-tub semi-automatic washer with high-torque roller pulsator for deep cleaning, rust-free polymer cabinet, high-speed spin dryer, and multi-program wash timer.',
+    imagePath: '/images/products/aicon-twin-tub-washing-machine.png',
     specifications: {
-      'Cooling Capacity': '1.5 Ton (5100 Watts)',
-      'Energy Rating': '5-Star Inverter',
-      'Condenser': '100% Inner-Grooved Copper Coil',
-      'Filtration': 'PM 2.5 Air Purification Filter',
-      'Modes': 'Turbo Cool, Eco Mode, Sleep Mode, Dry Mode'
+      'Wash Capacity': '8.0 kg',
+      'Spin Capacity': '5.5 kg',
+      'Body Material': '100% Rust-Proof High-Grade Polymer',
+      'Pulsator Type': 'High-Torque Roller Pulsator',
+      'Wash Programs': 'Gentle, Normal, Heavy',
+      'Special Features': 'Magic Lint Filter, Collar Scrubber, Buzzer Alert'
     }
   },
   {
@@ -200,6 +200,83 @@ export const initialProducts = [
         "Steam Boost": "Yes",
         "Anti-Calc": "Yes",
         "Temperature Settings": "200°C"
+      }
+    },
+    {
+      id: 'aicon-sun-heater-14',
+      categoryId: 'room-heating',
+      name: 'AICON 14" Sun Heater',
+      modelNumber: 'V-H301',
+      description: 'Sun-like warmth every day. High-efficiency carbon heating element delivers instant and uniform heat with tip-over safety switch, overheat protection, wide-angle oscillation, and silent compact design.',
+      imagePath: '/images/products/aicon-sun-heater-14.png',
+      specifications: {
+        "Heating Technology": "Sun Carbon Heating Element",
+        "Heat Settings": "2 Settings — Low (400W) / High (800W)",
+        "Oscillation": "Wide Angle Left & Right",
+        "Safety": "Tip-Over Switch & Overheat Protection",
+        "Voltage": "220–240V ~ 50Hz",
+        "Design": "Silent Compact with Sturdy Base"
+      }
+    },
+    {
+      id: 'aicon-quartz-metal-heater',
+      categoryId: 'room-heating',
+      name: 'AICON Quartz Metal Heater',
+      modelNumber: 'V-H201',
+      description: 'Instant warmth, everyday comfort. Fast, efficient and reliable quartz tube heating with metal safety grill, tip-over protection, built-in carry handle, and durable stylish metal body.',
+      imagePath: '/images/products/aicon-quartz-metal-heater.jpg',
+      specifications: {
+        "Heating Element": "High Quality Quartz Tubes",
+        "Power": "400W / 800W (2 Heat Settings)",
+        "Safety": "Overheat & Tip-Over Protection",
+        "Front Grill": "Metal Safety Grill",
+        "Voltage": "220–240V ~ 50Hz",
+        "Design": "Lightweight with Built-In Carry Handle"
+      }
+    },
+    {
+      id: 'aicon-immersion-water-heater',
+      categoryId: 'water-heating',
+      name: 'AICON Immersion Water Heater',
+      modelNumber: 'ACIH-1500',
+      description: 'Ultra-fast heating, smart choice for your home. High-quality copper heating element immersion rod for rapid water heating with indicator light and shock-proof handle.',
+      imagePath: '/images/products/aicon-immersion-water-heater.png',
+      specifications: {
+        "Power": "1500 Watts",
+        "Heating Element": "ISI Grade Copper",
+        "Safety": "Shock-Proof Handle & Indicator Light",
+        "Voltage": "220–240V ~ 50Hz",
+        "Usage": "Bucket & Small Tank Water Heating"
+      }
+    },
+    {
+      id: 'aicon-electric-kettle-1.5l',
+      categoryId: 'kitchen-appliances',
+      name: 'AICON 1.5L Stainless Steel Electric Kettle',
+      modelNumber: 'ACEK-15',
+      description: 'Rapid boil, elegant design. Super fast boil technology with auto shut-off, boil-dry protection, cordless 360° base convenience, and premium stainless steel body.',
+      imagePath: '/images/products/aicon-electric-kettle-1.5l.jpg',
+      specifications: {
+        "Capacity": "1.5 Litres",
+        "Body Material": "Premium Stainless Steel",
+        "Base Type": "Cordless 360° Swivel Base",
+        "Safety": "Auto Shut-Off & Boil-Dry Protection",
+        "Technology": "Super Fast Boil"
+      }
+    },
+    {
+      id: 'aicon-electric-kettle-1.8l',
+      categoryId: 'kitchen-appliances',
+      name: 'AICON 1.8L Stainless Steel Electric Kettle',
+      modelNumber: 'ACEK-18',
+      description: 'Rapid boil, elegant design. Larger capacity electric kettle with super fast boil technology, auto shut-off, boil-dry protection, cordless 360° base, and premium stainless steel body.',
+      imagePath: '/images/products/aicon-electric-kettle-1.8l.jpg',
+      specifications: {
+        "Capacity": "1.8 Litres",
+        "Body Material": "Premium Stainless Steel",
+        "Base Type": "Cordless 360° Swivel Base",
+        "Safety": "Auto Shut-Off & Boil-Dry Protection",
+        "Technology": "Super Fast Boil"
       }
     },
 ];
