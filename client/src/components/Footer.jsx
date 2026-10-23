@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="site-footer__brand">
             <Link className="brand-lockup" to="/" aria-label="AICON home">
               <span className="brand-lockup__mark" aria-hidden="true">
-                <img src="/aicon-logo.jpg" alt="" />
+                <img src="/aicon-logo.png" alt="" />
               </span>
               <span className="brand-lockup__copy">
                 <span className="brand-lockup__name">AICON</span>

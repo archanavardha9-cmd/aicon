@@ -26,7 +26,7 @@ export default function Navbar() {
           onClick={closeMenu}
         >
           <span className="brand-lockup__mark" aria-hidden="true">
-            <img src="/aicon-logo.jpg" alt="" />
+            <img src="/aicon-logo.png" alt="" />
           </span>
           <span className="brand-lockup__copy">
             <span className="brand-lockup__name">AICON</span>
