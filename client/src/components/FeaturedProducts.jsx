@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { fetchProducts } from '../services/api';
-import { initialProducts } from '../data/products';
+import { useEffect, useState } from "react";
+import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { fetchProducts } from "../services/api";
+import { initialProducts } from "../data/products";
 
 const FEATURED_IDS = [
-  'aicon-4k-uhd-smart-led-tv-55',
-  'aicon-inverter-split-ac-15t',
-  'aicon-semi-auto-twin-tub-8kg',
-  'aicon-sun-heater-14',
-  'aicon-electric-kettle-1.5l',
-  'aicon-smart-mixer-grinder-750w',
+  "aicon-4k-uhd-smart-led-tv-55",
+  "aicon-inverter-split-ac-15t",
+  "aicon-semi-auto-twin-tub-8kg",
+  "aicon-sun-heater-14",
+  "aicon-electric-kettle-1.5l",
+  "aicon-smart-mixer-grinder-750w",
 ];
 
 function getCuratedFeatured() {
-  return FEATURED_IDS
-    .map((id) => initialProducts.find((p) => p.id === id))
-    .filter(Boolean);
+  return FEATURED_IDS.map((id) =>
+    initialProducts.find((p) => p.id === id),
+  ).filter(Boolean);
 }
 
 export default function FeaturedProducts() {
@@ -24,7 +24,7 @@ export default function FeaturedProducts() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetchProducts({ limit: 6, sort: 'name', signal: controller.signal })
+    fetchProducts({ limit: 6, sort: "name", signal: controller.signal })
       .then((res) => {
         if (res?.data?.length) {
           setProducts(res.data.slice(0, 6));
@@ -65,7 +65,9 @@ export default function FeaturedProducts() {
 
         <div className="featured-product-grid">
           {products.map((product) => {
-            const specEntries = Object.entries(product.specifications || {}).slice(0, 3);
+            const specEntries = Object.entries(
+              product.specifications || {},
+            ).slice(0, 3);
             return (
               <article className="featured-product-card" key={product.id}>
                 <div className="featured-product-card__visual">
@@ -83,7 +85,7 @@ export default function FeaturedProducts() {
 
                 <div className="featured-product-card__body">
                   <span className="featured-product-card__category">
-                    {product.category || product.categoryId?.replace('-', ' ')}
+                    {product.category || product.categoryId?.replace("-", " ")}
                   </span>
                   <h3>{product.name}</h3>
                   <p className="featured-product-card__desc">
@@ -95,7 +97,9 @@ export default function FeaturedProducts() {
                       {specEntries.map(([key, val]) => (
                         <li key={key}>
                           <CheckCircle2 size={13} className="spec-check-icon" />
-                          <span><strong>{key}:</strong> {val}</span>
+                          <span>
+                            <strong>{key}:</strong> {val}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -108,12 +112,22 @@ export default function FeaturedProducts() {
                     >
                       Specifications <ArrowUpRight size={15} />
                     </Link>
-                    <Link
+                    <a
                       className="button button--gold"
-                      to={`/contact?category=${encodeURIComponent(product.categoryId)}&product=${encodeURIComponent(product.id)}`}
+                      href={`https://wa.me/917992170835?text=${encodeURIComponent(
+                        `Hello AICON Team,
+
+I would like to enquire about the ${product.name}.
+
+Could you please share more details about its features, specifications, and pricing?
+
+Thank you.`,
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Enquire <ArrowRight size={15} />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </article>
