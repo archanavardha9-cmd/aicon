@@ -5,7 +5,7 @@ export const initialProducts = [
     name: 'AICON 55" 4K Ultra HD Smart LED TV',
     modelNumber: 'ACTV-55UHD',
     description: 'Frameless bezel-less 4K Ultra HD Smart TV featuring HDR10 vivid contrast, integrated Dolby Audio sound system, voice command smart remote, and seamless smartphone screen mirroring.',
-    imagePath: '/images/products/aicon-4k-smart-tv.png',
+    imagePath: '/images/products/aicon-smart-tv.png',
     specifications: {
       'Screen Size': '55 Inch (139 cm)',
       'Resolution': '4K Ultra HD (3840 x 2160)',
@@ -21,7 +21,7 @@ export const initialProducts = [
     name: 'AICON 43" Full HD Smart LED TV',
     modelNumber: 'ACTV-43FHD',
     description: 'Slim bezel Full HD Smart television with dynamic contrast enhancement, surround sound speaker system, built-in popular streaming apps, and screen casting support.',
-    imagePath: '/images/products/aicon-4k-smart-tv.png',
+    imagePath: '/images/products/aicon-smart-tv.png',
     specifications: {
       'Screen Size': '43 Inch (108 cm)',
       'Resolution': 'Full HD (1920 x 1080)',
@@ -163,7 +163,7 @@ export const initialProducts = [
       name: 'AICON 1.0 Ton Split Air Conditioner',
       modelNumber: 'ACAC-10T',
       description: 'Energy-efficient 1.0 Ton split AC with copper condenser, turbo cooling, PM2.5 filter, and eco-friendly R32 refrigerant.',
-      imagePath: '/images/products/aicon-split-ac-1t.jpg',
+      imagePath: '/images/products/aicon-split-ac-1t.png',
       specifications: {
         "Cooling Capacity": "1.0 Ton (3400 Watts)",
         "Energy Rating": "5-Star Inverter",
@@ -178,7 +178,7 @@ export const initialProducts = [
       name: 'AICON 550W Juicer Mixer Grinder',
       modelNumber: 'ACMG-550',
       description: 'Compact 550W juicer mixer grinder with 3 stainless steel jars and overload protection.',
-      imagePath: '/images/products/aicon-juicer-mixer-grinder.jpg',
+      imagePath: '/images/products/aicon-juicer-mixer-grinder.png',
       specifications: {
         "Motor Power": "550 Watts",
         "Jars Included": "1.5L Wet Jar, 0.5L Dry Jar, 0.25L Chutney Jar",
@@ -193,7 +193,7 @@ export const initialProducts = [
       name: 'AICON 750W Dry Iron',
       modelNumber: 'ACDI-750',
       description: 'Professional 750W dry iron with steam boost and anti-calc technology.',
-      imagePath: '/images/products/aicon-dry-iron.jpg',
+      imagePath: '/images/products/aicon-dry-iron.png',
       specifications: {
         "Power": "750 Watts",
         "Sole Plate": "Stainless Steel",
@@ -224,7 +224,7 @@ export const initialProducts = [
       name: 'AICON Quartz Metal Heater',
       modelNumber: 'V-H201',
       description: 'Instant warmth, everyday comfort. Fast, efficient and reliable quartz tube heating with metal safety grill, tip-over protection, built-in carry handle, and durable stylish metal body.',
-      imagePath: '/images/products/aicon-quartz-metal-heater.jpg',
+      imagePath: '/images/products/aicon-quartz-metal-heater.png',
       specifications: {
         "Heating Element": "High Quality Quartz Tubes",
         "Power": "400W / 800W (2 Heat Settings)",
@@ -255,7 +255,7 @@ export const initialProducts = [
       name: 'AICON 1.5L Stainless Steel Electric Kettle',
       modelNumber: 'ACEK-15',
       description: 'Rapid boil, elegant design. Super fast boil technology with auto shut-off, boil-dry protection, cordless 360° base convenience, and premium stainless steel body.',
-      imagePath: '/images/products/aicon-electric-kettle-1.5l.jpg',
+      imagePath: '/images/products/aicon-electric-kettle-1.5l.png',
       specifications: {
         "Capacity": "1.5 Litres",
         "Body Material": "Premium Stainless Steel",
@@ -270,7 +270,7 @@ export const initialProducts = [
       name: 'AICON 1.8L Stainless Steel Electric Kettle',
       modelNumber: 'ACEK-18',
       description: 'Rapid boil, elegant design. Larger capacity electric kettle with super fast boil technology, auto shut-off, boil-dry protection, cordless 360° base, and premium stainless steel body.',
-      imagePath: '/images/products/aicon-electric-kettle-1.8l.jpg',
+      imagePath: '/images/products/aicon-electric-kettle-1.8l.png',
       specifications: {
         "Capacity": "1.8 Litres",
         "Body Material": "Premium Stainless Steel",

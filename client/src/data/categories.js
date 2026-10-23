@@ -5,7 +5,7 @@ export const categories = [
     terms: 'television televisions tv led',
     icon: 'television',
     tone: 'blue',
-    image: '/images/products/aicon-4k-smart-tv.png',
+    image: '/images/products/aicon-smart-tv.png',
     description: 'Frameless 4K Ultra HD and Full HD Smart displays with vivid HDR contrast and Dolby Audio.',
   },
   {

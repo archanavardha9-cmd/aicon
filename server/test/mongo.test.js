@@ -26,14 +26,15 @@ test.after(async () => {
 
 // --- Category and Product Operations ---
 
-test('MongoDB: seeds 6 categories on creation', async () => {
+test('MongoDB: seeds 7 categories on creation', async () => {
   const categories = await database.listCategories();
-  assert.equal(categories.length, 6);
+  assert.equal(categories.length, 7);
   const ids = categories.map((c) => c.id).sort();
   assert.deepEqual(ids, [
     'air-coolers',
     'fans',
     'kitchen-appliances',
+    'room-heating',
     'televisions',
     'washing-machines',
     'water-heating',
@@ -67,10 +68,10 @@ test('MongoDB: getCategory returns null for unknown', async () => {
   assert.equal(cat, null);
 });
 
-test('MongoDB: seeds 10 products on creation', async () => {
+test('MongoDB: seeds 18 products on creation', async () => {
   const result = await database.listProducts({ limit: 100 });
-  assert.equal(result.total, 13);
-  assert.equal(result.data.length, 13);
+  assert.equal(result.total, 18);
+  assert.equal(result.data.length, 18);
 });
 
 test('MongoDB: listProducts filters by category', async () => {
@@ -124,8 +125,8 @@ test('MongoDB: seeding is idempotent (no duplicates on re-init)', async () => {
   // Verify counts are stable (seeding was already done in before hook)
   const categories = await database.listCategories();
   const products = await database.listProducts({ limit: 100 });
-  assert.equal(categories.length, 6);
-  assert.equal(products.total, 13);
+  assert.equal(categories.length, 7);
+  assert.equal(products.total, 18);
 });
 
 // --- Enquiry Creation and Persistence ---
