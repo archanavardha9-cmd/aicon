@@ -50,8 +50,8 @@ export default function Hero() {
             <div className="hero__product-backdrop" aria-hidden="true" />
             <img
               className="hero__product-image"
-              src="/images/products/aicon-4k-smart-tv.png"
-              alt="AICON 55 Inch 4K Ultra HD Smart LED TV"
+              src="/images/products/aicon-smart-tv.png"
+              alt="AICON 55 Inch 4K Smart LED TV"
               fetchPriority="high"
             />
             <div className="hero__product-badge">
@@ -59,10 +59,10 @@ export default function Hero() {
               <strong>AICON 55" 4K Smart LED TV</strong>
               <small>Frameless Bezel-Less · HDR10 Contrast</small>
             </div>
-          </div>
-          <div className="hero__floating-note">
-            <span className="hero__floating-kicker">AICON MODCON PVT LTD</span>
-            <span>Mumbai, Maharashtra · Est. 2023</span>
+            <div className="hero__floating-note">
+              <span className="hero__floating-kicker">AICON MODCON PVT LTD</span>
+              <span>Mumbai, Maharashtra · Est. 2023</span>
+            </div>
           </div>
         </figure>
       </div>

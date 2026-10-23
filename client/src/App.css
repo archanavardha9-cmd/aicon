@@ -350,26 +350,33 @@
 
 .hero__floating-note {
   position: absolute;
-  right: -22px;
+  right: 0;
   bottom: 0;
-  width: min(245px, 65%);
-  display: grid;
-  gap: 7px;
-  padding: 17px 20px 18px;
-  color: var(--color-ink);
-  background: var(--color-paper);
-  box-shadow: 0 16px 45px rgb(0 0 0 / 16%);
+  transform: translate(20%, 20%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   font-family: var(--font-serif);
-  font-size: 19px;
+  font-size: 13px;
   line-height: 1.2;
+  color: #173b63;
+  text-align: right;
+  max-width: 220px;
+  background: #f8fafc;
+  border: 1px solid #d4e4f5;
+  border-radius: 0;
+  padding: 12px 16px;
+  box-shadow: 0 4px 16px rgba(23, 59, 99, 0.08);
 }
 
 .hero__floating-kicker {
-  color: var(--color-blue);
+  color: #2463a6;
   font-family: var(--font-display);
-  font-size: 8px;
-  font-weight: 650;
-  letter-spacing: .16em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .hero__visual-mark {
@@ -790,7 +797,7 @@
   border: 1px solid rgb(231 216 182 / 20%);
   border-radius: 50%;
   content: "";
-  transform: translate(-50%, -50%);
+  transform: translate(-20%, -20%);
 }
 
 .story-lockup::after {
@@ -2623,7 +2630,7 @@
   aspect-ratio: 1;
   border: 1px solid rgb(36 99 166 / 17%);
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-20%, -20%);
 }
 
 .hero__brand-orbit--outer {
@@ -3115,7 +3122,7 @@
   border: 1px solid #d4e4f5;
   box-shadow: 0 20px 48px -12px rgba(23, 59, 99, 0.12);
   padding: 20px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero__product-backdrop {
@@ -3138,20 +3145,32 @@
   transition: transform 300ms ease;
 }
 
-.hero__product-badge {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(8px);
-  border: 1px solid #d0e4f7;
-  border-radius: 12px;
-  padding: 8px 14px;
-  box-shadow: 0 8px 24px rgba(23, 59, 99, 0.1);
+.hero__product-badge,
+.hero__floating-note {
+  background: #f2f5f9;
+  border: 1px solid #d4e4f5;
+  border-radius: 4px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 12px rgba(23, 59, 99, 0.06);
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+.hero__product-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-20%, -20%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #f8fafc;
+  border: 1px solid #d4e4f5;
+  border-radius: 0;
+  padding: 12px 16px;
+  box-shadow: 0 4px 16px rgba(23, 59, 99, 0.08);
 }
 
 .hero__badge-kicker {
