@@ -91,6 +91,7 @@
 
 .desktop-nav__link {
   height: 100%;
+  font-size: 16px;
 }
 
 .desktop-nav__link::after {
