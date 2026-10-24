@@ -6,26 +6,40 @@ import { createMongoDatabase } from './mongo-database.js';
 import { createEmailOutbox } from './email-outbox.js';
 import { createEmailTemplates } from './email-templates.js';
 
+const isProduction = config.environment === 'production';
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
 let database;
 let databaseType = 'sqlite';
 let mongodbConfigured = Boolean(config.mongodbUri);
 
-if (config.mongodbUri) {
-  try {
-    database = await createMongoDatabase(config.mongodbUri);
-    databaseType = 'mongodb';
-    console.info('MongoDB connected successfully');
-  } catch (mongoError) {
-    console.error('MongoDB connection failed');
+async function initDatabase() {
+  if (config.mongodbUri) {
+    try {
+      database = await createMongoDatabase(config.mongodbUri);
+      databaseType = 'mongodb';
+      console.info('MongoDB connected successfully');
+    } catch (mongoError) {
+      if (isProduction) {
+        console.error('MongoDB connection failed in production; refusing to fall back to SQLite.');
+        throw mongoError;
+      }
+      console.warn('MongoDB connection failed; using SQLite fallback (development only).');
+      database = createDatabase(config.databasePath);
+    }
+  } else {
+    if (isProduction) {
+      const err = new Error('MONGODB_URI is required in production.');
+      console.error(err.message);
+      throw err;
+    }
+    console.warn('MONGODB_URI is not set. Using SQLite fallback (development only).');
     database = createDatabase(config.databasePath);
   }
-} else {
-  console.warn(JSON.stringify({
-    event: 'mongodb_not_configured',
-    message: 'MONGODB_URI is not set. Using SQLite as degraded fallback. Set MONGODB_URI to use MongoDB as the primary database.',
-  }));
-  database = createDatabase(config.databasePath);
+  return database;
 }
+
+await initDatabase();
 
 const templates = createEmailTemplates();
 let transporter = null;
@@ -55,30 +69,35 @@ const outbox = createEmailOutbox({
   fromEmail: config.smtp?.fromEmail,
 });
 
-const app = createApp({ database, config, outbox });
-const server = app.listen(config.port, () => {
-  console.info(JSON.stringify({
-    event: 'server_started',
-    port: config.port,
-    environment: config.environment,
-    trustProxyHops: config.trustProxyHops,
-    database: databaseType,
-    mongodbConfigured,
-    smtpConfigured: Boolean(config.smtp),
-  }));
-  outbox.start();
-});
+const app = createApp({ database, config, outbox, emailTransporter: transporter });
 
-async function shutdown(signal) {
-  console.info(JSON.stringify({ event: 'server_shutdown', signal }));
-  await outbox.stop();
-  server.close(() => {
-    database.close();
-    process.exit(0);
+export { app, database, databaseType };
+export default app;
+
+if (!isServerless) {
+  const server = app.listen(config.port, () => {
+    console.info(JSON.stringify({
+      event: 'server_started',
+      port: config.port,
+      environment: config.environment,
+      trustProxyHops: config.trustProxyHops,
+      database: databaseType,
+      mongodbConfigured,
+      smtpConfigured: Boolean(config.smtp),
+    }));
+    outbox.start();
   });
 
-  setTimeout(() => process.exit(1), 10_000).unref();
-}
+  async function shutdown(signal) {
+    console.info(JSON.stringify({ event: 'server_shutdown', signal }));
+    await outbox.stop();
+    server.close(() => {
+      database.close();
+      process.exit(0);
+    });
+    setTimeout(() => process.exit(1), 10_000).unref();
+  }
 
-process.once('SIGINT', () => shutdown('SIGINT'));
-process.once('SIGTERM', () => shutdown('SIGTERM'));
+  process.once('SIGINT', () => shutdown('SIGINT'));
+  process.once('SIGTERM', () => shutdown('SIGTERM'));
+}

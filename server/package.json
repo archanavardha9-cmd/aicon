@@ -14,6 +14,7 @@
     "lint": "node --check src/config.js && node --check src/database.js && node --check src/email-templates.js && node --check src/email-outbox.js && node --check src/retry-email-jobs.js && node --check src/app.js && node --check src/index.js && node --check test/app.test.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",

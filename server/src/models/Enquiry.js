@@ -12,6 +12,8 @@ const enquirySchema = new mongoose.Schema(
     message: { type: String, required: true },
     idempotencyKey: { type: String },
     requestHash: { type: String, required: true },
+    status: { type: String, default: 'new', enum: ['new', 'in_progress', 'resolved'] },
+    notes: { type: String, default: '' },
   },
   {
     timestamps: { createdAt: 'createdAt', updatedAt: false },

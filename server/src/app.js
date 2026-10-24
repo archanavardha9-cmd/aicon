@@ -7,6 +7,7 @@ import { rateLimit } from 'express-rate-limit';
 import { z } from 'zod';
 import { config as defaultConfig } from './config.js';
 import { createEmailTemplates } from './email-templates.js';
+import { createAdminRouter } from './admin-routes.js';
 
 const enquirySchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -79,6 +80,7 @@ export function createApp({
   config = defaultConfig,
   logger = console,
   outbox = null,
+  emailTransporter = null,
 } = {}) {
   if (!database) {
     throw new Error('createApp requires a configured database.');
@@ -323,6 +325,9 @@ export function createApp({
 
   app.post('/api/enquiries', enquiryRateLimit, asyncRoute(handleEnquiry('product')));
   app.post('/api/contact', enquiryRateLimit, asyncRoute(handleEnquiry('contact')));
+
+  // Admin routes
+  app.use('/api/admin', createAdminRouter({ emailTransporter, fromEmail: config.smtp?.fromEmail }));
 
   app.use('/api', (_request, response) => response.status(404).json({
     error: { code: 'ROUTE_NOT_FOUND', message: 'This API route was not found.' },
