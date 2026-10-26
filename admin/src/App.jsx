@@ -97,7 +97,9 @@ export default function App() {
   const handleLogout = async () => {
     try {
       await api.logout();
-    } catch {}
+    } catch {
+      // ignore logout failure
+    }
     setUser(null);
   };
 

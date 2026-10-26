@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Lock, Mail, Save, Key } from "lucide-react";
+import { Mail, Save, Key } from "lucide-react";
 import { api } from "../api.js";
 
 export default function AccountSettings() {
@@ -13,7 +12,6 @@ export default function AccountSettings() {
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     api

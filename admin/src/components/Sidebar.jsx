@@ -1,8 +1,7 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { LayoutDashboard, Inbox, LogOut, Settings } from "lucide-react";
 
 export default function Sidebar({ user, onLogout, mobileOpen, onClose }) {
-  const navigate = useNavigate();
   const items = [
     { to: "/", label: "Dashboard", icon: LayoutDashboard },
     { to: "/enquiries", label: "Enquiries", icon: Inbox },

@@ -77,7 +77,7 @@ if (databasePath !== ':memory:' && !path.isAbsolute(databasePath)) {
 
 const clientOrigins = env.CLIENT_ORIGINS
   .split(',')
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().replace(/\/$/, ''))
   .filter(Boolean);
 
 for (const origin of clientOrigins) {

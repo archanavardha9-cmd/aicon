@@ -62,6 +62,24 @@ export const categories = [
     image: '/images/products/aicon-sun-heater-14.png',
     description: 'Carbon sun heaters and quartz metal heaters with tip-over safety, oscillation, and efficient warmth.',
   },
+  {
+    id: 'home-appliances',
+    label: 'Home Appliances',
+    terms: 'home appliance appliances iron dry steam ironing garment care',
+    icon: 'home',
+    tone: 'clay',
+    image: '/images/products/aicon-dry-iron.png',
+    description: 'Reliable household essentials including heavy-duty dry irons and everyday convenience appliances.',
+  },
+  {
+    id: 'audio',
+    label: 'Audio & Speakers',
+    terms: 'audio speaker speakers tower multimedia sound bluetooth bass music',
+    icon: 'speaker',
+    tone: 'blue',
+    image: '/images/products/aicon-multimedia-tower-speaker.png',
+    description: 'High-performance multimedia tower speakers delivering 120W RMS crystal-clear audio, powerful bass, and wireless Bluetooth connectivity.',
+  },
 ];
 
 export function filterCategories(items, categoryId = 'all', query = '') {

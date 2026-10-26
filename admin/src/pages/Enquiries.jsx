@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, RefreshCw, Filter, Inbox } from "lucide-react";
+import { Search, RefreshCw, Inbox } from "lucide-react";
 import { api } from "../api.js";
 
 export default function Enquiries() {
@@ -10,29 +10,39 @@ export default function Enquiries() {
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
   const [error, setError] = useState("");
+  const [refreshIndex, setRefreshIndex] = useState(0);
   const navigate = useNavigate();
 
-  const load = async (opts = {}) => {
-    setLoading(true);
-    setError("");
-    try {
-      const res = await api.enquiries({
-        q: opts.q ?? q,
-        status: opts.status ?? status,
-        page: opts.page ?? page,
-        limit: 20,
-      });
-      setData(res);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    load();
-  }, [page, q, status]);
+    let cancelled = false;
+    api
+      .enquiries({ q, status, page, limit: 20 })
+      .then((res) => {
+        if (!cancelled) {
+          setData(res);
+          setError("");
+        }
+      })
+      .catch((e) => {
+        if (!cancelled) {
+          setError(e.message);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [page, q, status, refreshIndex]);
+
+  const load = () => {
+    setLoading(true);
+    setRefreshIndex((prev) => prev + 1);
+  };
 
   const clearFilters = () => {
     setQ("");

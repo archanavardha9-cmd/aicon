@@ -19,7 +19,7 @@ test('category search is case-insensitive and matches category terms', () => {
 });
 
 test('an empty search returns the selected category set', () => {
-  assert.equal(filterCategories(categories).length, 6);
+  assert.equal(filterCategories(categories).length, categories.length);
 });
 
 test('unmatched searches return an empty result', () => {

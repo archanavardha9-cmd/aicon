@@ -189,7 +189,8 @@ export const initialProducts = [
     },
     {
       id: 'aicon-dry-iron-750w',
-      categoryId: 'others',
+      categoryId: 'home-appliances',
+      name: 'AICON 750W Dry Iron',
       modelNumber: 'ACDI-750',
       description: 'Professional 750W dry iron with steam boost and anti-calc technology.',
       imagePath: '/images/products/aicon-dry-iron.png',
@@ -276,6 +277,20 @@ export const initialProducts = [
         "Base Type": "Cordless 360° Swivel Base",
         "Safety": "Auto Shut-Off & Boil-Dry Protection",
         "Technology": "Super Fast Boil"
+      }
+    },
+    {
+      id: 'aicon-multimedia-tower-speaker',
+      categoryId: 'audio',
+      name: 'AICON Multimedia Tower Speaker',
+      description: 'Experience crystal-clear audio like never before. Revolutionary multimedia tower speaker delivering 120W RMS powerful bass, wireless Bluetooth 5.0 connectivity, multiple USB/FM/AUX inputs, and a modern LED display.',
+      imagePath: '/images/products/aicon-multimedia-tower-speaker.png',
+      specifications: {
+        "Audio Output": "120W RMS (Powerful Bass)",
+        "Connectivity": "Bluetooth 5.0",
+        "Inputs": "USB, FM Radio, AUX",
+        "Display": "LED Display",
+        "Sound Profile": "Crystal-Clear Audio with Deep Bass"
       }
     },
 ];

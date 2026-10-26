@@ -2,6 +2,8 @@ import {
   CookingPot,
   Droplets,
   Fan,
+  Home,
+  Speaker,
   Tv,
   WashingMachine,
   Wind,
@@ -14,6 +16,8 @@ const icons = {
   fan: Fan,
   kitchen: CookingPot,
   heating: Droplets,
+  home: Home,
+  speaker: Speaker,
 };
 
 export default function CategoryArtwork({ category, number }) {

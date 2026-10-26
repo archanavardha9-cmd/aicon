@@ -126,7 +126,8 @@ export function createApp({
   }));
   app.use(cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.has(origin)) {
+      const normalizedOrigin = origin ? origin.replace(/\/$/, '') : null;
+      if (!origin || allowedOrigins.has(origin) || (normalizedOrigin && allowedOrigins.has(normalizedOrigin))) {
         callback(null, true);
       } else {
         const error = new Error('This origin is not allowed to access the API.');
@@ -135,8 +136,9 @@ export function createApp({
         callback(error);
       }
     },
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Idempotency-Key'],
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Idempotency-Key', 'Authorization'],
+    credentials: true,
     maxAge: 600,
   }));
   app.use(express.json({ limit: '12kb', strict: true }));

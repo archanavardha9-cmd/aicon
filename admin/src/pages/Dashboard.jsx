@@ -8,18 +8,34 @@ export default function Dashboard() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const load = async () => {
-    setError("");
-    try {
-      const r = await api.stats();
-      setStats(r.data);
-    } catch (e) {
-      setError(e.message);
-    }
+  const load = () => {
+    api
+      .stats()
+      .then((r) => {
+        setStats(r.data);
+        setError("");
+      })
+      .catch((e) => {
+        setError(e.message);
+      });
   };
 
   useEffect(() => {
-    load();
+    let cancelled = false;
+    api
+      .stats()
+      .then((r) => {
+        if (!cancelled) {
+          setStats(r.data);
+          setError("");
+        }
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e.message);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const cards = stats

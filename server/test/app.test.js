@@ -81,7 +81,7 @@ test('health and catalogue endpoints expose an honest empty product catalogue', 
 
   const categories = await fetch(`${baseUrl}/api/categories`);
   assert.equal(categories.status, 200);
-  assert.equal((await categories.json()).data.length, 7);
+  assert.equal((await categories.json()).data.length, 9);
 
   const products = await fetch(`${baseUrl}/api/products?category=televisions&q=test`);
   assert.equal(products.status, 200);
