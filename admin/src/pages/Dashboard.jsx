@@ -134,22 +134,6 @@ export default function Dashboard() {
         )}
       </div>
 
-      {stats && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="card p-6">
-            <h3 className="font-bold text-[#173b63] mb-2">Product Enquiries</h3>
-            <div className="text-2xl font-bold">
-              {stats.byKind?.product || 0}
-            </div>
-          </div>
-          <div className="card p-6">
-            <h3 className="font-bold text-[#173b63] mb-2">Contact Enquiries</h3>
-            <div className="text-2xl font-bold">
-              {stats.byKind?.contact || 0}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

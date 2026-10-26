@@ -187,7 +187,6 @@ export function createAdminRouter({ emailTransporter, fromEmail } = {}) {
     const skip = (page - 1) * limit;
     const filter = {};
     if (req.query.status) filter.status = req.query.status;
-    if (req.query.kind) filter.kind = req.query.kind;
     if (req.query.q) {
       const re = new RegExp(req.query.q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
       filter.$or = [{ name: re }, { email: re }, { phone: re }, { _id: re }];

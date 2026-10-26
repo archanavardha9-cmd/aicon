@@ -189,8 +189,7 @@ export const initialProducts = [
     },
     {
       id: 'aicon-dry-iron-750w',
-      categoryId: 'water-heating',
-      name: 'AICON 750W Dry Iron',
+      categoryId: 'others',
       modelNumber: 'ACDI-750',
       description: 'Professional 750W dry iron with steam boost and anti-calc technology.',
       imagePath: '/images/products/aicon-dry-iron.png',

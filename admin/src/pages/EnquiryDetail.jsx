@@ -111,10 +111,6 @@ export default function EnquiryDetail() {
               </div>
             </div>
           )}
-          <div>
-            <span className="text-gray-500 text-sm">Type</span>
-            <div className="capitalize">{enquiry.kind}</div>
-          </div>
           {enquiry.categoryId && (
             <div>
               <span className="text-gray-500 text-sm">Category</span>

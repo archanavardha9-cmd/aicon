@@ -8,7 +8,6 @@ export default function Enquiries() {
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("");
-  const [kind, setKind] = useState("");
   const [page, setPage] = useState(1);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ export default function Enquiries() {
       const res = await api.enquiries({
         q: opts.q ?? q,
         status: opts.status ?? status,
-        kind: opts.kind ?? kind,
         page: opts.page ?? page,
         limit: 20,
       });
@@ -34,12 +32,11 @@ export default function Enquiries() {
 
   useEffect(() => {
     load();
-  }, [page, q, status, kind]);
+  }, [page, q, status]);
 
   const clearFilters = () => {
     setQ("");
     setStatus("");
-    setKind("");
     setPage(1);
   };
 
@@ -82,15 +79,6 @@ export default function Enquiries() {
             <option value="new">New</option>
             <option value="in_progress">In Progress</option>
             <option value="resolved">Resolved</option>
-          </select>
-          <select
-            value={kind}
-            onChange={(e) => setKind(e.target.value)}
-            className="input w-auto"
-          >
-            <option value="">All types</option>
-            <option value="product">Product</option>
-            <option value="contact">Contact</option>
           </select>
           <button
             onClick={() => {
@@ -135,9 +123,6 @@ export default function Enquiries() {
                     Email
                   </th>
                   <th className="p-4 text-left font-semibold text-gray-600">
-                    Type
-                  </th>
-                  <th className="p-4 text-left font-semibold text-gray-600">
                     Status
                   </th>
                   <th className="p-4 text-left font-semibold text-gray-600">
@@ -156,7 +141,6 @@ export default function Enquiries() {
                   >
                     <td className="p-4 font-medium text-[#173b63]">{e.name}</td>
                     <td className="p-4 text-gray-600">{e.email}</td>
-                    <td className="p-4 capitalize">{e.kind}</td>
                     <td className="p-4">
                       <span className={`badge badge-${e.status}`}>
                         {e.status?.replace("_", " ")}
