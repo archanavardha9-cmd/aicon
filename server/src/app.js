@@ -1,4 +1,5 @@
 import { randomUUID, createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 import express from 'express';
 import cors from 'cors';
@@ -335,7 +336,7 @@ export function createApp({
     error: { code: 'ROUTE_NOT_FOUND', message: 'This API route was not found.' },
   }));
 
-  if (config.environment === 'production') {
+  if (config.environment === 'production' && existsSync(staticDirectory)) {
     app.use(express.static(staticDirectory, {
       index: false,
       maxAge: '1h',

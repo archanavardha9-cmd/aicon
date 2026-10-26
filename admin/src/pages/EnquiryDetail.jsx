@@ -58,7 +58,7 @@ export default function EnquiryDetail() {
         <ArrowLeft size={16} /> Back to Enquiries
       </button>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold text-[#173b63]">Enquiry Details</h1>
           <p className="text-gray-500 mt-1">

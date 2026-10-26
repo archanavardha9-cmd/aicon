@@ -63,8 +63,8 @@ export default function Dashboard() {
     : [];
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-[#173b63]">Dashboard</h1>
           <p className="text-gray-500 mt-1">Overview of customer enquiries</p>
@@ -77,7 +77,7 @@ export default function Dashboard() {
       {error && <div className="card p-4 text-red-600">{error}</div>}
 
       {!stats ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="card p-6">
               <div className="skeleton h-4 w-20 mb-3"></div>
@@ -86,7 +86,7 @@ export default function Dashboard() {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {cards.map((c) => (
             <div
               key={c.label}
@@ -107,7 +107,7 @@ export default function Dashboard() {
       )}
 
       <div className="card p-6">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-4">
           <h2 className="text-lg font-bold text-[#173b63]">Recent Enquiries</h2>
           <button
             onClick={() => navigate("/enquiries")}
@@ -124,15 +124,15 @@ export default function Dashboard() {
               <div
                 key={e._id || e.id}
                 onClick={() => navigate(`/enquiries/${e._id || e.id}`)}
-                className="py-3 flex items-center justify-between cursor-pointer hover:bg-gray-50 -mx-2 px-2 rounded"
+                className="py-3 flex items-center justify-between cursor-pointer hover:bg-gray-50 px-2 rounded"
               >
-                <div>
-                  <div className="font-medium text-[#173b63]">{e.name}</div>
-                  <div className="text-sm text-gray-500">
+                <div className="min-w-0">
+                  <div className="font-medium text-[#173b63] truncate">{e.name}</div>
+                  <div className="text-sm text-gray-500 truncate">
                     {e.email} · {e.kind}
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-shrink-0">
                   <span className={`badge badge-${e.status}`}>
                     {e.status?.replace("_", " ")}
                   </span>
@@ -149,7 +149,6 @@ export default function Dashboard() {
           </div>
         )}
       </div>
-
     </div>
   );
 }

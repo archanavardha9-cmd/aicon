@@ -52,7 +52,7 @@ export default function Enquiries() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-[#173b63]">
             Customer Enquiries
@@ -67,8 +67,8 @@ export default function Enquiries() {
       </div>
 
       <div className="card p-4">
-        <div className="flex flex-wrap gap-3 items-center">
-          <div className="relative flex-1 min-w-[200px]">
+        <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
+          <div className="relative w-full md:w-auto min-w-[200px]">
             <Search
               size={16}
               className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -77,36 +77,40 @@ export default function Enquiries() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search name, email, phone..."
-              className="input pl-9"
+              className="input pl-9 w-full"
             />
           </div>
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className="input w-auto"
-          >
-            <option value="">All statuses</option>
-            <option value="new">New</option>
-            <option value="in_progress">In Progress</option>
-            <option value="resolved">Resolved</option>
-          </select>
-          <button
-            onClick={() => {
-              setPage(1);
-              load();
-            }}
-            className="btn btn-primary"
-          >
-            Search
-          </button>
-          <button onClick={clearFilters} className="btn btn-ghost">
-            Clear
-          </button>
+          <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              className="input w-full md:w-auto"
+            >
+              <option value="">All statuses</option>
+              <option value="new">New</option>
+              <option value="in_progress">In Progress</option>
+              <option value="resolved">Resolved</option>
+            </select>
+            <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto items-end md:items-center">
+              <button
+                onClick={() => {
+                  setPage(1);
+                  load();
+                }}
+                className="btn btn-primary w-full md:w-auto"
+              >
+                Search
+              </button>
+              <button onClick={clearFilters} className="btn btn-ghost w-full md:w-auto">
+                Clear
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {error && (
-        <div className="card p-4 text-red-600 flex items-center justify-between">
+        <div className="card p-4 text-red-600 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           {error}
           <button onClick={load} className="btn btn-secondary">
             Retry
@@ -149,20 +153,20 @@ export default function Enquiries() {
                     key={e._id || e.id}
                     className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                   >
-                    <td className="p-4 font-medium text-[#173b63]">{e.name}</td>
-                    <td className="p-4 text-gray-600">{e.email}</td>
+                    <td className="p-4 font-medium text-[#173b63] truncate">{e.name}</td>
+                    <td className="p-4 text-gray-600 truncate">{e.email}</td>
                     <td className="p-4">
                       <span className={`badge badge-${e.status}`}>
                         {e.status?.replace("_", " ")}
                       </span>
                     </td>
-                    <td className="p-4 text-gray-500">
+                    <td className="p-4 text-gray-500 text-sm truncate">
                       {new Date(e.createdAt).toLocaleString()}
                     </td>
                     <td className="p-4">
                       <button
                         onClick={() => navigate(`/enquiries/${e._id || e.id}`)}
-                        className="text-[#173b63] font-medium hover:underline"
+                        className="text-[#173b63] font-medium hover:underline whitespace-nowrap"
                       >
                         View
                       </button>
@@ -181,7 +185,7 @@ export default function Enquiries() {
       </div>
 
       {data.meta?.pages > 1 && (
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2">
           <button
             disabled={page <= 1}
             onClick={() => setPage(page - 1)}

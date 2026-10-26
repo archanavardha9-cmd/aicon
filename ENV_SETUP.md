@@ -54,7 +54,9 @@ Copy `client/.env.example` to `client/.env`.
 
 | Variable | Required? | Purpose | Example |
 |----------|-----------|---------|---------|
-| `VITE_API_BASE_URL` | No | API base URL for frontend calls | `/api` |
+| `VITE_API_BASE_URL` | **Yes (production)** | Full backend API origin for frontend calls | `https://aicon-backend.vercel.app` |
+
+In development this can be left blank or set to `/api` — Vite proxies `/api` to the backend automatically. In production on Vercel, you **must** set this to your deployed backend's full origin; otherwise the frontend will call `/api` on its own domain and enquiries will fail.
 
 ### Secrets
 
@@ -113,12 +115,29 @@ npm run dev
 
 ### Production
 
+When deploying client and server separately on Vercel:
+
+1. **Backend** (`server/` on Vercel):
+   - Set `NODE_ENV=production`
+   - Set `MONGODB_URI` to your MongoDB Atlas connection string
+   - Set `CLIENT_ORIGINS` to include your deployed frontend origin (e.g. `https://aicon-client.vercel.app`)
+   - Set all SMTP variables if you want email delivery
+   - The server runs as an API-only backend; it does **not** serve `client/dist/` in this setup
+
+2. **Frontend** (`client/` on Vercel):
+   - Set `VITE_API_BASE_URL` to your deployed backend origin (e.g. `https://aicon-backend.vercel.app`)
+   - Without this, the frontend will call `/api` on its own domain and all API requests will fail
+
+3. **Admin** (`admin/` on Vercel):
+   - Uses its own `vercel.json` SPA rewrite
+   - Its `VITE_API_BASE_URL` must also point to the backend
+
 ```powershell
-# Build the client
+# Build the client (for self-hosted production only)
 Set-Location client
 npm run build
 
-# Start the backend (serves the built client)
+# Start the backend (for self-hosted production only)
 Set-Location ..\server
 npm start
 ```
