@@ -7,6 +7,7 @@ import {
   Outlet,
   useLocation,
 } from "react-router-dom";
+import { ExternalLink } from "lucide-react";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Enquiries from "./pages/Enquiries.jsx";
@@ -17,6 +18,8 @@ import AccountSettings from "./pages/AccountSettings.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { api } from "./api.js";
+
+const WEBSITE_URL = import.meta.env.VITE_PUBLIC_WEBSITE_URL || "http://localhost:5173";
 
 function Layout({ user, onLogout }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -56,22 +59,16 @@ function Layout({ user, onLogout }) {
               <div className="text-xs text-gray-500">{title}</div>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-600 hidden md:block">
-              {user?.email}
-            </span>
-            <button
-              onClick={() => (window.location.href = "/account")}
-              className="text-sm text-[#173b63] hover:underline"
+          <div className="flex items-center gap-3">
+            <a
+              href={WEBSITE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-[#173b63] bg-[#e8f0f8] border border-[#d4e4f5] hover:bg-[#dbeafe] hover:text-[#173b63] transition-colors focus:outline-none focus:ring-2 focus:ring-[#173b63]/20"
             >
-              Settings
-            </button>
-            <button
-              onClick={onLogout}
-              className="text-sm text-gray-600 hover:text-[#173b63]"
-            >
-              Logout
-            </button>
+              <ExternalLink size={16} />
+              <span className="hidden sm:inline">View Website</span>
+            </a>
           </div>
         </header>
         <main className="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full overflow-y-auto">
