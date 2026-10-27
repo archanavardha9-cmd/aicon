@@ -34,8 +34,8 @@ body.no-scroll {
 }
 
 .brand-lockup__mark {
-  width: 54px;
-  height: 54px;
+  width: 80px;
+  height: 80px;
   display: grid;
   place-items: center;
   color: var(--color-white);
@@ -1963,8 +1963,8 @@ body.no-scroll {
 }
 
 .site-footer .brand-lockup__mark {
-  width: 54px;
-  height: 54px;
+  width: 80px;
+  height: 80px;
 }
 
 .site-footer .brand-lockup__descriptor {
@@ -2156,13 +2156,13 @@ body.no-scroll {
 @media (max-width: 720px) {
   .site-header__inner {
     width: calc(100% - 38px);
-    height: 70px;
+    height: 84px;
     grid-template-columns: 1fr auto;
   }
 
   .brand-lockup__mark {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
   }
   .brand-lockup__name {
     font-size: 16px;
@@ -2317,8 +2317,8 @@ body.no-scroll {
   }
 
   .mobile-drawer-brand .brand-lockup__mark {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
   }
 
   .mobile-drawer-brand .brand-lockup__name {
@@ -3289,7 +3289,7 @@ body.no-scroll {
 
   .site-header__inner {
     width: min(var(--page-width), calc(100% - 48px)) !important;
-    height: 74px !important;
+    height: 84px !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -3304,8 +3304,8 @@ body.no-scroll {
   }
 
   .brand-lockup__mark {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
   }
 
   .brand-lockup__name {
