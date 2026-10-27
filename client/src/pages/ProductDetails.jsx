@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { fetchProduct } from "../services/api";
@@ -14,42 +14,71 @@ function formatLabel(value) {
 
 export default function ProductDetails() {
   const { productId } = useParams();
+
+  const fallbackProduct = useMemo(
+    () => initialProducts.find((p) => p.id === productId),
+    [productId],
+  );
+
   const [result, setResult] = useState(() => {
     const fallback = initialProducts.find((p) => p.id === productId);
     return fallback ? { productId, product: fallback, error: "" } : null;
   });
-  const currentResult = result?.productId === productId ? result : null;
-  const product = currentResult?.product || null;
-  const loading = !currentResult;
-  const error = currentResult?.error || "";
+
+  const [failedImageId, setFailedImageId] = useState(null);
+  const imageError = failedImageId === productId;
+  const handleImageError = () => setFailedImageId(productId);
 
   useEffect(() => {
     const controller = new AbortController();
 
     fetchProduct(productId, { signal: controller.signal })
-      .then((response) =>
-        setResult({ productId, product: response.data, error: "" }),
-      )
+      .then((response) => {
+        const productData =
+          response?.data &&
+          typeof response.data === "object" &&
+          (response.data.id || response.data.name)
+            ? response.data
+            : response &&
+                typeof response === "object" &&
+                (response.id || response.name)
+              ? response
+              : null;
+
+        if (productData) {
+          setResult({ productId, product: productData, error: "" });
+        } else if (fallbackProduct) {
+          setResult({ productId, product: fallbackProduct, error: "" });
+        } else {
+          setResult({
+            productId,
+            product: null,
+            error: "This product was not found.",
+          });
+        }
+      })
       .catch((requestError) => {
         if (requestError.name !== "CanceledError") {
-          const fallback = initialProducts.find((p) => p.id === productId);
-          if (fallback) {
-            setResult({ productId, product: fallback, error: "" });
+          if (fallbackProduct) {
+            setResult({ productId, product: fallbackProduct, error: "" });
           } else {
             setResult({
               productId,
               product: null,
-              error: requestError.message,
+              error: requestError.message || "This product is not available.",
             });
           }
         }
       });
 
     return () => controller.abort();
-  }, [productId]);
+  }, [productId, fallbackProduct]);
 
-  const [imageError, setImageError] = useState(false);
-  const handleImageError = () => setImageError(true);
+  const currentResult = result?.productId === productId ? result : null;
+  const product = currentResult?.product || fallbackProduct || null;
+  const loading = !product && !currentResult?.error;
+  const error = !product ? currentResult?.error || "" : "";
+
   const specifications = product?.specifications
     ? Object.entries(product.specifications).filter(
         ([, value]) => value !== null && value !== "",
@@ -103,7 +132,7 @@ export default function ProductDetails() {
               <div className="product-detail__copy">
                 <span className="eyebrow">
                   <span className="eyebrow__line" />
-                  {product.category}
+                  {product.category || product.categoryId?.replace(/-/g, " ")}
                 </span>
                 <h1 className="display-heading">{product.name}</h1>
                 {product.modelNumber && (

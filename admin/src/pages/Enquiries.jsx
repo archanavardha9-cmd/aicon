@@ -101,7 +101,10 @@ export default function Enquiries() {
               >
                 Search
               </button>
-              <button onClick={clearFilters} className="btn btn-ghost w-full md:w-auto">
+              <button
+                onClick={clearFilters}
+                className="btn btn-ghost w-full md:w-auto"
+              >
                 Clear
               </button>
             </div>
@@ -153,7 +156,9 @@ export default function Enquiries() {
                     key={e._id || e.id}
                     className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                   >
-                    <td className="p-4 font-medium text-[#173b63] truncate">{e.name}</td>
+                    <td className="p-4 font-medium text-[#173b63] truncate">
+                      {e.name}
+                    </td>
                     <td className="p-4 text-gray-600 truncate">{e.email}</td>
                     <td className="p-4">
                       <span className={`badge badge-${e.status}`}>

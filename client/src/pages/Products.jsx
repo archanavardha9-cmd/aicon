@@ -132,8 +132,8 @@ export default function Products() {
       signal: controller.signal,
     })
       .then((result) => {
-        let items = result.data;
-        let count = result.meta.total;
+        let items = Array.isArray(result?.data) ? result.data : null;
+        let count = typeof result?.meta?.total === "number" ? result.meta.total : null;
         if (!items || items.length === 0) {
           items = initialProducts.filter((p) => {
             const matchesCat =
@@ -150,7 +150,7 @@ export default function Products() {
         setCatalogue({
           key: requestKey,
           products: items,
-          total: count,
+          total: count ?? items.length,
           error: "",
         });
       })
@@ -208,12 +208,13 @@ export default function Products() {
         limit: 100,
         offset: products.length,
       });
+      const newItems = Array.isArray(result?.data) ? result.data : [];
       setCatalogue((current) =>
         current?.key === requestKey
           ? {
               ...current,
-              products: [...current.products, ...result.data],
-              total: result.meta.total,
+              products: [...current.products, ...newItems],
+              total: typeof result?.meta?.total === "number" ? result.meta.total : (current.products.length + newItems.length),
             }
           : current,
       );

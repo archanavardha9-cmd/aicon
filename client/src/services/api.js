@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) || '/api',
   timeout: 12_000,
   headers: { Accept: 'application/json' },
 });
@@ -18,17 +18,35 @@ export class ApiError extends Error {
 async function request(config) {
   try {
     const response = await api.request(config);
+
+    if (
+      typeof response.data === 'string' &&
+      (response.data.trim().startsWith('<') ||
+        response.headers?.['content-type']?.includes('text/html'))
+    ) {
+      throw new ApiError(
+        'Invalid API response: received HTML document instead of JSON.',
+        502,
+        'INVALID_RESPONSE',
+      );
+    }
+
     return response.data;
   } catch (error) {
     if (axios.isCancel(error) || error.name === 'CanceledError') {
       throw error;
     }
 
+    if (error instanceof ApiError) {
+      throw error;
+    }
+
     throw new ApiError(
       error.response?.data?.error?.message ||
+        error.message ||
         'The service is temporarily unavailable. Please try again.',
-      error.response?.status || 0,
-      error.response?.data?.error?.code || 'NETWORK_ERROR',
+      error.response?.status || error.status || 0,
+      error.response?.data?.error?.code || error.code || 'NETWORK_ERROR',
     );
   }
 }

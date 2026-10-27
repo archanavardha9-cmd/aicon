@@ -58,7 +58,13 @@ export default function Contact() {
     try {
       const submit = selectedCategory || productId ? submitEnquiry : submitContact;
       const result = await submit(payload, idempotencyRef.current.key);
-      setFeedback({ status: 'success', message: result.data.message });
+      setFeedback({
+        status: 'success',
+        message:
+          result?.data?.message ||
+          result?.message ||
+          'Thank you! Your enquiry has been submitted successfully.',
+      });
       idempotencyRef.current = null;
       form.reset();
       setCategory('');
