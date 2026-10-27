@@ -125,12 +125,6 @@ export default function Navbar() {
               <span className="brand-lockup__mark" aria-hidden="true">
                 <img src="/aicon-logo.webp" alt="" />
               </span>
-              <span className="brand-lockup__copy">
-                <span className="brand-lockup__name">AICON</span>
-                <span className="brand-lockup__descriptor">
-                  Smart appliances
-                </span>
-              </span>
             </Link>
 
             <button
