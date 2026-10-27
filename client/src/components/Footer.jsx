@@ -1,12 +1,7 @@
-import {
-  ArrowUpRight,
-  Mail,
-  MapPin,
-  Phone,
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { contactDetails, facebookUrl } from '../data/contact';
-import useCategories from '../hooks/useCategories';
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { contactDetails, facebookUrl } from "../data/contact";
+import useCategories from "../hooks/useCategories";
 
 export default function Footer() {
   const { categories, loading, error } = useCategories();
@@ -18,11 +13,7 @@ export default function Footer() {
           <div className="site-footer__brand">
             <Link className="brand-lockup" to="/" aria-label="AICON home">
               <span className="brand-lockup__mark" aria-hidden="true">
-                <img src="/aicon-logo.png" alt="" />
-              </span>
-              <span className="brand-lockup__copy">
-                <span className="brand-lockup__name">AICON</span>
-                <span className="brand-lockup__descriptor">Smart appliances</span>
+                <img src="/aicon-logo.webp" alt="" />
               </span>
             </Link>
             <p>
@@ -50,16 +41,24 @@ export default function Footer() {
 
           <div className="site-footer__column">
             <h2>Categories</h2>
-            {loading && <span className="site-footer__status">Loading categories…</span>}
-            {error && <span className="site-footer__status">Categories unavailable.</span>}
-            {!loading && !error && categories.map((category) => (
-              <Link
-                key={category.id}
-                to={`/products?category=${category.id}`}
-              >
-                {category.label}
-              </Link>
-            ))}
+            {loading && (
+              <span className="site-footer__status">Loading categories…</span>
+            )}
+            {error && (
+              <span className="site-footer__status">
+                Categories unavailable.
+              </span>
+            )}
+            {!loading &&
+              !error &&
+              categories.map((category) => (
+                <Link
+                  key={category.id}
+                  to={`/products?category=${category.id}`}
+                >
+                  {category.label}
+                </Link>
+              ))}
           </div>
 
           <div className="site-footer__column site-footer__contact">
@@ -73,23 +72,28 @@ export default function Footer() {
               <span>{contactDetails.address}</span>
               <ArrowUpRight size={13} />
             </a>
-            <a href={`tel:${contactDetails.phone.replace(/\s/g, '')}`}>
+            <a href={`tel:${contactDetails.phone.replace(/\s/g, "")}`}>
               <Phone size={15} />
-              <span>{contactDetails.phone} / {contactDetails.phoneSecondary}</span>
+              <span>
+                {contactDetails.phone} / {contactDetails.phoneSecondary}
+              </span>
             </a>
             <a href={`mailto:${contactDetails.email}`}>
               <Mail size={15} />
               <span>{contactDetails.email}</span>
             </a>
-            <span className="site-footer__cin">
-              CIN: {contactDetails.cin}
-            </span>
+            <span className="site-footer__cin">CIN: {contactDetails.cin}</span>
           </div>
         </div>
 
         <div className="site-footer__bottom">
-          <span>© {new Date().getFullYear()} {contactDetails.companyName}. All rights reserved.</span>
-          <span>Innovation <i /> Quality <i /> Trust</span>
+          <span>
+            © {new Date().getFullYear()} {contactDetails.companyName}. All
+            rights reserved.
+          </span>
+          <span>
+            Innovation <i /> Quality <i /> Trust
+          </span>
           <Link to="/contact">
             Product Enquiries & Support <ArrowUpRight size={14} />
           </Link>

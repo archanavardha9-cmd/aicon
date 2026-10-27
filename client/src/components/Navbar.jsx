@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { ArrowUpRight, X } from 'lucide-react';
-import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { ArrowUpRight, X } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 
 const links = [
-  { label: 'Home', to: '/', end: true },
-  { label: 'The collection', to: '/products' },
-  { label: 'Our story', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { label: "Home", to: "/", end: true },
+  { label: "The collection", to: "/products" },
+  { label: "Our story", to: "/about" },
+  { label: "Contact", to: "/contact" },
 ];
 
 export default function Navbar() {
@@ -19,27 +19,27 @@ export default function Navbar() {
   // Lock background scroll when mobile drawer is open
   useEffect(() => {
     if (menuOpen) {
-      document.body.classList.add('no-scroll');
+      document.body.classList.add("no-scroll");
     } else {
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove("no-scroll");
     }
     return () => {
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove("no-scroll");
     };
   }, [menuOpen]);
 
   // Handle ESC key to dismiss mobile drawer
   useEffect(() => {
     function handleKeyDown(event) {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closeMenu();
       }
     }
     if (menuOpen) {
-      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener("keydown", handleKeyDown);
     }
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [menuOpen]);
 
@@ -53,11 +53,7 @@ export default function Navbar() {
           onClick={closeMenu}
         >
           <span className="brand-lockup__mark" aria-hidden="true">
-            <img src="/aicon-logo.png" alt="" />
-          </span>
-          <span className="brand-lockup__copy">
-            <span className="brand-lockup__name">AICON</span>
-            <span className="brand-lockup__descriptor">Smart appliances</span>
+            <img src="/aicon-logo.webp" alt="" />
           </span>
         </Link>
 
@@ -68,7 +64,7 @@ export default function Navbar() {
               to={to}
               end={end}
               className={({ isActive }) =>
-                `desktop-nav__link${isActive ? ' is-active' : ''}`
+                `desktop-nav__link${isActive ? " is-active" : ""}`
               }
             >
               {label}
@@ -83,9 +79,11 @@ export default function Navbar() {
 
         {/* 3-Bar Animated Hamburger Toggle matching reference style */}
         <button
-          className={`mobile-menu-toggle menu-toggle${menuOpen ? ' open' : ''}`}
+          className={`mobile-menu-toggle menu-toggle${menuOpen ? " open" : ""}`}
           type="button"
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-label={
+            menuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={menuOpen}
           aria-controls="mobile-drawer"
           onClick={() => setMenuOpen((open) => !open)}
@@ -100,7 +98,7 @@ export default function Navbar() {
 
       {/* Right-Side Sliding Drawer Navigation matching reference layout & motion */}
       <div
-        className={`mobile-drawer-wrapper${menuOpen ? ' open' : ''}`}
+        className={`mobile-drawer-wrapper${menuOpen ? " open" : ""}`}
         id="mobile-drawer-wrapper"
         aria-hidden={!menuOpen}
       >
@@ -125,11 +123,13 @@ export default function Navbar() {
               onClick={closeMenu}
             >
               <span className="brand-lockup__mark" aria-hidden="true">
-                <img src="/aicon-logo.png" alt="" />
+                <img src="/aicon-logo.webp" alt="" />
               </span>
               <span className="brand-lockup__copy">
                 <span className="brand-lockup__name">AICON</span>
-                <span className="brand-lockup__descriptor">Smart appliances</span>
+                <span className="brand-lockup__descriptor">
+                  Smart appliances
+                </span>
               </span>
             </Link>
 
@@ -151,7 +151,7 @@ export default function Navbar() {
                 end={end}
                 onClick={closeMenu}
                 className={({ isActive }) =>
-                  `mobile-drawer-link${isActive ? ' active is-active' : ''}`
+                  `mobile-drawer-link${isActive ? " active is-active" : ""}`
                 }
               >
                 {label}
@@ -167,8 +167,6 @@ export default function Navbar() {
             >
               Make an enquiry <ArrowUpRight size={16} />
             </Link>
-
-
           </div>
         </nav>
       </div>
