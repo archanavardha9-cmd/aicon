@@ -253,9 +253,6 @@ export default function Products() {
           <a className="button button--gold" href="#collection">
             Browse collection <ArrowRight size={17} />
           </a>
-          <span className="page-intro__folio" aria-hidden="true">
-            01 / 07
-          </span>
         </div>
       </section>
 
@@ -331,13 +328,6 @@ export default function Products() {
             ))}
           </div>
 
-          <div className="collection__result-line" aria-live="polite">
-            <span>
-              {loading
-                ? "Loading catalogue…"
-                : `${productTotal} product${productTotal === 1 ? "" : "s"} · ${filteredCategories.length} categor${filteredCategories.length === 1 ? "y" : "ies"}`}
-            </span>
-          </div>
 
           {categoriesLoading && (
             <p className="api-state" role="status">

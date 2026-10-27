@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, MapPin, Mail, Phone } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { contactDetails } from '../data/contact';
 import useCategories from '../hooks/useCategories';
@@ -134,13 +134,7 @@ export default function Contact() {
                   {contactDetails.email}
                 </span>
               </a>
-              <a href={`mailto:${contactDetails.salesEmail}`}>
-                <span className="contact-details__icon"><Mail size={18} /></span>
-                <span>
-                  <small>Corporate / Support</small>
-                  {contactDetails.salesEmail}
-                </span>
-              </a>
+
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`}
                 target="_blank"
@@ -154,7 +148,6 @@ export default function Contact() {
               </a>
             </div>
             <div className="contact-details__meta">
-              <p><strong>Operating Hours:</strong> {contactDetails.operatingHours}</p>
               <p><strong>CIN:</strong> {contactDetails.cin}</p>
             </div>
             <Link className="inline-link" to="/products">

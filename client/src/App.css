@@ -170,7 +170,7 @@ body.no-scroll {
 .hero__layout {
   min-height: 540px;
   display: grid;
-  grid-template-columns: .91fr 1.09fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: clamp(32px, 5vw, 80px);
   padding-block: 24px 32px;
@@ -1917,6 +1917,34 @@ body.no-scroll {
     #eaf4fc;
 }
 
+.closing-cta h2 {
+  color: #173b63;
+}
+
+.closing-cta .eyebrow--light {
+  color: #2463a6;
+}
+
+.closing-cta .cta-chip {
+  background: rgba(36, 99, 166, 0.1);
+  border-color: rgba(36, 99, 166, 0.3);
+  color: #173b63;
+}
+
+.closing-cta .cta-chip:hover {
+  background: rgba(36, 99, 166, 0.2);
+}
+
+.closing-cta .button--secondary-light {
+  border-color: rgba(23, 59, 99, 0.4);
+  color: #173b63;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.closing-cta .button--secondary-light:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
 .closing-cta__aside p {
   color: #5d6872;
 }
@@ -3104,9 +3132,21 @@ body.no-scroll {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #2463a6;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 650;
+  background: #2463a6;
+  border: 1px solid #2463a6;
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: all 180ms ease;
+  text-decoration: none;
+}
+
+.product-card__enquiry:hover {
+  background: #173b63;
+  border-color: #173b63;
+  color: #ffffff;
 }
 
 .product-detail {
@@ -3723,6 +3763,31 @@ body.no-scroll {
   }
 }
 
+/* Mobile: product detail inquiry button half-width */
+@media (max-width: 640px) {
+  .product-detail__copy .button--dark {
+    width: auto;
+    min-width: 0;
+    max-width: 50%;
+    align-self: flex-start;
+    font-size: 11px;
+    padding: 0 14px;
+  }
+
+  .product-detail__copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Left-align the eyebrow / hero brand line on mobile */
+  .hero .eyebrow,
+  .hero .eyebrow--light {
+    align-self: flex-start;
+    text-align: left;
+  }
+}
+
+
 /* ==========================================================================
    AICON BRAND ENHANCEMENTS & RICH COMPONENT STYLES
    ========================================================================== */
@@ -3998,6 +4063,8 @@ body.no-scroll {
 
 .featured-product-card__actions {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
   margin-top: auto;
 }
@@ -4095,17 +4162,19 @@ body.no-scroll {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 20px;
-  padding: 5px 13px;
+  padding: 6px 14px;
   font-size: 12px;
+  font-weight: 600;
   color: #ffffff;
-  transition: background 180ms ease;
+  transition: all 180ms ease;
 }
 
 .cta-chip:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .closing-cta__actions {

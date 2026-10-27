@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, ArrowUpRight, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ShieldCheck, Sparkles, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Hero() {
@@ -66,11 +66,6 @@ export default function Hero() {
           </div>
         </figure>
       </div>
-
-      <a className="hero__scroll page-shell" href="#categories">
-        <span>Scroll to explore categories</span>
-        <ArrowDown size={15} />
-      </a>
     </section>
   );
 }
