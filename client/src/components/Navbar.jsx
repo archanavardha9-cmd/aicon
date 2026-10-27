@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowUpRight, X } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 
 const links = [
@@ -15,6 +15,33 @@ export default function Navbar() {
   function closeMenu() {
     setMenuOpen(false);
   }
+
+  // Lock background scroll when mobile drawer is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, [menuOpen]);
+
+  // Handle ESC key to dismiss mobile drawer
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+    }
+    if (menuOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [menuOpen]);
 
   return (
     <header className="site-header">
@@ -54,42 +81,97 @@ export default function Navbar() {
           <ArrowUpRight size={16} strokeWidth={1.7} />
         </Link>
 
+        {/* 3-Bar Animated Hamburger Toggle matching reference style */}
         <button
-          className="menu-toggle"
+          className={`mobile-menu-toggle menu-toggle${menuOpen ? ' open' : ''}`}
           type="button"
           aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
+          aria-controls="mobile-drawer"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          <div className="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </button>
       </div>
 
-      {menuOpen && (
+      {/* Right-Side Sliding Drawer Navigation matching reference layout & motion */}
+      <div
+        className={`mobile-drawer-wrapper${menuOpen ? ' open' : ''}`}
+        id="mobile-drawer-wrapper"
+        aria-hidden={!menuOpen}
+      >
+        {/* Soft Backdrop Overlay (Click to dismiss) */}
+        <div
+          className="mobile-drawer-overlay"
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+
+        {/* Drawer Content */}
         <nav
-          className="mobile-nav"
-          id="mobile-navigation"
+          className="mobile-drawer"
+          id="mobile-drawer"
           aria-label="Mobile navigation"
         >
-          {links.map(({ label, to, end }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={end}
+          <div className="mobile-drawer-header">
+            <Link
+              className="brand-lockup mobile-drawer-brand"
+              to="/"
+              aria-label="AICON Smart Appliances home"
               onClick={closeMenu}
-              className={({ isActive }) =>
-                `mobile-nav__link${isActive ? ' is-active' : ''}`
-              }
             >
-              {label}
-            </NavLink>
-          ))}
-          <Link className="button button--gold mobile-nav__cta" to="/contact" onClick={closeMenu}>
-            Make an enquiry <ArrowUpRight size={16} />
-          </Link>
+              <span className="brand-lockup__mark" aria-hidden="true">
+                <img src="/aicon-logo.png" alt="" />
+              </span>
+              <span className="brand-lockup__copy">
+                <span className="brand-lockup__name">AICON</span>
+                <span className="brand-lockup__descriptor">Smart appliances</span>
+              </span>
+            </Link>
+
+            <button
+              className="mobile-drawer-close"
+              type="button"
+              aria-label="Close navigation menu"
+              onClick={closeMenu}
+            >
+              <X size={20} strokeWidth={2.2} />
+            </button>
+          </div>
+
+          <div className="mobile-drawer-links">
+            {links.map(({ label, to, end }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={end}
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `mobile-drawer-link${isActive ? ' active is-active' : ''}`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="mobile-drawer-footer">
+            <Link
+              className="mobile-drawer-cta button button--gold"
+              to="/contact"
+              onClick={closeMenu}
+            >
+              Make an enquiry <ArrowUpRight size={16} />
+            </Link>
+
+
+          </div>
         </nav>
-      )}
+      </div>
     </header>
   );
 }
