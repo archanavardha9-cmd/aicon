@@ -1,27 +1,35 @@
-import { useMemo, useRef, useState } from 'react';
-import { ArrowRight, MapPin, Mail, Phone } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { contactDetails } from '../data/contact';
-import useCategories from '../hooks/useCategories';
-import { submitContact, submitEnquiry } from '../services/api';
+import { useMemo, useRef, useState } from "react";
+import { ArrowRight, MapPin, Mail, Phone } from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
+import { contactDetails } from "../data/contact";
+import useCategories from "../hooks/useCategories";
+import { submitContact, submitEnquiry } from "../services/api";
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
-  const { categories, loading: categoriesLoading, error: categoriesError } = useCategories();
-  const [category, setCategory] = useState(searchParams.get('category') || '');
+  const {
+    categories,
+    loading: categoriesLoading,
+    error: categoriesError,
+  } = useCategories();
+  const [category, setCategory] = useState(searchParams.get("category") || "");
   const [feedback, setFeedback] = useState(null);
   const submissionRef = useRef(false);
   const idempotencyRef = useRef(null);
-  const requestedProduct = searchParams.get('product') || '';
-  const productId = searchParams.get('productId') ||
-    (searchParams.has('category') ? requestedProduct : '');
+  const requestedProduct = searchParams.get("product") || "";
+  const productId =
+    searchParams.get("productId") ||
+    (searchParams.has("category") ? requestedProduct : "");
   const legacyCategory = useMemo(
-    () => categories.find((item) => item.label.toLowerCase() === requestedProduct.toLowerCase()),
+    () =>
+      categories.find(
+        (item) => item.label.toLowerCase() === requestedProduct.toLowerCase(),
+      ),
     [categories, requestedProduct],
   );
   const selectedCategory = categories.some((item) => item.id === category)
     ? category
-    : legacyCategory?.id || '';
+    : legacyCategory?.id || "";
 
   async function submitForm(event) {
     event.preventDefault();
@@ -31,10 +39,10 @@ export default function Contact() {
 
     const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
-    const name = String(formData.get('name') || '').trim();
-    const email = String(formData.get('email') || '').trim();
-    const phone = String(formData.get('phone') || '').trim();
-    const message = String(formData.get('message') || '').trim();
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const message = String(formData.get("message") || "").trim();
     const payload = {
       name,
       email,
@@ -45,7 +53,10 @@ export default function Contact() {
     };
     const signature = JSON.stringify(payload);
 
-    if (!idempotencyRef.current || idempotencyRef.current.signature !== signature) {
+    if (
+      !idempotencyRef.current ||
+      idempotencyRef.current.signature !== signature
+    ) {
       idempotencyRef.current = {
         signature,
         key: crypto.randomUUID(),
@@ -53,23 +64,24 @@ export default function Contact() {
     }
 
     submissionRef.current = true;
-    setFeedback({ status: 'submitting', message: 'Sending your enquiry…' });
+    setFeedback({ status: "submitting", message: "Sending your enquiry…" });
 
     try {
-      const submit = selectedCategory || productId ? submitEnquiry : submitContact;
+      const submit =
+        selectedCategory || productId ? submitEnquiry : submitContact;
       const result = await submit(payload, idempotencyRef.current.key);
       setFeedback({
-        status: 'success',
+        status: "success",
         message:
           result?.data?.message ||
           result?.message ||
-          'Thank you! Your enquiry has been submitted successfully.',
+          "Thank you! Your enquiry has been submitted successfully.",
       });
       idempotencyRef.current = null;
       form.reset();
-      setCategory('');
+      setCategory("");
     } catch (error) {
-      setFeedback({ status: 'error', message: error.message });
+      setFeedback({ status: "error", message: error.message });
     } finally {
       submissionRef.current = false;
     }
@@ -113,22 +125,30 @@ export default function Contact() {
             </p>
 
             <div className="contact-details__list">
-              <a href={`tel:${contactDetails.phone.replace(/\s/g, '')}`}>
-                <span className="contact-details__icon"><Phone size={18} /></span>
+              <a href={`tel:${contactDetails.phone.replace(/\s/g, "")}`}>
+                <span className="contact-details__icon">
+                  <Phone size={18} />
+                </span>
                 <span>
                   <small>Sales & Customer Care</small>
                   {contactDetails.phone}
                 </span>
               </a>
-              <a href={`tel:${contactDetails.phoneSecondary.replace(/\s/g, '')}`}>
-                <span className="contact-details__icon"><Phone size={18} /></span>
+              <a
+                href={`tel:${contactDetails.phoneSecondary.replace(/\s/g, "")}`}
+              >
+                <span className="contact-details__icon">
+                  <Phone size={18} />
+                </span>
                 <span>
                   <small>Support Line</small>
                   {contactDetails.phoneSecondary}
                 </span>
               </a>
               <a href={`mailto:${contactDetails.email}`}>
-                <span className="contact-details__icon"><Mail size={18} /></span>
+                <span className="contact-details__icon">
+                  <Mail size={18} />
+                </span>
                 <span>
                   <small>Primary Sales Email</small>
                   {contactDetails.email}
@@ -140,7 +160,9 @@ export default function Contact() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="contact-details__icon"><MapPin size={18} /></span>
+                <span className="contact-details__icon">
+                  <MapPin size={18} />
+                </span>
                 <span>
                   <small>Corporate Headquarters</small>
                   {contactDetails.address}
@@ -148,10 +170,12 @@ export default function Contact() {
               </a>
             </div>
             <div className="contact-details__meta">
-              <p><strong>CIN:</strong> {contactDetails.cin}</p>
+              <p>
+                <strong>CIN:</strong> {contactDetails.cin}
+              </p>
             </div>
             <Link className="inline-link" to="/products">
-              Browse categories <ArrowRight size={16} />
+              Browse Products <ArrowRight size={16} />
             </Link>
           </div>
 
@@ -160,8 +184,8 @@ export default function Contact() {
               <span className="enquiry-panel__index">AICON / ENQUIRY</span>
               <h2>What can we help with?</h2>
               <p>
-                Share a few details and our team can follow up using the
-                contact information you provide.
+                Share a few details and our team can follow up using the contact
+                information you provide.
               </p>
             </div>
 
@@ -170,7 +194,10 @@ export default function Contact() {
             </div>
 
             <form className="enquiry-form" onSubmit={submitForm}>
-              <div className="form-field enquiry-form__honeypot" aria-hidden="true">
+              <div
+                className="form-field enquiry-form__honeypot"
+                aria-hidden="true"
+              >
                 <label htmlFor="contact-website">Website</label>
                 <input
                   id="contact-website"
@@ -204,7 +231,9 @@ export default function Contact() {
                 </label>
               </div>
               <label className="form-field">
-                <span>Phone number <small>Optional</small></span>
+                <span>
+                  Phone number <small>Optional</small>
+                </span>
                 <input
                   autoComplete="tel"
                   name="phone"
@@ -214,7 +243,9 @@ export default function Contact() {
                 />
               </label>
               <label className="form-field">
-                <span>Category <small>Optional</small></span>
+                <span>
+                  Category <small>Optional</small>
+                </span>
                 <select
                   name="category"
                   value={selectedCategory}
@@ -222,7 +253,9 @@ export default function Contact() {
                   disabled={categoriesLoading || Boolean(categoriesError)}
                 >
                   <option value="">
-                    {categoriesLoading ? 'Loading categories…' : 'Choose a category'}
+                    {categoriesLoading
+                      ? "Loading categories…"
+                      : "Choose a category"}
                   </option>
                   {categories.map((item) => (
                     <option key={item.id} value={item.id}>
@@ -244,23 +277,26 @@ export default function Contact() {
               </label>
               {categoriesError && (
                 <p className="form-feedback form-feedback--error" role="alert">
-                  Categories could not be loaded. You can still send a general enquiry.
+                  Categories could not be loaded. You can still send a general
+                  enquiry.
                 </p>
               )}
               <button
                 className="button button--dark enquiry-form__submit"
                 type="submit"
-                disabled={feedback?.status === 'submitting'}
+                disabled={feedback?.status === "submitting"}
               >
-                {feedback?.status === 'submitting' ? 'Submitting…' : 'Send enquiry'}
+                {feedback?.status === "submitting"
+                  ? "Submitting…"
+                  : "Send enquiry"}
                 <ArrowRight size={16} />
               </button>
             </form>
 
-            {feedback && feedback.status !== 'submitting' && (
+            {feedback && feedback.status !== "submitting" && (
               <div
                 className={`form-feedback form-feedback--${feedback.status}`}
-                role={feedback.status === 'error' ? 'alert' : 'status'}
+                role={feedback.status === "error" ? "alert" : "status"}
                 aria-live="polite"
               >
                 {feedback.message}
