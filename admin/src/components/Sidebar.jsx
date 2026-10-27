@@ -17,7 +17,7 @@ export default function Sidebar({ user, onLogout, mobileOpen, onClose }) {
         />
       )}
       <aside
-        className={`fixed md:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-[#d4e4f5] transform transition-transform duration-200 ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"} md:h-screen md:sticky md:top-0 flex flex-col`}
+        className={`fixed md:static inset-y-0 left-0 z-50 max-w-[85vw] w-64 bg-white border-r border-[#d4e4f5] transform transition-transform duration-200 ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"} md:h-screen md:sticky md:top-0 flex flex-col`}
       >
         <div className="p-6 border-b border-[#d4e4f5] flex-shrink-0">
           <div className="flex items-center gap-3">

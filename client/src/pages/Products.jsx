@@ -62,7 +62,7 @@ function ProductCard({ product }) {
 
           <a
             className="product-card__enquiry"
-            href={`https://wa.me/917992170835?text=${encodeURIComponent(
+            href={`https://wa.me/919264988032?text=${encodeURIComponent(
               `Hello AICON Team,
 
 I would like to enquire about the ${product.name}.
@@ -133,7 +133,8 @@ export default function Products() {
     })
       .then((result) => {
         let items = Array.isArray(result?.data) ? result.data : null;
-        let count = typeof result?.meta?.total === "number" ? result.meta.total : null;
+        let count =
+          typeof result?.meta?.total === "number" ? result.meta.total : null;
         if (!items || items.length === 0) {
           items = initialProducts.filter((p) => {
             const matchesCat =
@@ -214,7 +215,10 @@ export default function Products() {
           ? {
               ...current,
               products: [...current.products, ...newItems],
-              total: typeof result?.meta?.total === "number" ? result.meta.total : (current.products.length + newItems.length),
+              total:
+                typeof result?.meta?.total === "number"
+                  ? result.meta.total
+                  : current.products.length + newItems.length,
             }
           : current,
       );
@@ -327,7 +331,6 @@ export default function Products() {
               </button>
             ))}
           </div>
-
 
           {categoriesLoading && (
             <p className="api-state" role="status">

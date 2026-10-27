@@ -114,7 +114,7 @@ export default function FeaturedProducts() {
                     </Link>
                     <a
                       className="button button--gold"
-                      href={`https://wa.me/917992170835?text=${encodeURIComponent(
+                      href={`https://wa.me/919264988032?text=${encodeURIComponent(
                         `Hello AICON Team,
 
 I would like to enquire about the ${product.name}.

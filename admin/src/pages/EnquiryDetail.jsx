@@ -50,7 +50,7 @@ export default function EnquiryDetail() {
     );
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 max-w-4xl px-4 sm:px-6">
       <button
         onClick={() => navigate("/enquiries")}
         className="flex items-center gap-2 text-[#173b63] font-medium hover:underline"

@@ -51,7 +51,7 @@ export default function Login({ onLogin }) {
       </div>
 
       {/* Login form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-[#f0f4f8]">
+      <div className="flex-1 flex items-center justify-center p-4 sm:p-8 bg-[#f0f4f8]">
         <div className="w-full max-w-md">
           <h1 className="text-2xl font-bold text-[#173b63] mb-1">
             Welcome back

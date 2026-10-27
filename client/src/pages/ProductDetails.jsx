@@ -156,7 +156,7 @@ export default function ProductDetails() {
                 )}
                 <a
                   className="button button--dark"
-                  href={`https://wa.me/917992170835?text=${encodeURIComponent(
+                  href={`https://wa.me/919264988032?text=${encodeURIComponent(
                     `Hello AICON Team,
 
 I would like to enquire about the ${product.name}.
