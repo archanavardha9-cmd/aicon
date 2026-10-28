@@ -28,11 +28,11 @@ export default function Login({ onLogin }) {
       {/* Brand panel */}
       <div className="hidden md:flex md:w-1/2 bg-[#173b63] text-white p-12 flex-col justify-between">
         <div className="flex items-center gap-3">
-          <img src="/aicon-logo.png" alt="AICON" className="w-12 h-12 object-contain" />
-          <div>
-            <div className="font-bold text-xl">AICON</div>
-            <div className="text-xs text-blue-200">Smart Appliances</div>
-          </div>
+          <img
+            src="/aicon-logo.webp"
+            alt="AICON"
+            className="w-24 h-auto max-h-[96px] object-contain"
+          />
         </div>
         <div>
           <h2 className="text-4xl font-bold leading-tight mb-4">
@@ -108,7 +108,10 @@ export default function Login({ onLogin }) {
               </div>
             </div>
             <div className="text-right">
-              <a href="/forgot-password" className="text-sm text-[#173b63] hover:underline">
+              <a
+                href="/forgot-password"
+                className="text-sm text-[#173b63] hover:underline"
+              >
                 Forgot password?
               </a>
             </div>

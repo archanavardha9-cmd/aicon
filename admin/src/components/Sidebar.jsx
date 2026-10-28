@@ -21,9 +21,12 @@ export default function Sidebar({ user, onLogout, mobileOpen, onClose }) {
       >
         <div className="p-6 border-b border-[#d4e4f5] flex-shrink-0">
           <div className="flex items-center gap-3">
-            <img src="/aicon-logo.png" alt="AICON" className="w-10 h-10 object-contain" />
+            <img
+              src="/aicon-logo.webp"
+              alt="AICON"
+              className="w-24 h-auto max-h-[72px] object-contain"
+            />
             <div>
-              <div className="font-bold text-[#173b63]">AICON</div>
               <div className="text-xs text-gray-500">Admin Panel</div>
             </div>
           </div>
@@ -47,7 +50,9 @@ export default function Sidebar({ user, onLogout, mobileOpen, onClose }) {
           <div className="mb-3">
             <div className="flex items-center gap-2 mb-1">
               <Mail size={14} className="text-gray-400" />
-              <span className="text-xs font-medium text-gray-500">Signed in as</span>
+              <span className="text-xs font-medium text-gray-500">
+                Signed in as
+              </span>
             </div>
             <div className="truncate text-xs text-gray-700">{user?.email}</div>
           </div>

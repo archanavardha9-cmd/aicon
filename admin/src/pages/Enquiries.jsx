@@ -51,7 +51,7 @@ export default function Enquiries() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-[#173b63]">
@@ -68,7 +68,7 @@ export default function Enquiries() {
 
       <div className="card p-4">
         <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
-          <div className="relative w-full md:w-auto min-w-[200px]">
+          <div className="relative w-full md:w-auto min-w-[160px]">
             <Search
               size={16}
               className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"

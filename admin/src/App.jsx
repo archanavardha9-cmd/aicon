@@ -19,7 +19,8 @@ import Sidebar from "./components/Sidebar.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { api } from "./api.js";
 
-const WEBSITE_URL = import.meta.env.VITE_PUBLIC_WEBSITE_URL || "http://localhost:5173";
+const WEBSITE_URL =
+  import.meta.env.VITE_PUBLIC_WEBSITE_URL || "http://localhost:5173";
 
 function Layout({ user, onLogout }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -48,14 +49,12 @@ function Layout({ user, onLogout }) {
               ☰
             </button>
             <img
-              src="/aicon-logo.png"
+              src="/aicon-logo.webp"
               alt="AICON"
-              className="w-8 h-8 object-contain hidden md:block"
+              className="w-20 h-auto max-h-[72px] object-contain hidden md:block"
             />
             <div>
-              <div className="font-bold text-[#173b63] text-sm">
-                AICON Admin
-              </div>
+              <div className="font-bold text-[#173b63] text-sm">Admin</div>
               <div className="text-xs text-gray-500">{title}</div>
             </div>
           </div>
@@ -67,7 +66,7 @@ function Layout({ user, onLogout }) {
               className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-[#173b63] bg-[#e8f0f8] border border-[#d4e4f5] hover:bg-[#dbeafe] hover:text-[#173b63] transition-colors focus:outline-none focus:ring-2 focus:ring-[#173b63]/20"
             >
               <ExternalLink size={16} />
-              <span className="hidden sm:inline">View Website</span>
+              <span title="Open AICON website" className="font-medium">View Website</span>
             </a>
           </div>
         </header>

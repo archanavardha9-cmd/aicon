@@ -1,9 +1,30 @@
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
+const TOKEN_KEY = 'aicon_admin_token';
+
 let authToken = null;
 
-export function setAuthToken(token) { authToken = token; }
-export function clearAuthToken() { authToken = null; }
+function loadToken() {
+  try {
+    const stored = localStorage.getItem(TOKEN_KEY);
+    if (stored) authToken = stored;
+  } catch { /* localStorage unavailable; proceed without stored token */ }
+}
+
+function saveToken(token) {
+  authToken = token;
+  try { localStorage.setItem(TOKEN_KEY, token); } catch { /* localStorage unavailable; token kept in memory only */ }
+}
+
+function clearToken() {
+  authToken = null;
+  try { localStorage.removeItem(TOKEN_KEY); } catch { /* localStorage unavailable; token already cleared in memory */ }
+}
+
+loadToken();
+
+export function setAuthToken(token) { saveToken(token); }
+export function clearAuthToken() { clearToken(); }
 export function getAuthToken() { return authToken; }
 
 async function request(path, options = {}) {

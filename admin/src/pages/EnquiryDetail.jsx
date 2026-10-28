@@ -145,7 +145,7 @@ export default function EnquiryDetail() {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="input w-auto"
+            className="input min-w-[100px] w-full sm:w-auto"
           >
             <option value="new">New</option>
             <option value="in_progress">In Progress</option>
