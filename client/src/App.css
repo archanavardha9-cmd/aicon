@@ -97,7 +97,7 @@ body.no-scroll {
 
 .desktop-nav__link {
   height: 100%;
-  font-size: 16px;
+  font-size: clamp(14px, 1.4vw, 16px);
 }
 
 .desktop-nav__link::after {
@@ -461,7 +461,7 @@ body.no-scroll {
 .values-section__heading > p {
   margin: 0;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: clamp(13px, 1.3vw, 14px);
   line-height: 1.9;
 }
 
@@ -661,7 +661,7 @@ body.no-scroll {
 .collection-card h3 {
   margin: 7px 0 0;
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: clamp(17px, 1.8vw, 19px);
   font-weight: 550;
   letter-spacing: -.02em;
 }
@@ -994,7 +994,7 @@ body.no-scroll {
   max-width: 240px;
   margin: 18px 0;
   color: rgb(255 255 255 / 51%);
-  font-size: 11px;
+  font-size: var(--text-base);
   line-height: 1.8;
 }
 
@@ -1029,7 +1029,7 @@ body.no-scroll {
 .site-footer__column h2 {
   margin: 3px 0 6px;
   color: var(--color-champagne);
-  font-size: 9px;
+  font-size: var(--text-sm);
   font-weight: 650;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -1037,7 +1037,7 @@ body.no-scroll {
 
 .site-footer__column > a {
   color: rgb(255 255 255 / 59%);
-  font-size: 10px;
+  font-size: var(--text-base);
   line-height: 1.6;
   transition: color 160ms ease;
 }
@@ -1066,7 +1066,7 @@ body.no-scroll {
   gap: 18px;
   border-top: 1px solid rgb(255 255 255 / 12%);
   color: rgb(255 255 255 / 46%);
-  font-size: 9px;
+  font-size: var(--text-sm);
 }
 
 .site-footer__bottom > span:nth-child(2) {
@@ -1267,14 +1267,14 @@ body.no-scroll {
 
 .collection-card h3 {
   margin-top: 10px;
-  font-size: 19px;
+  font-size: clamp(17px, 1.8vw, 19px);
 }
 
 .collection-card__body > p {
   min-height: 39px;
   margin: 9px 0 18px;
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: var(--text-base);
   line-height: 1.8;
 }
 
@@ -1288,7 +1288,7 @@ body.no-scroll {
   padding-inline: 12px;
   border-top: 1px solid var(--color-line);
   color: var(--color-ink);
-  font-size: 9px;
+  font-size: var(--text-xs);
   transition: color 160ms ease;
 }
 
@@ -1484,7 +1484,7 @@ body.no-scroll {
 .value-card h3 {
   margin: 16px 0 7px;
   font-family: var(--font-serif);
-  font-size: 29px;
+  font-size: clamp(17px, 1.8vw, 19px);
   font-weight: 400;
 }
 
@@ -1523,7 +1523,7 @@ body.no-scroll {
   gap: 11px;
   border-bottom: 1px solid var(--color-line);
   color: var(--color-ink);
-  font-size: 10px;
+  font-size: clamp(16px, 1.8vw, 19px);
   line-height: 1.6;
 }
 
@@ -1540,7 +1540,7 @@ body.no-scroll {
   display: block;
   margin-bottom: 2px;
   color: var(--color-muted);
-  font-size: 8px;
+  font-size: var(--text-sm);
   letter-spacing: .1em;
   text-transform: uppercase;
 }
@@ -1569,7 +1569,7 @@ body.no-scroll {
 .enquiry-panel__heading p {
   margin: 8px 0 0;
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: clamp(13px, 1.3vw, 14px);
   line-height: 1.7;
 }
 
@@ -1579,7 +1579,7 @@ body.no-scroll {
   border-left: 2px solid var(--color-blue);
   color: #58615f;
   background: #edede7;
-  font-size: 9px;
+  font-size: var(--text-sm);
   line-height: 1.7;
 }
 
@@ -1600,7 +1600,7 @@ body.no-scroll {
   display: grid;
   gap: 6px;
   color: var(--color-ink);
-  font-size: 9px;
+  font-size: var(--text-sm);
   font-weight: 600;
 }
 
@@ -1612,7 +1612,7 @@ body.no-scroll {
 
 .form-field > span small {
   color: var(--color-muted);
-  font-size: 8px;
+  font-size: var(--text-xs);
   font-weight: 400;
 }
 
@@ -1627,7 +1627,7 @@ body.no-scroll {
   color: var(--color-ink);
   background: #fbfaf7;
   font: inherit;
-  font-size: 10px;
+  font-size: clamp(13px, 1.3vw, 14px);
 }
 
 .form-field textarea {
@@ -2118,7 +2118,7 @@ body.no-scroll {
   }
 
   .desktop-nav__link {
-    font-size: 10px;
+    font-size: var(--text-base);
   }
 
   .header-enquiry {
@@ -2682,7 +2682,7 @@ body.no-scroll {
     flex-wrap: wrap;
     justify-content: space-between;
     padding-block: 13px;
-    font-size: 8px;
+    font-size: var(--text-xs);
   }
 
   .site-footer__bottom > span:nth-child(2) {
@@ -2731,23 +2731,23 @@ body.no-scroll {
   }
 
   .collection-card__eyebrow {
-    font-size: 6px;
+    font-size: 8px;
   }
 
   .collection-card h3 {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .collection-card__body > p {
     min-height: 52px;
     margin-block: 7px 12px;
-    font-size: 8px;
+    font-size: 10px;
   }
 
   .collection-card__enquiry {
     min-height: 38px;
     padding-inline: 0;
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .collection__result-line {
@@ -3100,7 +3100,7 @@ body.no-scroll {
 .product-card__category,
 .product-card__model {
   color: #2463a6;
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 650;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -3110,12 +3110,13 @@ body.no-scroll {
   margin: 6px 0;
   color: #173b63;
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: var(--text-lg);
   font-weight: 550;
 }
 
 .product-card__model {
   color: #737373;
+  font-size: var(--text-xs);
   font-weight: 500;
   letter-spacing: .02em;
   text-transform: none;
@@ -3124,7 +3125,7 @@ body.no-scroll {
 .product-card__description {
   min-height: 43px;
   color: #596773;
-  font-size: 12px;
+  font-size: var(--text-base);
   line-height: 1.7;
 }
 
@@ -3228,7 +3229,7 @@ body.no-scroll {
   border: 1px solid #bdd9c8;
   color: #24543b;
   background: #f5fbf6;
-  font-size: 12px;
+  font-size: clamp(13px, 1.3vw, 14px);
   line-height: 1.7;
 }
 
@@ -4304,7 +4305,7 @@ body.no-scroll {
   background: #eaf4fc;
   border: 1px solid #d2e5f6;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: #173b63;
   display: flex;
   flex-direction: column;
@@ -4370,7 +4371,7 @@ body.no-scroll {
 }
 
 .site-footer__cin {
-  font-size: 11px;
+  font-size: var(--text-base);
   color: #8fa0b0;
   margin-top: 6px;
   display: block;
@@ -4378,6 +4379,10 @@ body.no-scroll {
 
 /* ===== Hero Responsive (Mobile Only: max-width: 640px) ===== */
 @media (max-width: 640px) {
+  .hero__feature-item.hide-on-mobile {
+    display: none !important;
+  }
+
   .hero__layout {
     display: flex !important;
     flex-direction: column !important;

@@ -19,6 +19,13 @@
   --font-display: 'Manrope', sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --page-width: 1240px;
+  --text-xs: 10px;
+  --text-sm: 11px;
+  --text-base: 14px;
+  --text-lg: 19px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: clamp(36px, 4.2vw, 60px);
 }
 
 * {

@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Hero() {
@@ -30,16 +30,12 @@ export default function Hero() {
             </Link>
           </div>
           <div className="hero__features" aria-label="AICON product highlights">
-            <div className="hero__feature-item">
-              <Sparkles size={16} className="hero__feature-icon" />
-              <span>4K Ultra HD & Dolby Audio</span>
-            </div>
-            <div className="hero__feature-item">
-              <Zap size={16} className="hero__feature-icon" />
-              <span>High-Torque Heavy Duty Motors</span>
-            </div>
-            <div className="hero__feature-item">
+            <div className="hero__feature-item hide-on-mobile">
               <ShieldCheck size={16} className="hero__feature-icon" />
+              <span>Built for Everyday Reliability</span>
+            </div>
+            <div className="hero__feature-item">
+              <CheckCircle2 size={16} className="hero__feature-icon" />
               <span>Tested for Indian Conditions</span>
             </div>
           </div>
