@@ -1,9 +1,11 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import useCategories from '../hooks/useCategories';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function ProductCategories() {
   const { categories, loading, error, retry } = useCategories();
+  const { t } = useTranslation();
 
   return (
     <section className="section section--ivory" id="categories">
@@ -12,34 +14,31 @@ export default function ProductCategories() {
           <div className="section-heading-row__copy">
             <span className="eyebrow">
               <span className="eyebrow__line" />
-              Product Portfolio
+              {t("productCategories.eyebrow")}
             </span>
             <h2 className="display-heading">
-              Comprehensive Range,
+              {t("productCategories.heading")}
               <br />
-              <em>Tailored for Home Comfort.</em>
+              <em>{t("productCategories.headingEmphasis")}</em>
             </h2>
           </div>
           <div className="section-heading-row__aside">
-            <p>
-              Explore six core appliance categories engineered with durability,
-              efficient power consumption, and modern styling.
-            </p>
+            <p>{t("productCategories.description")}</p>
             <Link className="inline-link" to="/products">
-              View complete catalogue <ArrowRight size={16} />
+              {t("productCategories.viewCompleteCatalogue")} <ArrowRight size={16} />
             </Link>
           </div>
         </div>
 
         {loading ? (
-          <p className="api-state" role="status">Loading AICON categories…</p>
+          <p className="api-state" role="status">{t("productCategories.loadingCategories")}</p>
         ) : error ? (
           <div className="api-state api-state--error" role="alert">
-            <p>{error}</p>
-            <button className="inline-link" type="button" onClick={retry}>Try again</button>
+            <p>{t("productCategories.error", { error: error.message || t("generic.readMore") })}</p>
+            <button className="inline-link" type="button" onClick={retry}>{t("collection.retry")}</button>
           </div>
         ) : categories.length === 0 ? (
-          <p className="api-state">No categories are currently available.</p>
+          <p className="api-state">{t("productCategories.noCategories")}</p>
         ) : (
           <div className="category-grid">
             {categories.map((category, index) => (
@@ -64,7 +63,7 @@ export default function ProductCategories() {
                 <div className="category-card__meta">
                   <div>
                     <span className="category-card__number">
-                      CATEGORY {String(index + 1).padStart(2, '0')}
+                      {t("productCategories.category", { number: String(index + 1).padStart(2, '0') })}
                     </span>
                     <h3>{category.label}</h3>
                     {category.description && (

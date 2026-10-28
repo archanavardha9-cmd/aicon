@@ -1,15 +1,18 @@
 import { ArrowRight, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { contactDetails } from "../data/contact";
+import { useTranslation } from "../hooks/useTranslation";
 
 export default function EnquiryCTA() {
+  const { t } = useTranslation();
+
   return (
     <section className="closing-cta">
       <div className="closing-cta__inner page-shell">
         <div>
           <span className="eyebrow eyebrow--light">
             <span className="eyebrow__line" />
-            Connect With Our Team
+            {t("enquiryCTA.eyebrow")}
           </span>
           <h2>
             Looking for Product Guidance

@@ -7,22 +7,24 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
+import { useTranslation } from './hooks/useTranslation';
 
 function NotFoundPage() {
+  const { t } = useTranslation();
   return (
     <main className="not-found page-shell">
       <span className="eyebrow">
         <span className="eyebrow__line" />
-        404 · Page not found
+        {t("notFound.eyebrow")}
       </span>
       <h1 className="display-heading">
-        This page is
+        {t("notFound.heading")}
         <br />
-        <em>out of range.</em>
+        <em>{t("notFound.headingEmphasis")}</em>
       </h1>
-      <p>The page may have moved. You can return to the AICON collection.</p>
+      <p>{t("notFound.description")}</p>
       <Link className="button button--dark" to="/products">
-        Explore categories
+        {t("notFound.exploreCategories")}
       </Link>
     </main>
   );

@@ -2,9 +2,11 @@ import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { contactDetails, facebookUrl } from "../data/contact";
 import useCategories from "../hooks/useCategories";
+import { useTranslation } from "../hooks/useTranslation";
 
 export default function Footer() {
   const { categories, loading, error } = useCategories();
+  const { t } = useTranslation();
 
   return (
     <footer className="site-footer">
@@ -16,10 +18,7 @@ export default function Footer() {
                 <img src="/aicon-logo.webp" alt="" />
               </span>
             </Link>
-            <p>
-              A considered range of home appliance categories, gathered under
-              one name.
-            </p>
+            <p>{t("footer.brandDescription")}</p>
             <a
               className="site-footer__social"
               href={facebookUrl}
@@ -32,21 +31,21 @@ export default function Footer() {
           </div>
 
           <div className="site-footer__column">
-            <h2>Explore</h2>
-            <Link to="/">Home</Link>
-            <Link to="/products">The collection</Link>
-            <Link to="/about">Our story</Link>
-            <Link to="/contact">Contact</Link>
+            <h2>{t("footer.explore")}</h2>
+            <Link to="/">{t("nav.home")}</Link>
+            <Link to="/products">{t("nav.collection")}</Link>
+            <Link to="/about">{t("nav.about")}</Link>
+            <Link to="/contact">{t("nav.contact")}</Link>
           </div>
 
           <div className="site-footer__column">
-            <h2>Categories</h2>
+            <h2>{t("footer.categories")}</h2>
             {loading && (
-              <span className="site-footer__status">Loading categories…</span>
+              <span className="site-footer__status">{t("footer.loadingCategories")}</span>
             )}
             {error && (
               <span className="site-footer__status">
-                Categories unavailable.
+                {t("footer.categoriesUnavailable")}
               </span>
             )}
             {!loading &&
@@ -62,7 +61,7 @@ export default function Footer() {
           </div>
 
           <div className="site-footer__column site-footer__contact">
-            <h2>Headquarters</h2>
+            <h2>{t("footer.headquarters")}</h2>
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`}
               target="_blank"
@@ -82,20 +81,19 @@ export default function Footer() {
               <Mail size={15} />
               <span>{contactDetails.email}</span>
             </a>
-            <span className="site-footer__cin">CIN: {contactDetails.cin}</span>
+            <span className="site-footer__cin">{t("contact.cin")}: {contactDetails.cin}</span>
           </div>
         </div>
 
         <div className="site-footer__bottom">
           <span>
-            © {new Date().getFullYear()} {contactDetails.companyName}. All
-            rights reserved.
+            {t("footer.copyright", { year: new Date().getFullYear(), company: contactDetails.companyName })}
           </span>
           <span>
-            Innovation <i /> Quality <i /> Trust
+            {t("footer.innovationQualityTrust")}
           </span>
           <Link to="/contact">
-            Product Enquiries & Support <ArrowUpRight size={14} />
+            {t("footer.productEnquiriesSupport")} <ArrowUpRight size={14} />
           </Link>
         </div>
       </div>

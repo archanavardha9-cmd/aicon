@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { fetchProduct } from "../services/api";
 
 import { initialProducts } from "../data/products";
+import { useTranslation } from "../hooks/useTranslation";
 
 function formatLabel(value) {
   return value
@@ -14,6 +15,7 @@ function formatLabel(value) {
 
 export default function ProductDetails() {
   const { productId } = useParams();
+  const { t } = useTranslation();
 
   const fallbackProduct = useMemo(
     () => initialProducts.find((p) => p.id === productId),
@@ -53,7 +55,7 @@ export default function ProductDetails() {
           setResult({
             productId,
             product: null,
-            error: "This product was not found.",
+            error: t("productDetails.notFound"),
           });
         }
       })
@@ -65,14 +67,14 @@ export default function ProductDetails() {
             setResult({
               productId,
               product: null,
-              error: requestError.message || "This product is not available.",
+              error: requestError.message || t("productDetails.notAvailable"),
             });
           }
         }
       });
 
     return () => controller.abort();
-  }, [productId, fallbackProduct]);
+  }, [productId, fallbackProduct, t]);
 
   const currentResult = result?.productId === productId ? result : null;
   const product = currentResult?.product || fallbackProduct || null;
@@ -90,11 +92,11 @@ export default function ProductDetails() {
       <section className="section section--ivory product-detail">
         <div className="page-shell">
           <Link className="inline-link product-detail__back" to="/products">
-            <ArrowLeft size={16} /> Back to catalogue
+            <ArrowLeft size={16} /> {t("productDetails.backToCatalogue")}
           </Link>
           {loading ? (
             <p className="api-state" role="status">
-              Loading product details…
+              {t("productDetails.loading")}
             </p>
           ) : error ? (
             <div className="empty-state" role="alert">
@@ -103,11 +105,11 @@ export default function ProductDetails() {
                 Product details
               </span>
               <h1 className="display-heading">
-                This product is not <em>available.</em>
+                <em>{t("productDetails.notAvailableHeading")}</em>
               </h1>
               <p>{error}</p>
               <Link className="button button--dark" to="/products">
-                Browse categories <ArrowRight size={16} />
+                {t("productDetails.browseCategories")} <ArrowRight size={16} />
               </Link>
             </div>
           ) : product ? (
@@ -125,7 +127,7 @@ export default function ProductDetails() {
                     role="img"
                     aria-label="Product photograph not available"
                   >
-                    <span>Product photograph not available</span>
+                    <span>{t("productCard.productNotAvailable")}</span>
                   </div>
                 )}
               </div>
@@ -137,12 +139,12 @@ export default function ProductDetails() {
                 <h1 className="display-heading">{product.name}</h1>
                 {product.modelNumber && (
                   <p className="product-card__model">
-                    Model {product.modelNumber}
+                    {t("productCard.model")} {product.modelNumber}
                   </p>
                 )}
                 <p>
                   {product.description ||
-                    "Contact the AICON team for current product information."}
+                    t("productCard.askDetails")}
                 </p>
                 {specifications.length > 0 && (
                   <dl className="product-specifications">
@@ -157,18 +159,12 @@ export default function ProductDetails() {
                 <a
                   className="button button--dark"
                   href={`https://wa.me/919264988032?text=${encodeURIComponent(
-                    `Hello AICON Team,
-
-I would like to enquire about the ${product.name}.
-
-Could you please share more details about its features, specifications, and pricing?
-
-Thank you.`,
+                    t("productDetails.enquireWhatsApp", { productName: product.name }),
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Enquire about this product <ArrowRight size={16} />
+                  {t("productDetails.enquireAbout")} <ArrowRight size={16} />
                 </a>
               </div>
             </article>

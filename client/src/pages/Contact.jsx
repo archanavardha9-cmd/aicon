@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { contactDetails } from "../data/contact";
 import useCategories from "../hooks/useCategories";
 import { submitContact, submitEnquiry } from "../services/api";
+import { useTranslation } from "../hooks/useTranslation";
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -30,6 +31,7 @@ export default function Contact() {
   const selectedCategory = categories.some((item) => item.id === category)
     ? category
     : legacyCategory?.id || "";
+  const { t } = useTranslation();
 
   async function submitForm(event) {
     event.preventDefault();
@@ -64,7 +66,7 @@ export default function Contact() {
     }
 
     submissionRef.current = true;
-    setFeedback({ status: "submitting", message: "Sending your enquiry…" });
+    setFeedback({ status: "submitting", message: t("contact.submitting") });
 
     try {
       const submit =
@@ -75,7 +77,7 @@ export default function Contact() {
         message:
           result?.data?.message ||
           result?.message ||
-          "Thank you! Your enquiry has been submitted successfully.",
+          t("contact.successMessage"),
       });
       idempotencyRef.current = null;
       form.reset();
@@ -93,17 +95,14 @@ export default function Contact() {
         <div className="page-shell page-intro__inner">
           <span className="eyebrow eyebrow--light">
             <span className="eyebrow__line" />
-            AICON · Contact
+            {t("pageIntro.contact.eyebrow")}
           </span>
           <h1>
-            Let’s talk
+            {t("pageIntro.contact.heading")}
             <br />
-            <em>everyday.</em>
+            <em>{t("pageIntro.contact.headingEmphasis")}</em>
           </h1>
-          <p>
-            For product information or a question about the AICON collection,
-            reach out to our team.
-          </p>
+          <p>{t("pageIntro.contact.description")}</p>
         </div>
       </section>
 
@@ -112,17 +111,14 @@ export default function Contact() {
           <div className="contact-details">
             <span className="eyebrow">
               <span className="eyebrow__line" />
-              Get in touch
+              {t("contact.eyebrow")}
             </span>
             <h2 className="display-heading">
-              Questions,
+              {t("contact.heading")}
               <br />
-              <em>welcome here.</em>
+              <em>{t("contact.headingEmphasis")}</em>
             </h2>
-            <p>
-              Contact the AICON team for current product details and help with
-              your enquiry.
-            </p>
+            <p>{t("contact.description")}</p>
 
             <div className="contact-details__list">
               <a href={`tel:${contactDetails.phone.replace(/\s/g, "")}`}>
@@ -130,7 +126,7 @@ export default function Contact() {
                   <Phone size={18} />
                 </span>
                 <span>
-                  <small>Sales & Customer Care</small>
+                  <small>{t("contact.salesCustomerCare")}</small>
                   {contactDetails.phone}
                 </span>
               </a>
@@ -141,7 +137,7 @@ export default function Contact() {
                   <Phone size={18} />
                 </span>
                 <span>
-                  <small>Support Line</small>
+                  <small>{t("contact.supportLine")}</small>
                   {contactDetails.phoneSecondary}
                 </span>
               </a>
@@ -150,7 +146,7 @@ export default function Contact() {
                   <Mail size={18} />
                 </span>
                 <span>
-                  <small>Primary Sales Email</small>
+                  <small>{t("contact.primarySalesEmail")}</small>
                   {contactDetails.email}
                 </span>
               </a>
@@ -164,33 +160,30 @@ export default function Contact() {
                   <MapPin size={18} />
                 </span>
                 <span>
-                  <small>Corporate Headquarters</small>
+                  <small>{t("contact.corporateHeadquarters")}</small>
                   {contactDetails.address}
                 </span>
               </a>
             </div>
             <div className="contact-details__meta">
               <p>
-                <strong>CIN:</strong> {contactDetails.cin}
+                <strong>{t("contact.cin")}:</strong> {contactDetails.cin}
               </p>
             </div>
             <Link className="inline-link" to="/products">
-              Browse Products <ArrowRight size={16} />
+              {t("contact.browseProducts")} <ArrowRight size={16} />
             </Link>
           </div>
 
           <div className="enquiry-panel">
             <div className="enquiry-panel__heading">
-              <span className="enquiry-panel__index">AICON / ENQUIRY</span>
-              <h2>What can we help with?</h2>
-              <p>
-                Share a few details and our team can follow up using the contact
-                information you provide.
-              </p>
+              <span className="enquiry-panel__index">{t("contact.enquiryIndex")}</span>
+              <h2>{t("contact.enquiryHeading")}</h2>
+              <p>{t("contact.enquiryDescription")}</p>
             </div>
 
             <div className="form-notice" role="note">
-              Your enquiry is saved by the AICON website.
+              {t("contact.formNotice")}
             </div>
 
             <form className="enquiry-form" onSubmit={submitForm}>
@@ -198,7 +191,7 @@ export default function Contact() {
                 className="form-field enquiry-form__honeypot"
                 aria-hidden="true"
               >
-                <label htmlFor="contact-website">Website</label>
+                <label htmlFor="contact-website">{t("contact.websiteLabel")}</label>
                 <input
                   id="contact-website"
                   name="website"
@@ -208,22 +201,22 @@ export default function Contact() {
               </div>
               <div className="form-row">
                 <label className="form-field">
-                  <span>Your name</span>
+                  <span>{t("contact.nameLabel")}</span>
                   <input
                     autoComplete="name"
                     name="name"
-                    placeholder="Name"
+                    placeholder={t("contact.namePlaceholder")}
                     minLength="2"
                     maxLength="100"
                     required
                   />
                 </label>
                 <label className="form-field">
-                  <span>Email address</span>
+                  <span>{t("contact.emailLabel")}</span>
                   <input
                     autoComplete="email"
                     name="email"
-                    placeholder="you@example.com"
+                    placeholder={t("contact.emailPlaceholder")}
                     maxLength="254"
                     required
                     type="email"
@@ -232,19 +225,19 @@ export default function Contact() {
               </div>
               <label className="form-field">
                 <span>
-                  Phone number <small>Optional</small>
+                  {t("contact.phoneLabel")} <small>{t("contact.phoneOptional")}</small>
                 </span>
                 <input
                   autoComplete="tel"
                   name="phone"
-                  placeholder="Phone number"
+                  placeholder={t("contact.phonePlaceholder")}
                   maxLength="40"
                   type="tel"
                 />
               </label>
               <label className="form-field">
                 <span>
-                  Category <small>Optional</small>
+                  {t("contact.categoryLabel")} <small>{t("contact.categoryOptional")}</small>
                 </span>
                 <select
                   name="category"
@@ -254,8 +247,8 @@ export default function Contact() {
                 >
                   <option value="">
                     {categoriesLoading
-                      ? "Loading categories…"
-                      : "Choose a category"}
+                      ? t("collection.loadingCategories")
+                      : t("contact.chooseCategory")}
                   </option>
                   {categories.map((item) => (
                     <option key={item.id} value={item.id}>
@@ -265,10 +258,10 @@ export default function Contact() {
                 </select>
               </label>
               <label className="form-field">
-                <span>Your message</span>
+                <span>{t("contact.messageLabel")}</span>
                 <textarea
                   name="message"
-                  placeholder="Tell us what you’d like to know."
+                  placeholder={t("contact.messagePlaceholder")}
                   rows="5"
                   minLength="10"
                   maxLength="5000"
@@ -277,8 +270,7 @@ export default function Contact() {
               </label>
               {categoriesError && (
                 <p className="form-feedback form-feedback--error" role="alert">
-                  Categories could not be loaded. You can still send a general
-                  enquiry.
+                  {t("contact.errorMessage")}
                 </p>
               )}
               <button
@@ -287,8 +279,8 @@ export default function Contact() {
                 disabled={feedback?.status === "submitting"}
               >
                 {feedback?.status === "submitting"
-                  ? "Submitting…"
-                  : "Send enquiry"}
+                  ? t("contact.submittingButton")
+                  : t("contact.submitButton")}
                 <ArrowRight size={16} />
               </button>
             </form>

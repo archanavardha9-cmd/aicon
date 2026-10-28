@@ -4,8 +4,9 @@ import { Link, useSearchParams } from "react-router-dom";
 import { fetchProducts } from "../services/api";
 import useCategories from "../hooks/useCategories";
 import { initialProducts } from "../data/products";
+import { useTranslation } from "../hooks/useTranslation";
 
-function ProductCard({ product }) {
+function ProductCard({ product, t }) {
   const [imageUnavailable, setImageUnavailable] = useState(!product.imagePath);
   const specs = Object.entries(product.specifications || {}).slice(0, 2);
 
@@ -25,7 +26,7 @@ function ProductCard({ product }) {
             role="img"
             aria-label="Product photograph not available"
           >
-            <span>Product photograph not available</span>
+            <span>{t("productCard.productNotAvailable")}</span>
           </div>
         )}
       </div>
@@ -35,11 +36,13 @@ function ProductCard({ product }) {
         </span>
         <h3>{product.name}</h3>
         {product.modelNumber && (
-          <p className="product-card__model">Model {product.modelNumber}</p>
+          <p className="product-card__model">
+            {t("productCard.model")} {product.modelNumber}
+          </p>
         )}
         <p className="product-card__description">
           {product.description ||
-            "Ask the AICON team for current product details."}
+            t("productCard.askDetails")}
         </p>
 
         {specs.length > 0 && (
@@ -57,24 +60,18 @@ function ProductCard({ product }) {
             className="inline-link"
             to={`/products/${encodeURIComponent(product.id)}`}
           >
-            Product details <ArrowUpRight size={16} />
+            {t("collection.productDetails")} <ArrowUpRight size={16} />
           </Link>
 
           <a
             className="product-card__enquiry"
             href={`https://wa.me/919264988032?text=${encodeURIComponent(
-              `Hello AICON Team,
-
-I would like to enquire about the ${product.name}.
-
-Could you please share more details about its features, specifications, and pricing?
-
-Thank you.`,
+              t("productCard.enquireWhatsApp", { productName: product.name }),
             )}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Enquire <ArrowRight size={15} />
+            {t("collection.productEnquire")} <ArrowRight size={15} />
           </a>
         </div>
       </div>
@@ -120,6 +117,7 @@ export default function Products() {
       }),
     [categories, query, selectedCategory],
   );
+  const { t } = useTranslation();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -243,19 +241,16 @@ export default function Products() {
         <div className="page-shell page-intro__inner">
           <span className="eyebrow eyebrow--light">
             <span className="eyebrow__line" />
-            The AICON collection
+            {t("pageIntro.collection.eyebrow")}
           </span>
           <h1>
-            Good things,
+            {t("pageIntro.collection.heading")}
             <br />
-            for <em>everyday.</em>
+            <em>{t("pageIntro.collection.headingEmphasis")}</em>
           </h1>
-          <p>
-            Browse AICON categories and published products. Contact our team for
-            current availability and verified specifications.
-          </p>
+          <p>{t("pageIntro.collection.description")}</p>
           <a className="button button--gold" href="#collection">
-            Browse collection <ArrowRight size={17} />
+            {t("pageIntro.collection.browseCollection")} <ArrowRight size={17} />
           </a>
         </div>
       </section>
@@ -266,19 +261,19 @@ export default function Products() {
             <div className="section-heading-row__copy">
               <span className="eyebrow">
                 <span className="eyebrow__line" />
-                Find your category
+                {t("collection.findCategory")}
               </span>
               <h2 className="display-heading">
-                The collection,
+                {t("collection.eyebrow")}
                 <br />
-                <em>at a glance.</em>
+                <em>{t("collection.headingEmphasis")}</em>
               </h2>
             </div>
             <div className="collection-controls">
               <label className="search-field">
                 <Search size={18} aria-hidden="true" />
                 <span className="visually-hidden">
-                  Search products and categories
+                  {t("collection.searchLabel")}
                 </span>
                 <input
                   type="search"
@@ -286,7 +281,7 @@ export default function Products() {
                   onChange={(event) =>
                     updateParam("q", event.target.value.trimStart(), true)
                   }
-                  placeholder="Search the range"
+                  placeholder={t("collection.searchPlaceholder")}
                   autoComplete="off"
                 />
                 {query && (
@@ -296,18 +291,18 @@ export default function Products() {
                     onClick={() => updateParam("q", "", true)}
                     aria-label="Clear search"
                   >
-                    Clear
+                    {t("collection.clearSearch")}
                   </button>
                 )}
               </label>
               <label className="sort-field">
-                <span>Sort products</span>
+                <span>{t("collection.sortLabel")}</span>
                 <select
                   value={sort}
                   onChange={(event) => updateParam("sort", event.target.value)}
                 >
-                  <option value="name">Name</option>
-                  <option value="newest">Newest</option>
+                  <option value="name">{t("collection.sortName")}</option>
+                  <option value="newest">{t("collection.sortNewest")}</option>
                 </select>
               </label>
             </div>
@@ -315,7 +310,7 @@ export default function Products() {
 
           <div className="filter-row" aria-label="Filter categories">
             {[
-              { id: "all", label: "All categories" },
+              { id: "all", label: t("collection.allCategories") },
               ...categories.map(({ id, label }) => ({ id, label })),
             ].map((item) => (
               <button
@@ -334,14 +329,14 @@ export default function Products() {
 
           {categoriesLoading && (
             <p className="api-state" role="status">
-              Loading categories…
+              {t("collection.loadingCategories")}
             </p>
           )}
           {categoriesError && (
             <div className="api-state api-state--error" role="alert">
-              <p>{categoriesError}</p>
+              <p>{t("collection.categoriesError")}</p>
               <button className="inline-link" type="button" onClick={retry}>
-                Try again
+                {t("collection.retry")}
               </button>
             </div>
           )}
@@ -353,7 +348,7 @@ export default function Products() {
 
           {!loading && !error && filteredCategories.length > 0 && (
             <>
-              <h3 className="collection__subheading">Categories</h3>
+              <h3 className="collection__subheading">{t("collection.categories")}</h3>
               <div className="collection-grid">
                 {filteredCategories.map((item) => {
                   const categoryIndex = categories.findIndex(
@@ -402,10 +397,10 @@ export default function Products() {
 
           {!loading && !error && products.length > 0 && (
             <>
-              <h3 className="collection__subheading">Published products</h3>
+              <h3 className="collection__subheading">{t("collection.publishedProducts")}</h3>
               <div className="product-grid">
                 {products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard key={product.id} product={product} t={t} />
                 ))}
               </div>
               {currentMoreError && (
@@ -420,7 +415,7 @@ export default function Products() {
                   onClick={loadMore}
                   disabled={loadingMore}
                 >
-                  {loadingMore ? "Loading…" : "Load more products"}
+                  {loadingMore ? t("collection.loadingMore") : t("collection.loadMore")}
                   {!loadingMore && <ArrowRight size={16} />}
                 </button>
               )}
@@ -429,7 +424,7 @@ export default function Products() {
 
           {loading && (
             <p className="api-state" role="status">
-              Loading products…
+              {t("collection.loadingProducts")}
             </p>
           )}
           {noProductsYet && (
@@ -438,28 +433,23 @@ export default function Products() {
                 <span className="eyebrow__line" />
                 Product catalogue
               </span>
-              <h3>No products found for this selection.</h3>
-              <p>
-                Browse other categories or contact our team for model
-                availability.
-              </p>
+              <h3>{t("collection.noProducts")}</h3>
+              <p>{t("collection.noProductsDescription")}</p>
               <Link className="button button--dark" to="/contact">
-                Ask the AICON team <ArrowRight size={16} />
+                {t("collection.askTeam")} <ArrowRight size={16} />
               </Link>
             </div>
           )}
           {noMatches && (
             <div className="empty-state">
-              <h3>Nothing matches that search.</h3>
-              <p>
-                Try another product or category name, or clear your filters.
-              </p>
+              <h3>{t("collection.noMatches")}</h3>
+              <p>{t("collection.noMatchesDescription")}</p>
               <button
                 className="button button--dark"
                 type="button"
                 onClick={clearFilters}
               >
-                Clear filters <ArrowRight size={16} />
+                {t("collection.clearFilters")} <ArrowRight size={16} />
               </button>
             </div>
           )}
@@ -468,7 +458,7 @@ export default function Products() {
             query &&
             products.length === 0 &&
             filteredCategories.length > 0 && (
-              <p className="api-state">No product models match this search.</p>
+              <p className="api-state">{t("collection.noMatchesSearch")}</p>
             )}
         </div>
       </section>

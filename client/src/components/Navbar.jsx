@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, Globe, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from "../hooks/useTranslation";
 
 const links = [
-  { label: "Home", to: "/", end: true },
-  { label: "The Collection", to: "/products" },
-  { label: "Our Story", to: "/about" },
-  { label: "Contact", to: "/contact" },
+  { key: "nav.home", to: "/", end: true },
+  { key: "nav.collection", to: "/products" },
+  { key: "nav.about", to: "/about" },
+  { key: "nav.contact", to: "/contact" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useTranslation();
 
   function closeMenu() {
     setMenuOpen(false);
+  }
+
+  function handleLanguageChange(lang) {
+    setLanguage(lang);
+    closeMenu();
   }
 
   // Lock background scroll when mobile drawer is open
@@ -58,7 +65,7 @@ export default function Navbar() {
         </Link>
 
         <nav className="desktop-nav" aria-label="Main navigation">
-          {links.map(({ label, to, end }) => (
+          {links.map(({ key, to, end }) => (
             <NavLink
               key={to}
               to={to}
@@ -67,13 +74,25 @@ export default function Navbar() {
                 `desktop-nav__link${isActive ? " is-active" : ""}`
               }
             >
-              {label}
+              {t(key)}
             </NavLink>
           ))}
+          <button
+            className="desktop-lang-switch"
+            type="button"
+            onClick={() => {
+              const next = language === "en" ? "hi" : "en";
+              handleLanguageChange(next);
+            }}
+            aria-label="Switch language"
+          >
+            <Globe size={14} />
+            <span>{language === "en" ? "EN" : "हिन्दी"}</span>
+          </button>
         </nav>
 
         <Link className="header-enquiry" to="/contact">
-          <span>Make an enquiry</span>
+          <span>{t("nav.makeEnquiry")}</span>
           <ArrowUpRight size={16} strokeWidth={1.7} />
         </Link>
 
@@ -110,11 +129,7 @@ export default function Navbar() {
         />
 
         {/* Drawer Content */}
-        <nav
-          className="mobile-drawer"
-          id="mobile-drawer"
-          aria-label="Mobile navigation"
-        >
+        <nav className="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
           <div className="mobile-drawer-header">
             <Link
               className="brand-lockup mobile-drawer-brand"
@@ -138,7 +153,7 @@ export default function Navbar() {
           </div>
 
           <div className="mobile-drawer-links">
-            {links.map(({ label, to, end }) => (
+            {links.map(({ key, to, end }) => (
               <NavLink
                 key={to}
                 to={to}
@@ -148,18 +163,30 @@ export default function Navbar() {
                   `mobile-drawer-link${isActive ? " active is-active" : ""}`
                 }
               >
-                {label}
+                {t(key)}
               </NavLink>
             ))}
           </div>
 
           <div className="mobile-drawer-footer">
+            <div className="mobile-lang-switch">
+              {["en", "hi"].map((code) => (
+                <button
+                  key={code}
+                  type="button"
+                  className={`mobile-lang-option${code === language ? " is-active" : ""}`}
+                  onClick={() => handleLanguageChange(code)}
+                >
+                  {code === "en" ? "English" : "हिन्दी"}
+                </button>
+              ))}
+            </div>
             <Link
               className="mobile-drawer-cta button button--gold"
               to="/contact"
               onClick={closeMenu}
             >
-              Make an enquiry <ArrowUpRight size={16} />
+              {t("nav.makeEnquiry")} <ArrowUpRight size={16} />
             </Link>
           </div>
         </nav>

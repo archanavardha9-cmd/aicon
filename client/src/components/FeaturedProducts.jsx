@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../services/api";
 import { initialProducts } from "../data/products";
+import { useTranslation } from "../hooks/useTranslation";
 
 const FEATURED_IDS = [
   "aicon-4k-uhd-smart-led-tv-55",
@@ -21,6 +22,7 @@ function getCuratedFeatured() {
 
 export default function FeaturedProducts() {
   const [products, setProducts] = useState(getCuratedFeatured);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -44,21 +46,18 @@ export default function FeaturedProducts() {
           <div className="section-heading-row__copy">
             <span className="eyebrow">
               <span className="eyebrow__line" />
-              Featured Appliances
+              {t("featured.eyebrow")}
             </span>
             <h2 className="display-heading">
-              Flagship Innovation,
+              {t("featured.heading")}
               <br />
-              <em>Built to Endure.</em>
+              <em>{t("featured.headingEmphasis")}</em>
             </h2>
           </div>
           <div className="section-heading-row__aside">
-            <p>
-              Each AICON appliance is engineered for practical performance,
-              superior energy efficiency, and everyday dependability.
-            </p>
+            <p>{t("featured.description")}</p>
             <Link className="inline-link" to="/products">
-              Explore full catalogue <ArrowRight size={16} />
+              {t("featured.exploreFullCatalogue")} <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -110,23 +109,17 @@ export default function FeaturedProducts() {
                       className="button button--secondary"
                       to={`/products/${encodeURIComponent(product.id)}`}
                     >
-                      Specifications <ArrowUpRight size={15} />
+                      {t("featured.specifications")} <ArrowUpRight size={15} />
                     </Link>
                     <a
                       className="button button--gold"
                       href={`https://wa.me/919264988032?text=${encodeURIComponent(
-                        `Hello AICON Team,
-
-I would like to enquire about the ${product.name}.
-
-Could you please share more details about its features, specifications, and pricing?
-
-Thank you.`,
+                        t("featured.enquireWhatsApp", { productName: product.name }),
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Enquire <ArrowRight size={15} />
+                      {t("featured.enquire")} <ArrowRight size={15} />
                     </a>
                   </div>
                 </div>

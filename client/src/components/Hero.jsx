@@ -1,7 +1,10 @@
 import { ArrowRight, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="hero">
       <div className="hero__glow" aria-hidden="true" />
@@ -9,34 +12,32 @@ export default function Hero() {
         <div className="hero__copy">
           <span className="eyebrow eyebrow--light">
             <span className="eyebrow__line" />
-            AICON · Smart Home Appliances
+            {t("hero.eyebrow")}
           </span>
           <h1>
-            Intelligent Comfort,
+            {t("hero.heading")}
             <br />
-            Engineered for <em>Everyday Living.</em>
+            <em>{t("hero.headingEmphasis")}</em>
           </h1>
           <p className="hero__description">
-            Discover AICON’s complete portfolio of frameless 4K Smart TVs, durable
-            twin-tub washing machines, energy-conscious air cooling, and kitchen essentials
-            crafted for dependable performance in Indian homes.
+            {t("hero.description")}
           </p>
           <div className="hero__actions">
             <Link className="button button--gold" to="/products">
-              Explore Collection <ArrowRight size={17} />
+              {t("hero.exploreCollection")} <ArrowRight size={17} />
             </Link>
             <Link className="hero__text-link" to="/contact">
-              Make an Enquiry <ArrowUpRight size={16} />
+              {t("hero.makeAnEnquiry")} <ArrowUpRight size={16} />
             </Link>
           </div>
           <div className="hero__features" aria-label="AICON product highlights">
             <div className="hero__feature-item hide-on-mobile">
               <ShieldCheck size={16} className="hero__feature-icon" />
-              <span>Built for Everyday Reliability</span>
+              <span>{t("hero.highlights.reliability")}</span>
             </div>
             <div className="hero__feature-item">
               <CheckCircle2 size={16} className="hero__feature-icon" />
-              <span>Tested for Indian Conditions</span>
+              <span>{t("hero.highlights.indianConditions")}</span>
             </div>
           </div>
         </div>

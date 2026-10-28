@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -111,4 +111,20 @@ img {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+}
+
+html[lang="hi"],
+html[lang="hi"] body {
+  font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+}
+
+html[lang="hi"] .eyebrow,
+html[lang="hi"] .display-heading,
+html[lang="hi"] h1,
+html[lang="hi"] h2,
+html[lang="hi"] h3,
+html[lang="hi"] .desktop-nav__link,
+html[lang="hi"] .mobile-drawer-link,
+html[lang="hi"] .button {
+  font-family: 'Noto Sans Devanagari', 'Manrope', sans-serif;
 }

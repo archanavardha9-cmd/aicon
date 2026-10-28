@@ -8,6 +8,7 @@ import {
   WashingMachine,
   Wind,
 } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const icons = {
   television: Tv,
@@ -21,12 +22,13 @@ const icons = {
 };
 
 export default function CategoryArtwork({ category, number }) {
+  const { t } = useTranslation();
   const Icon = icons[category.icon];
 
   return (
     <div
       className={`category-art category-art--${category.tone}`}
-      aria-label={`Illustrative category artwork for ${category.label}; not an AICON product photograph`}
+      aria-label={t("categoryArtwork.ariaLabel", { label: category.label })}
       role="img"
     >
       <span className="category-art__orbit category-art__orbit--one" />
@@ -37,7 +39,7 @@ export default function CategoryArtwork({ category, number }) {
       </span>
       <span className="category-art__caption">
         <span className="category-art__caption-dot" />
-        Illustrative category art
+        {t("categoryArtwork.caption")}
       </span>
     </div>
   );

@@ -141,6 +141,64 @@ body.no-scroll {
   color: var(--color-champagne);
 }
 
+.desktop-lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid rgb(255 255 255 / 23%);
+  color: var(--color-white);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease;
+  margin-left: 12px;
+}
+
+.desktop-lang-switch:hover {
+  border-color: var(--color-champagne);
+  color: var(--color-champagne);
+}
+
+.desktop-lang-switch .Globe,
+.desktop-lang-switch svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mobile-lang-switch {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 0 14px;
+}
+
+.mobile-lang-option {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid rgb(23, 59, 99, 0.12);
+  color: #1e293b;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.mobile-lang-option.is-active {
+  background: #2463a6;
+  color: #ffffff;
+  border-color: #2463a6;
+}
+
+.mobile-lang-option:hover:not(.is-active) {
+  background: #eaf4fc;
+  border-color: #2463a6;
+}
+
 .menu-toggle,
 .mobile-menu-toggle,
 .mobile-nav,

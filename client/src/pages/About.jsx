@@ -1,46 +1,46 @@
 import { ArrowRight, Building2, CheckCircle2, Shield, Sparkles, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { contactDetails } from '../data/contact';
+import { useTranslation } from '../hooks/useTranslation';
 
 const values = [
   {
     number: '01',
-    title: 'Innovation',
-    description: 'Integrating modern smart technologies—such as 4K HDR displays, Android Smart OS, and energy-efficient motor controls—to make everyday living intuitive and effortless.',
+    titleKey: 'whyChooseUs.pillars.0.title',
+    descKey: 'whyChooseUs.pillars.0.desc',
     icon: Sparkles,
   },
   {
     number: '02',
-    title: 'Quality',
-    description: 'Using resilient polymer cabinets, 100% pure copper motor windings, and rigorous quality testing to ensure every appliance withstands heavy everyday usage.',
+    titleKey: 'whyChooseUs.pillars.1.title',
+    descKey: 'whyChooseUs.pillars.1.desc',
     icon: Shield,
   },
   {
     number: '03',
-    title: 'Trust',
-    description: 'Providing honest product specifications, dependable customer support, and direct manufacturer accountability from our Mumbai corporate office.',
+    titleKey: 'whyChooseUs.pillars.2.title',
+    descKey: 'whyChooseUs.pillars.2.desc',
     icon: Users,
   },
 ];
 
 export default function About() {
+  const { t } = useTranslation();
+
   return (
     <main>
       <section className="page-intro page-intro--about">
         <div className="page-shell page-intro__inner">
           <span className="eyebrow eyebrow--light">
             <span className="eyebrow__line" />
-            About AICON Modcon
+            {t("pageIntro.about.eyebrow")}
           </span>
           <h1>
-            Engineered for Dependability,
+            {t("pageIntro.about.heading")}
             <br />
-            Designed for <em>Modern Homes.</em>
+            <em>{t("pageIntro.about.headingEmphasis")}</em>
           </h1>
-          <p>
-            AICON Modcon Private Limited brings together a thoughtfully engineered
-            portfolio of home appliances crafted for lasting comfort, energy efficiency, and everyday reliability.
-          </p>
+          <p>{t("pageIntro.about.description")}</p>
         </div>
       </section>
 
@@ -49,54 +49,45 @@ export default function About() {
           <div className="about-editorial__aside">
             <span className="eyebrow">
               <span className="eyebrow__line" />
-              Corporate Identity
+              {t("about.eyebrow")}
             </span>
             <div className="about-editorial__badge-card">
               <Building2 size={32} className="about-editorial__badge-icon" />
               <strong>{contactDetails.companyName}</strong>
-              <span>Incorporated: {contactDetails.incorporationDate}</span>
-              <small>CIN: {contactDetails.cin}</small>
+              <span>{t("contact.corporateHeadquarters")}: {contactDetails.incorporationDate}</span>
+              <small>{t("contact.cin")}: {contactDetails.cin}</small>
               <address>{contactDetails.address}</address>
             </div>
           </div>
           <div className="about-editorial__copy">
-            <span className="about-editorial__index">01 — OUR MISSION</span>
+            <span className="about-editorial__index">{t("about.missionIndex")}</span>
             <h2 className="display-heading">
-              Practical Innovation,
+              {t("about.missionHeading")}
               <br />
-              Uncompromising <em>Quality.</em>
+              <em>{t("about.missionEmphasis")}</em>
             </h2>
-            <p>
-              Headquartered in Mumbai, Maharashtra, AICON Modcon Private Limited was founded
-              to deliver a higher standard of home appliances tailored specifically for Indian households.
-              From extreme summer heat and frequent voltage swings to demanding daily laundry cycles,
-              we design and curate appliances that perform consistently season after season.
-            </p>
-            <p>
-              Our growing product portfolio spans six core consumer categories: Smart LED Televisions,
-              Semi-Automatic Washing Machines, Desert & Personal Air Coolers, Inverter Split Air Conditioners,
-              Aeroflow Ceiling Fans, Heavy-Duty Mixer Grinders, and Storage Water Heaters.
-            </p>
+            <p>{t("about.missionDescription")}</p>
+            <p>{t("about.missionDescription2")}</p>
             <div className="about-editorial__bullets">
               <div className="about-bullet">
                 <CheckCircle2 size={16} className="bullet-icon" />
-                <span>Engineered specifically to handle Indian voltage fluctuations and water conditions.</span>
+                <span>{t("about.bullet1")}</span>
               </div>
               <div className="about-bullet">
                 <CheckCircle2 size={16} className="bullet-icon" />
-                <span>Dedicated customer care and responsive regional distributor support.</span>
+                <span>{t("about.bullet2")}</span>
               </div>
               <div className="about-bullet">
                 <CheckCircle2 size={16} className="bullet-icon" />
-                <span>Transparent product specifications and straightforward warranty assistance.</span>
+                <span>{t("about.bullet3")}</span>
               </div>
             </div>
             <div className="about-editorial__actions">
               <Link className="button button--gold" to="/products">
-                Explore the Catalogue <ArrowRight size={16} />
+                {t("about.exploreCatalogue")} <ArrowRight size={16} />
               </Link>
               <Link className="button button--secondary" to="/contact">
-                Get in Touch
+                {t("about.getInTouch")}
               </Link>
             </div>
           </div>
@@ -108,16 +99,14 @@ export default function About() {
           <div className="values-section__heading">
             <span className="eyebrow">
               <span className="eyebrow__line" />
-              Guiding Principles
+              {t("about.valuesHeading")}
             </span>
             <h2 className="display-heading">
-              Our Core
+              {t("about.valuesHeading")}
               <br />
-              <em>Brand Values.</em>
+              <em>{t("about.valuesEmphasis")}</em>
             </h2>
-            <p>
-              Every product that bears the AICON name is developed with these three fundamental commitments in mind.
-            </p>
+            <p>{t("about.valuesDescription")}</p>
           </div>
           <div className="values-grid">
             {values.map((value) => {
@@ -128,8 +117,8 @@ export default function About() {
                     <span className="value-card__number">{value.number}</span>
                     <Icon size={24} className="value-card__icon" />
                   </div>
-                  <h3>{value.title}</h3>
-                  <p>{value.description}</p>
+                  <h3>{t(value.titleKey)}</h3>
+                  <p>{t(value.descKey)}</p>
                 </article>
               );
             })}

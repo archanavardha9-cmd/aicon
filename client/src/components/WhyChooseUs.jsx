@@ -1,30 +1,13 @@
-import { ArrowUpRight, Award, Cpu, ShieldCheck, Zap } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
-const pillars = [
-  {
-    icon: Cpu,
-    title: 'Engineered Precision',
-    desc: 'High-torque copper motors, corrosion-resistant components, and durable polymer cabinets designed for everyday reliability.',
-  },
-  {
-    icon: Zap,
-    title: 'Energy Conscious',
-    desc: 'Intelligent circuitry and optimized thermal insulation designed to deliver maximum performance with sensible energy use.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Tested for Indian Homes',
-    desc: 'Built to withstand real-world voltage fluctuations, high ambient summer temperatures, and intensive daily laundry or cooking demands.',
-  },
-  {
-    icon: Award,
-    title: 'Direct Brand Support',
-    desc: 'Prompt assistance directly from AICON Modcon’s Mumbai corporate headquarters via phone, email, and verified digital channels.',
-  },
-];
+import { ArrowUpRight, Award, Cpu, ShieldCheck, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "../hooks/useTranslation";
 
 export default function WhyChooseUs() {
+  const { t } = useTranslation();
+  const pillars = Array.isArray(t("whyChooseUs.pillars"))
+    ? t("whyChooseUs.pillars")
+    : [];
+
   return (
     <section className="section section--ivory why-choose-us">
       <div className="page-shell">
@@ -32,37 +15,39 @@ export default function WhyChooseUs() {
           <div className="section-heading-row__copy">
             <span className="eyebrow">
               <span className="eyebrow__line" />
-              The AICON Standard
+              {t("whyChooseUs.eyebrow")}
             </span>
             <h2 className="display-heading">
-              Built on
+              {t("whyChooseUs.heading")}
               <br />
-              <em>Innovation, Quality & Trust.</em>
+              <em>{t("whyChooseUs.headingEmphasis")}</em>
             </h2>
           </div>
           <div className="section-heading-row__aside">
-            <p>
-              AICON Modcon Private Limited is committed to delivering modern,
-              dependable home appliances with honest specifications and dependable construction.
-            </p>
+            <p>{t("whyChooseUs.description")}</p>
             <Link className="inline-link" to="/about">
-              Read our company profile <ArrowUpRight size={16} />
+              {t("whyChooseUs.readCompanyProfile")} <ArrowUpRight size={16} />
             </Link>
           </div>
         </div>
 
         <div className="pillars-grid">
           {pillars.map((pillar, index) => {
-            const Icon = pillar.icon;
+            const Icon =
+              index === 0
+                ? Cpu
+                : index === 1
+                  ? Zap
+                  : index === 2
+                    ? ShieldCheck
+                    : Award;
             return (
               <div className="pillar-card" key={pillar.title}>
                 <div className="pillar-card__header">
                   <span className="pillar-card__icon-wrap">
                     <Icon size={24} />
                   </span>
-                  <span className="pillar-card__index">
-                    0{index + 1}
-                  </span>
+                  <span className="pillar-card__index">0{index + 1}</span>
                 </div>
                 <h3>{pillar.title}</h3>
                 <p>{pillar.desc}</p>
