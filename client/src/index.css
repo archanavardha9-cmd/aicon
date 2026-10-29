@@ -3,8 +3,8 @@
 
 :root {
   font-family: 'DM Sans', sans-serif;
-  color: #292929;
-  background: #ffffff;
+  color: var(--color-ink);
+  background: var(--color-white);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -26,6 +26,26 @@
   --text-xl: 20px;
   --text-2xl: 28px;
   --text-3xl: clamp(36px, 4.2vw, 60px);
+}
+
+[data-theme="dark"] {
+  --color-ink: #f3f5f8;
+  --color-white: #b89b68;
+  --color-paper: #0d1420;
+  --color-muted: #b2bdcc;
+  --color-line: #2a3749;
+  --color-blue: #3979c6;
+  --color-champagne: #b89b68;
+}
+
+[data-theme="dark"] html {
+  background: #0d1420;
+  color: #f3f5f8;
+}
+
+[data-theme="dark"] body {
+  background: #0d1420;
+  color: #f3f5f8;
 }
 
 * {

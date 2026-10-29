@@ -172,7 +172,7 @@ const hi = {
     loadingCategories: "श्रेणियां लोड हो रही हैं…",
     categoriesUnavailable: "श्रेणियां उपलब्ध नहीं हैं।",
     copyright: "© {year} {company}. सर्वाधिकार सुरक्षित।",
-    innovationQualityTrust: "नवाचार <i /> गुणवत्ता <i /> विश्वास",
+    innovationQualityTrust: "नवाचार, गुणवत्ता और विश्वास",
     productEnquiriesSupport: "उत्पाद पूछताछ और सहायता",
     cin: "सीआईएन",
   },

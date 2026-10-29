@@ -172,7 +172,7 @@ const en = {
     loadingCategories: "Loading categories…",
     categoriesUnavailable: "Categories unavailable.",
     copyright: "© {year} {company}. All rights reserved.",
-    innovationQualityTrust: "Innovation <i /> Quality <i /> Trust",
+    innovationQualityTrust: "Innovation, Quality and Trust",
     productEnquiriesSupport: "Product Enquiries & Support",
     cin: "CIN",
   },

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Globe, X } from "lucide-react";
+import { ArrowUpRight, Globe, Moon, Sun, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "../hooks/useTranslation";
+import { useTheme } from "../hooks/useTheme";
 
 const links = [
   { key: "nav.home", to: "/", end: true },
@@ -13,6 +14,7 @@ const links = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { language, setLanguage, t } = useTranslation();
+  const { theme, setTheme } = useTheme();
 
   function closeMenu() {
     setMenuOpen(false);
@@ -91,6 +93,14 @@ export default function Navbar() {
           >
             <Globe size={14} />
             <span>{language === "en" ? "EN" : "हिन्दी"}</span>
+          </button>
+          <button
+            className="desktop-theme-toggle"
+            type="button"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+          >
+            {theme === "light" ? <Moon size={14} /> : <Sun size={14} />}
           </button>
           <Link className="header-enquiry" to="/contact">
             <span>{t("nav.makeEnquiry")}</span>
@@ -183,6 +193,14 @@ export default function Navbar() {
                 </button>
               ))}
             </div>
+            <button
+              className="mobile-theme-toggle"
+              type="button"
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+            >
+              {theme === "light" ? <Moon size={14} /> : <Sun size={14} />}
+            </button>
             <Link
               className="mobile-drawer-cta button button--gold"
               to="/contact"

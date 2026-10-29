@@ -92,7 +92,7 @@ export default function Footer() {
           <span>
             {t("footer.innovationQualityTrust")}
           </span>
-          <Link to="/contact">
+          <Link to="/contact#enquiry">
             {t("footer.productEnquiriesSupport")} <ArrowUpRight size={14} />
           </Link>
         </div>

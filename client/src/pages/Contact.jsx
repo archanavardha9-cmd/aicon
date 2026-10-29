@@ -175,7 +175,7 @@ export default function Contact() {
             </Link>
           </div>
 
-          <div className="enquiry-panel">
+            <div className="enquiry-panel" id="enquiry">
             <div className="enquiry-panel__heading">
               <span className="enquiry-panel__index">{t("contact.enquiryIndex")}</span>
               <h2>{t("contact.enquiryHeading")}</h2>

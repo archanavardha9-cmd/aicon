@@ -1,5 +1,6 @@
 import './App.css';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import About from './pages/About';
@@ -30,6 +31,33 @@ function NotFoundPage() {
   );
 }
 
+function ScrollRestoration() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash;
+    const headerHeight = 82;
+
+    const scrollToElement = (selector) => {
+      const element = document.querySelector(selector);
+      if (element) {
+        const elementTop = element.offsetTop - headerHeight;
+        window.scrollTo({ top: elementTop > 0 ? elementTop : 0, behavior: 'instant' });
+        return true;
+      }
+      return false;
+    };
+
+    if (hash && scrollToElement(hash)) {
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [location]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -43,6 +71,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <ScrollRestoration />
         <Footer />
       </div>
     </BrowserRouter>
