@@ -77,6 +77,9 @@ export default function Navbar() {
               {t(key)}
             </NavLink>
           ))}
+        </nav>
+
+        <div className="header-right">
           <button
             className="desktop-lang-switch"
             type="button"
@@ -89,12 +92,11 @@ export default function Navbar() {
             <Globe size={14} />
             <span>{language === "en" ? "EN" : "हिन्दी"}</span>
           </button>
-        </nav>
-
-        <Link className="header-enquiry" to="/contact">
-          <span>{t("nav.makeEnquiry")}</span>
-          <ArrowUpRight size={16} strokeWidth={1.7} />
-        </Link>
+          <Link className="header-enquiry" to="/contact">
+            <span>{t("nav.makeEnquiry")}</span>
+            <ArrowUpRight size={16} strokeWidth={1.7} />
+          </Link>
+        </div>
 
         {/* 3-Bar Animated Hamburger Toggle matching reference style */}
         <button

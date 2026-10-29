@@ -5,7 +5,7 @@ import { useTranslationContext } from "../contexts/useTranslationContext";
 const locales = { en, hi };
 
 export function useTranslation() {
-  const { language } = useTranslationContext();
+  const { language, setLanguage } = useTranslationContext();
   const t = (key, params = {}) => {
     const keys = key.split(".");
     let value = locales[language];
@@ -27,5 +27,5 @@ export function useTranslation() {
     return value;
   };
 
-  return { t, language };
+  return { t, language, setLanguage };
 }

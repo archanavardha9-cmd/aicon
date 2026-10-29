@@ -371,8 +371,9 @@ export default function Products() {
                       </div>
                       <div className="collection-card__body">
                         <span className="collection-card__eyebrow">
-                          AICON CATEGORY /{" "}
-                          {String(categoryIndex + 1).padStart(2, "0")}
+                          {t("productsPage.collectionCardEyebrow", {
+                            number: String(categoryIndex + 1).padStart(2, "0"),
+                          })}
                         </span>
                         <h3>{item.label}</h3>
                         <p>
@@ -385,7 +386,7 @@ export default function Products() {
                           className="collection-card__enquiry"
                           to={`/products?category=${encodeURIComponent(item.id)}`}
                         >
-                          Browse this category <ArrowUpRight size={16} />
+                          {t("productsPage.browseThisCategory")} <ArrowUpRight size={16} />
                         </Link>
                       </div>
                     </article>
@@ -431,7 +432,7 @@ export default function Products() {
             <div className="empty-state">
               <span className="eyebrow">
                 <span className="eyebrow__line" />
-                Product catalogue
+                {t("productsPage.productCatalogue")}
               </span>
               <h3>{t("collection.noProducts")}</h3>
               <p>{t("collection.noProductsDescription")}</p>
@@ -465,9 +466,9 @@ export default function Products() {
 
       <section className="collection-note">
         <div className="page-shell collection-note__inner">
-          <span>Need a little more information?</span>
+          <span>{t("productsPage.collectionNoteMoreInfo")}</span>
           <Link className="inline-link inline-link--light" to="/contact">
-            Speak with the AICON team <ArrowRight size={16} />
+            {t("productsPage.collectionNoteSpeakTeam")} <ArrowRight size={16} />
           </Link>
         </div>
       </section>

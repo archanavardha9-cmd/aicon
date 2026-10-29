@@ -18,6 +18,7 @@ export function LanguageProvider({ children }) {
     setLanguageState(lang);
     try {
       localStorage.setItem(LANGUAGE_KEY, lang);
+      document.documentElement.lang = lang;
     } catch {
       // localStorage unavailable
     }

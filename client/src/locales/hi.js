@@ -11,7 +11,7 @@ const hi = {
   hero: {
     eyebrow: "एआईकॉन · स्मार्ट होम अप्लायंसेज",
     heading: "बुद्धिमान आराम,",
-    headingEmphasis: "Engineered for Everyday Living.",
+    headingEmphasis: "रोज़मर्रा के लिए इंजीनियर किया गया।",
     description:
       "एआईकॉन के संपूर्ण पोर्टफोलियो की खोज करें जिसमें फ्रेमलेस 4K स्मार्ट टीवी, टिकाऊ ट्विन-टब वॉशिंग मशीन, ऊर्जा-कुशल एयर कूलिंग और रसोई के आवश्यक उत्पाद शामिल हैं, जो भारतीय घरों के लिए विश्वसनीय प्रदर्शन के लिए तैयार किए गए हैं।",
     exploreCollection: "कलेक्शन देखें",
@@ -26,7 +26,7 @@ const hi = {
     about: {
       eyebrow: "एआईकॉन मोडकॉन के बारे में",
       heading: "विश्वसनीयता के लिए इंजीनियर किया गया,",
-      headingEmphasis: "Designed for Modern Homes.",
+      headingEmphasis: "आधुनिक घरों के लिए डिज़ाइन किया गया।",
       description:
         "एआईकॉन मोडकॉन प्राइवेट लिमिटेड एक विचारशील रूप से इंजीनियर किया गया होम अप्लायंसेज का पोर्टफोलियो लाता है जो स्थायी आराम, ऊर्जा दक्षता और रोज़मर्रा की विश्वसनीयता के लिए तैयार किया गया है।",
     },
@@ -40,7 +40,7 @@ const hi = {
     collection: {
       eyebrow: "एआईकॉन कलेक्शन",
       heading: "अच्छी चीज़ें,",
-      headingEmphasis: "for everyday.",
+      headingEmphasis: "रोज़मर्रा के लिए।",
       description:
         "एआईकॉन श्रेणियां और प्रकाशित उत्पाद ब्राउज़ करें। वर्तमान उपलब्धता और सत्यापित विशिष्टताओं के लिए हमारी टीम से संपर्क करें।",
       browseCollection: "कलेक्शन देखें",
@@ -108,7 +108,7 @@ const hi = {
     eyebrow: "कॉर्पोरेट पहचान",
     missionIndex: "01 — हमारा मिशन",
     missionHeading: "व्यावहारिक नवाचार,",
-    missionEmphasis: "Uncompromising Quality.",
+    missionEmphasis: "बेहतरीन गुणवत्ता।",
     missionDescription:
       "मुंबई, महाराष्ट्र में मुख्यालय, एआईकॉन मोडकॉन प्राइवेट लिमिटेड की स्थापना विशेष रूप से भारतीय परिवारों के लिए तैयार किए गए घरेलू उपकरणों का एक उच्च मानक प्रदान करने के लिए की गई थी। भीषण गर्मी और लगातार वोल्टेज उतार-चढ़ाव से लेकर मांगपूर्ण दैनिक कपड़े धोने के चक्र तक, हम ऐसे उपकरण डिज़ाइन और क्यूरेट करते हैं जो मौसम के बाद मौसम लगातार प्रदर्शन करते हैं।",
     missionDescription2:
@@ -193,7 +193,7 @@ const hi = {
   whyChooseUs: {
     eyebrow: "एआईकॉन मानक",
     heading: "बनाया गया है",
-    headingEmphasis: "Innovation, Quality & Trust.",
+    headingEmphasis: "नवाचार, गुणवत्ता और विश्वास।",
     description:
       "एआईकॉन मोडकॉन प्राइवेट लिमिटेड आधुनिक, भरोसेमंद घरेलू उपकरण ईमानदार विशिष्टताओं और भरोसेमंद निर्माण के साथ प्रदान करने के लिए प्रतिबद्ध है।",
     readCompanyProfile: "हमारी कंपनी प्रोफाइल पढ़ें",
@@ -237,13 +237,19 @@ const hi = {
   notFound: {
     eyebrow: "404 · पृष्ठ नहीं मिला",
     heading: "यह पृष्ठ है",
-    headingEmphasis: "out of range.",
+    headingEmphasis: "बाहर है।",
     description: "पृष्ठ स्थानांतरित हो सकता है। आप एआईकॉन संग्रह पर वापस आ सकते हैं।",
     exploreCategories: "श्रेणियां देखें",
   },
   // Enquiry CTA
   enquiryCTA: {
     eyebrow: "हमारी टीम से जुड़ें",
+    heading: "उत्पाद मार्गदर्शन चाहिए",
+    headingSub: "या खुदरा उपलब्धता?",
+    body:
+      "चाहे आपको विस्तृत तकनीकी विशिष्टताएं, थोक वितरक मूल्य निर्धारण, या अपने क्षेत्र में मॉडल उपलब्धता की आवश्यकता हो, हमारी टीम सहायता के लिए तैयार है।",
+    sendEnquiry: "पूछताछ भेजें",
+    browseProducts: "उत्पाद ब्राउज़ करें",
   },
 
   // Category Artwork
@@ -256,6 +262,15 @@ const hi = {
   generic: {
     back: "वापस",
     readMore: "और पढ़ें",
+  },
+
+  // Products page hardcoded text
+  productsPage: {
+    collectionNoteMoreInfo: "थोड़ी और जानकारी चाहिए?",
+    collectionNoteSpeakTeam: "एआईकॉन टीम से बात करें",
+    productCatalogue: "उत्पाद कैटलॉग",
+    collectionCardEyebrow: "एआईकॉन श्रेणी / {number}",
+    browseThisCategory: "इस श्रेणी ब्राउज़ करें",
   },
 };
 

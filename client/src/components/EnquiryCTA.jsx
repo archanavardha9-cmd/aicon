@@ -15,9 +15,9 @@ export default function EnquiryCTA() {
             {t("enquiryCTA.eyebrow")}
           </span>
           <h2>
-            Looking for Product Guidance
+            {t("enquiryCTA.heading")}
             <br />
-            or Retail Availability?
+            {t("enquiryCTA.headingSub")}
           </h2>
           <div className="closing-cta__contact-chips">
             <a
@@ -32,19 +32,15 @@ export default function EnquiryCTA() {
               <span>{contactDetails.email}</span>
             </a>
           </div>
+          <p className="closing-cta__body">{t("enquiryCTA.body")}</p>
         </div>
         <div className="closing-cta__aside">
-          <p>
-            Whether you need detailed technical specifications, bulk distributor
-            pricing, or model availability in your region, our team is ready to
-            assist.
-          </p>
           <div className="closing-cta__actions">
             <Link className="button button--gold" to="/contact">
-              Send an Enquiry <ArrowRight size={17} />
+              {t("enquiryCTA.sendEnquiry")} <ArrowRight size={17} />
             </Link>
             <Link className="button button--secondary-light" to="/products">
-              Browse Products
+              {t("enquiryCTA.browseProducts")}
             </Link>
           </div>
         </div>

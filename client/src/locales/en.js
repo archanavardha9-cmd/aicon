@@ -244,6 +244,11 @@ const en = {
   // Enquiry CTA
   enquiryCTA: {
     eyebrow: "Connect With Our Team",
+    heading: "Looking for Product Guidance",
+    headingSub: "or Retail Availability?",
+    
+    sendEnquiry: "Send an Enquiry",
+    browseProducts: "Browse Products",
   },
 
   // Category Artwork
@@ -256,6 +261,15 @@ const en = {
   generic: {
     back: "Back",
     readMore: "Read more",
+  },
+
+  // Products page hardcoded text
+  productsPage: {
+    collectionNoteMoreInfo: "Need a little more information?",
+    collectionNoteSpeakTeam: "Speak with the AICON team",
+    productCatalogue: "Product catalogue",
+    collectionCardEyebrow: "AICON CATEGORY / {number}",
+    browseThisCategory: "Browse this category",
   },
 };
 
