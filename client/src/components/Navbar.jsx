@@ -106,25 +106,23 @@ export default function Navbar() {
             <span>{t("nav.makeEnquiry")}</span>
             <ArrowUpRight size={16} strokeWidth={1.7} />
           </Link>
+          <button
+            className={`mobile-menu-toggle menu-toggle${menuOpen ? " open" : ""}`}
+            type="button"
+            aria-label={
+              menuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={menuOpen}
+            aria-controls="mobile-drawer"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <div className="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
         </div>
-
-        {/* 3-Bar Animated Hamburger Toggle matching reference style */}
-        <button
-          className={`mobile-menu-toggle menu-toggle${menuOpen ? " open" : ""}`}
-          type="button"
-          aria-label={
-            menuOpen ? "Close navigation menu" : "Open navigation menu"
-          }
-          aria-expanded={menuOpen}
-          aria-controls="mobile-drawer"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <div className="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </button>
       </div>
 
       {/* Right-Side Sliding Drawer Navigation matching reference layout & motion */}

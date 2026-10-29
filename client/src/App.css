@@ -256,6 +256,7 @@ body.no-scroll {
 
 .menu-toggle,
 .mobile-menu-toggle,
+.mobile-theme-toggle,
 .mobile-nav,
 .mobile-drawer-wrapper {
   display: none;
@@ -2287,6 +2288,7 @@ body.no-scroll {
 
   .desktop-nav,
   .desktop-lang-switch,
+  .desktop-theme-toggle,
   .header-enquiry {
     display: none;
   }
@@ -2558,6 +2560,10 @@ body.no-scroll {
     border: 1px solid rgba(37, 211, 102, 0.25);
     transition: all 0.18s ease;
     text-decoration: none;
+  }
+
+  .mobile-drawer-footer .mobile-theme-toggle {
+    width: 100%;
   }
 
   .mobile-drawer-whatsapp:hover {
@@ -4767,7 +4773,7 @@ body.no-scroll {
 }
 
 .mobile-theme-toggle {
-  width: 100%;
+  width: auto;
   padding: 10px 14px;
   border: 1px solid rgb(0 0 0 / 12%);
   color: #292929;
