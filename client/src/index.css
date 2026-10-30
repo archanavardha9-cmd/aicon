@@ -29,11 +29,11 @@
 }
 
 [data-theme="dark"] {
-  --color-ink: #f3f5f8;
-  --color-white: #f3f5f8;
-  --color-paper: #0d1420;
-  --color-muted: #b2bdcc;
-  --color-line: #2a3749;
+  --color-ink: #F8FAFC;
+  --color-white: #b89b68;
+  --color-paper: #202B3A;
+  --color-muted: #C3CDDA;
+  --color-line: #46566B;
   --color-blue: #3979c6;
   --color-champagne: #b89b68;
 }

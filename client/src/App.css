@@ -4445,6 +4445,13 @@ body.no-scroll {
   line-height: 1.4;
 }
 
+.contact-details__meta-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+
 /* Product Card Specifications Mini Pills */
 .product-card__specs-mini {
   display: flex;
@@ -4767,6 +4774,15 @@ body.no-scroll {
   background: rgb(255 255 255 / 15%);
 }
 
+[data-theme="dark"] .hero h1,
+[data-theme="dark"] .page-intro h1 {
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .display-heading {
+  color: #F1F5F9;
+}
+
 [data-theme="dark"] .desktop-theme-toggle:focus-visible {
   outline: 2px solid #3979c6;
   outline-offset: 2px;
@@ -4827,7 +4843,7 @@ body.no-scroll {
 
 [data-theme="dark"] .hero__description,
 [data-theme="dark"] .page-intro__inner > p {
-  color: rgb(255 255 255 / 65%);
+  color: #D1DCE9;
 }
 
 [data-theme="dark"] .hero__text-link,
@@ -4867,6 +4883,12 @@ body.no-scroll {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
+[data-theme="dark"] .hero__product-badge {
+  background: #314157;
+  border: 1px solid #46566B;
+  color: #F1F5F9;
+}
+
 [data-theme="dark"] .hero__floating-kicker {
   color: #3979c6;
 }
@@ -4903,7 +4925,7 @@ body.no-scroll {
 /* Featured cards */
 [data-theme="dark"] .featured-card {
   border-color: rgb(255 255 255 / 10%);
-  color: #f2f5fa;
+  color: #E8EEF6;
   background: #314157;
   box-shadow: none;
 }
@@ -4963,8 +4985,36 @@ body.no-scroll {
   background: #314157;
 }
 
+[data-theme="dark"] .collection-card h3 {
+  color: #E8EEF6;
+}
+
+[data-theme="dark"] .collection-card__body > p {
+  color: #D1DCE9;
+}
+
 [data-theme="dark"] .collection-note__inner > span {
-  color: rgb(255 255 255 / 65%);
+  color: #D1DCE9;
+}
+
+[data-theme="dark"] .collection__subheading {
+  color: #F1F5F9;
+  border-top: 1px solid #46566B;
+  padding-top: 16px;
+  margin-top: 24px;
+}
+
+[data-theme="dark"] .filter-chip {
+  border-color: #46566B;
+  color: #AFC5DE;
+  background: rgba(255 255 255 / 4%);
+}
+
+[data-theme="dark"] .filter-chip:hover,
+[data-theme="dark"] .filter-chip.is-active {
+  border-color: #3979c6;
+  color: #ffffff;
+  background: #3979c6;
 }
 
 /* About */
@@ -4980,7 +5030,15 @@ body.no-scroll {
 }
 
 [data-theme="dark"] .about-editorial__aside-caption {
-  color: rgb(255 255 255 / 50%);
+  color: #D1DCE9;
+}
+
+[data-theme="dark"] .about-bullet {
+  color: #D1DCE9;
+}
+
+[data-theme="dark"] .bullet-icon {
+  color: #3979c6;
 }
 
 [data-theme="dark"] .about-editorial__index {
@@ -4995,6 +5053,36 @@ body.no-scroll {
 
 [data-theme="dark"] .value-card + .value-card {
   border-left-color: rgb(255 255 255 / 10%);
+}
+
+[data-theme="dark"] .value-card {
+  background: #314157;
+  border: 1px solid #46566B;
+  border-radius: 8px;
+}
+
+[data-theme="dark"] .value-card:hover {
+  border-color: #3979c6;
+}
+
+[data-theme="dark"] .value-card > span {
+  color: #AFC5DE;
+}
+
+[data-theme="dark"] .value-card h3 {
+  color: #F1F5F9;
+}
+
+[data-theme="dark"] .value-card > p {
+  color: #D1DCE9;
+}
+
+[data-theme="dark"] .value-card__number {
+  color: #AFC5DE;
+}
+
+[data-theme="dark"] .value-card__icon {
+  color: #3979c6;
 }
 
 /* Contact */
@@ -5013,7 +5101,15 @@ body.no-scroll {
 }
 
 [data-theme="dark"] .contact-details__list small {
-  color: #c3cdda;
+  color: #C3CDDA;
+}
+
+[data-theme="dark"] .contact-details__list > a {
+  font-size: clamp(14px, 1.5vw, 17px);
+}
+
+[data-theme="dark"] .contact-details > p {
+  color: #D1DCE9;
 }
 
 /* Enquiry panel & form */
@@ -5044,8 +5140,16 @@ body.no-scroll {
 [data-theme="dark"] .form-field select,
 [data-theme="dark"] .form-field textarea {
   border-color: #46566B;
-  color: #f2f5fa;
+  color: #F8FAFC;
   background: #314157;
+}
+
+[data-theme="dark"] .product-specifications dt {
+  color: #AFC5DE;
+}
+
+[data-theme="dark"] .product-specifications dd {
+  color: #F1F5F9;
 }
 
 [data-theme="dark"] .form-field input::placeholder,
@@ -5069,7 +5173,7 @@ body.no-scroll {
 
 [data-theme="dark"] .site-footer__social {
   border-color: rgb(255 255 255 / 10%);
-  color: rgb(255 255 255 / 60%);
+  color: #D1DCE9;
 }
 
 [data-theme="dark"] .site-footer__social:hover {
@@ -5078,7 +5182,7 @@ body.no-scroll {
 }
 
 [data-theme="dark"] .site-footer__column > a {
-  color: rgb(255 255 255 / 55%);
+  color: #F1F5F9;
 }
 
 [data-theme="dark"] .site-footer__column > a:hover {
@@ -5091,7 +5195,7 @@ body.no-scroll {
 
 [data-theme="dark"] .site-footer__bottom {
   border-top-color: rgb(255 255 255 / 10%);
-  color: rgb(255 255 255 / 45%);
+  color: #D1DCE9;
 }
 
 [data-theme="dark"] .site-footer__bottom i {
@@ -5104,7 +5208,7 @@ body.no-scroll {
 
 /* Not found / empty states */
 [data-theme="dark"] .not-found p {
-  color: #b2bdcc;
+  color: #D1DCE9;
 }
 
 [data-theme="dark"] .not-found .display-heading em {
@@ -5112,7 +5216,7 @@ body.no-scroll {
 }
 
 [data-theme="dark"] .closing-cta__aside p {
-  color: rgb(255 255 255 / 55%);
+  color: #D1DCE9;
 }
 
 /* Mobile drawer */
@@ -5519,10 +5623,14 @@ body.no-scroll {
     border-color: #3979c6;
   }
 
-  [data-theme="dark"] .mobile-lang-option:hover:not(.is-active) {
-    background: #314157;
-    border-color: #3979c6;
-  }
+[data-theme="dark"] .mobile-lang-option:hover:not(.is-active) {
+  background: #314157;
+  border-color: #3979c6;
+}
+
+[data-theme="dark"] .hamburger span {
+  background: #F8FAFC;
+}
 
   [data-theme="dark"] .hero {
     min-height: 570px;

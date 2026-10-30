@@ -165,14 +165,16 @@ export default function Contact() {
                 </span>
               </a>
             </div>
-            <div className="contact-details__meta">
-              <p>
-                <strong>{t("contact.cin")}:</strong> {contactDetails.cin}
-              </p>
+            <div className="contact-details__meta-row">
+              <div className="contact-details__meta">
+                <p>
+                  <strong>{t("contact.cin")}:</strong> {contactDetails.cin}
+                </p>
+              </div>
+              <Link className="inline-link" to="/products">
+                {t("contact.browseProducts")} <ArrowRight size={16} />
+              </Link>
             </div>
-            <Link className="inline-link" to="/products">
-              {t("contact.browseProducts")} <ArrowRight size={16} />
-            </Link>
           </div>
 
             <div className="enquiry-panel" id="enquiry">
