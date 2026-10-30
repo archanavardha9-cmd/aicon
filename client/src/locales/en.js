@@ -11,7 +11,7 @@ const en = {
   hero: {
     eyebrow: "AICON · Smart Home Appliances",
     heading: "Intelligent Comfort,",
-    headingEmphasis: "Engineered for Everyday Living.",
+    headingEmphasis: "Engineered for Everyday Living",
     description:
       "Discover AICON’s complete portfolio of frameless 4K Smart TVs, durable twin-tub washing machines, energy-conscious air cooling, and kitchen essentials crafted for dependable performance in Indian homes.",
     exploreCollection: "Explore Collection",
@@ -32,8 +32,8 @@ const en = {
     },
     contact: {
       eyebrow: "AICON · Contact",
-      heading: "Let’s talk",
-      headingEmphasis: "everyday.",
+      heading: "Let’s Talk About Your Needs",
+      headingEmphasis: "",
       description:
         "For product information or a question about the AICON collection, reach out to our team.",
     },
@@ -192,8 +192,8 @@ const en = {
   // Why Choose Us
   whyChooseUs: {
     eyebrow: "The AICON Standard",
-    heading: "Built on",
-    headingEmphasis: "Innovation, Quality & Trust.",
+    heading: "Built on,",
+    headingEmphasis: "Innovation, Trust and Quality",
     description:
       "AICON Modcon Private Limited is committed to delivering modern, dependable home appliances with honest specifications and dependable construction.",
     readCompanyProfile: "Read our company profile",
