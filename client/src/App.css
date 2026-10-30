@@ -484,8 +484,7 @@ body.no-scroll {
   font-size: 13px;
   line-height: 1.2;
   color: #173b63;
-  text-align: right;
-  max-width: 220px;
+  max-width: none;
   background: #f8fafc;
   border: 1px solid #d4e4f5;
   border-radius: 0;
@@ -4884,13 +4883,36 @@ body.no-scroll {
 }
 
 [data-theme="dark"] .hero__product-badge {
-  background: #314157;
+  background: #394A60;
   border: 1px solid #46566B;
   color: #F1F5F9;
 }
 
+[data-theme="dark"] .hero__badge-kicker {
+  color: #8CCBFF;
+}
+
+[data-theme="dark"] .hero__product-badge strong {
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .hero__product-badge small {
+  color: #AFC5DE;
+}
+
+[data-theme="dark"] .hero__floating-note {
+  color: #F1F5F9;
+  background: #394A60;
+  border: 1px solid #46566B;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
 [data-theme="dark"] .hero__floating-kicker {
-  color: #3979c6;
+  color: #8CCBFF;
+}
+
+[data-theme="dark"] .hero__floating-note span:last-child {
+  color: #AFC5DE;
 }
 
 [data-theme="dark"] .hero__visual-mark {
@@ -5385,7 +5407,7 @@ body.no-scroll {
   }
 
   [data-theme="dark"] .hero__floating-kicker {
-    color: #3979c6;
+    color: #8CCBFF;
   }
 
   [data-theme="dark"] .section--ink {
