@@ -5228,6 +5228,69 @@ body.no-scroll {
   color: #b89b68;
 }
 
+/* Featured Appliances - Product info area background (dark mode) */
+[data-theme="dark"] .featured-product-card__body {
+  background: #394A60;
+}
+
+[data-theme="dark"] .featured-product-card__category {
+  color: #C5D8EB;
+}
+
+[data-theme="dark"] .featured-product-card__body h3 {
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .featured-product-card__desc {
+  color: #E2EAF4;
+}
+
+[data-theme="dark"] .featured-product-card__specs li {
+  color: #D1DCE9;
+}
+
+[data-theme="dark"] .spec-check-icon {
+  color: #8CCBFF;
+}
+
+/* Published Products - Product info area background (dark mode) */
+[data-theme="dark"] .product-card {
+  background: #314157;
+  border-color: #46566B;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+[data-theme="dark"] .product-card__visual {
+  border-color: #46566B;
+}
+
+[data-theme="dark"] .product-card__copy {
+  background: #394A60;
+  flex: 1;
+}
+
+[data-theme="dark"] .product-card__actions {
+  margin-top: auto;
+}
+
+[data-theme="dark"] .product-card__category {
+  color: #C5D8EB;
+}
+
+[data-theme="dark"] .product-card h3 {
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .product-card__model {
+  color: #D1DCE9;
+}
+
+[data-theme="dark"] .product-card__description {
+  color: #E2EAF4;
+}
+
 /* Not found / empty states */
 [data-theme="dark"] .not-found p {
   color: #D1DCE9;
