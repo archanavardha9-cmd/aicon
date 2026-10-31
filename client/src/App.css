@@ -3561,9 +3561,17 @@ body.no-scroll {
     letter-spacing: -0.04em !important;
   }
 
+  [data-theme="dark"] .hero__copy > h1 {
+    color: #F8FAFC !important;
+  }
+
   .hero__copy > h1 em {
     color: #2463a6 !important;
     font-style: italic !important;
+  }
+
+  [data-theme="dark"] .hero__copy > h1 em {
+    color: #3979c6 !important;
   }
 
   .hero__copy > .hero__description {
@@ -4520,6 +4528,7 @@ body.no-scroll {
     flex-direction: column !important;
     gap: 12px !important;
     padding-block: 16px 20px !important;
+    overflow-x: hidden !important;
   }
 
   /* Contents layout to allow exact mobile sequence */
@@ -4542,8 +4551,24 @@ body.no-scroll {
     color: #173b63 !important;
   }
 
+  [data-theme="dark"] .hero__copy > h1 {
+    color: #F8FAFC !important;
+  }
+
+  html[lang="hi"][data-theme="dark"] .hero__copy > h1 {
+    text-align: left !important;
+  }
+
   .hero__copy > h1 em {
     color: #2463a6 !important;
+  }
+
+  [data-theme="dark"] .hero__copy > h1 em {
+    color: #3979c6 !important;
+  }
+
+  [data-theme="dark"] .hero__copy > .hero__description {
+    color: #D1DCE9 !important;
   }
 
   /* 2. Original description */
@@ -4971,6 +4996,10 @@ body.no-scroll {
 /* Category cards */
 [data-theme="dark"] .category-card {
   color: #f3f5f8;
+}
+
+[data-theme="dark"] .category-card__description {
+  color: #D1DCE9;
 }
 
 [data-theme="dark"] .category-art--blue,
@@ -5413,7 +5442,7 @@ body.no-scroll {
 
   [data-theme="dark"] .hero h1,
   [data-theme="dark"] .page-intro h1 {
-    color: #f2f5fa;
+    color: #F8FAFC;
   }
 
   [data-theme="dark"] .hero h1 em,
@@ -5424,7 +5453,7 @@ body.no-scroll {
 
   [data-theme="dark"] .hero__description,
   [data-theme="dark"] .page-intro__inner > p {
-    color: #c3cdda;
+    color: #D1DCE9;
   }
 
   [data-theme="dark"] .eyebrow--light {
@@ -5443,7 +5472,7 @@ body.no-scroll {
   [data-theme="dark"] .hero__text-link,
   [data-theme="dark"] .hero__index,
   [data-theme="dark"] .hero__scroll {
-    color: #c3cdda;
+    color: rgb(255 255 255 / 60%);
   }
 
   [data-theme="dark"] .hero__text-link:hover,
@@ -5589,7 +5618,7 @@ body.no-scroll {
   }
 
   [data-theme="dark"] .hero__feature-item {
-    color: #f2f5fa;
+    color: #173b63;
     background: #314157;
     border: 1px solid #46566B;
   }
@@ -5599,7 +5628,7 @@ body.no-scroll {
   }
 
   [data-theme="dark"] .hero__scroll {
-    color: #c3cdda;
+    color: rgb(255 255 255 / 60%);
   }
 }
 
