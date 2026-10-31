@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LanguageContext, DEFAULT_LANGUAGE, LANGUAGE_KEY } from "./LanguageContext";
 
 export function LanguageProvider({ children }) {
@@ -13,6 +13,14 @@ export function LanguageProvider({ children }) {
     }
     return DEFAULT_LANGUAGE;
   });
+
+  useEffect(() => {
+    try {
+      document.documentElement.lang = language;
+    } catch {
+      // localStorage unavailable
+    }
+  }, [language]);
 
   function setLanguage(lang) {
     setLanguageState(lang);

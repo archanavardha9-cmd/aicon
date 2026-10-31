@@ -3523,14 +3523,21 @@ body.no-scroll {
       linear-gradient(110deg, #eaf4fc 0%, #f5faff 53%, #f8f6f1 100%) !important;
   }
 
+  [data-theme="dark"] .hero {
+    background:
+      radial-gradient(ellipse at 83% 34%, rgb(255 255 255 / 8%), transparent 42%),
+      linear-gradient(110deg, #202B3A 0%, #253448 53%, #2B3A4E 100%) !important;
+    color: #f2f5fa !important;
+  }
+
   .hero__layout {
     display: grid !important;
     grid-template-columns: 1.05fr 0.95fr !important;
     align-items: center !important;
-    gap: clamp(24px, 3.5vw, 36px) !important;
-    padding-block: clamp(32px, 4.5vw, 48px) clamp(24px, 3.5vw, 36px) !important;
+    gap: clamp(20px, 3.2vw, 32px) !important;
+    padding-block: clamp(28px, 4vw, 44px) clamp(22px, 3.2vw, 34px) !important;
     min-height: auto !important;
-    width: min(var(--page-width), calc(100% - 68px)) !important;
+    width: min(var(--page-width), calc(100% - 48px)) !important;
     margin-inline: auto !important;
   }
 
@@ -3582,6 +3589,10 @@ body.no-scroll {
     margin-top: 12px !important;
     margin-bottom: 0 !important;
     max-width: 440px !important;
+  }
+
+  [data-theme="dark"] .hero__copy > .hero__description {
+    color: #D1DCE9 !important;
   }
 
   .hero__copy > .hero__actions {
@@ -3727,14 +3738,14 @@ body.no-scroll {
     filter: drop-shadow(0 14px 28px rgba(23, 59, 99, 0.16)) !important;
   }
 
-  /* Left floating card: Moved more upper and outside so it completely clears the TV image */
+  /* Left floating card: positioned cleanly within stage perimeter without colliding with text */
   .hero__product-badge {
     display: flex !important;
     flex-direction: column !important;
     gap: 2px !important;
     position: absolute !important;
-    top: -26px !important;
-    left: -44px !important;
+    top: -14px !important;
+    left: -10px !important;
     transform: none !important;
     z-index: 3 !important;
     background: rgba(255, 255, 255, 0.96) !important;
@@ -3769,14 +3780,14 @@ body.no-scroll {
     line-height: 1.25 !important;
   }
 
-  /* Right floating card: Moved further outward toward right edge, partially inside container, clearing TV */
+  /* Right floating card: anchored cleanly to right border without clipping */
   .hero__floating-note {
     display: flex !important;
     flex-direction: column !important;
     gap: 2px !important;
     position: absolute !important;
-    bottom: -4px !important;
-    right: -32px !important;
+    bottom: -8px !important;
+    right: 0px !important;
     transform: none !important;
     z-index: 3 !important;
     background: rgba(255, 255, 255, 0.96) !important;
@@ -3788,6 +3799,72 @@ body.no-scroll {
     text-align: right !important;
     width: max-content !important;
     max-width: 215px !important;
+  }
+
+  /* Tablet Dark Mode: stage, backdrop, badges and secondary actions */
+  [data-theme="dark"] .hero__product-stage {
+    background: linear-gradient(135deg, #253448 0%, #1c2635 100%) !important;
+    border-color: #3b4d63 !important;
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  [data-theme="dark"] .hero__product-backdrop {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06) 0%, rgba(28, 38, 53, 0) 70%) !important;
+  }
+
+  [data-theme="dark"] .hero__product-badge {
+    background: #394A60 !important;
+    border-color: #46566B !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  [data-theme="dark"] .hero__badge-kicker {
+    color: #8CCBFF !important;
+  }
+
+  [data-theme="dark"] .hero__product-badge strong {
+    color: #F8FAFC !important;
+  }
+
+  [data-theme="dark"] .hero__product-badge small {
+    color: #AFC5DE !important;
+  }
+
+  [data-theme="dark"] .hero__floating-note {
+    background: #394A60 !important;
+    border-color: #46566B !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  [data-theme="dark"] .hero__floating-kicker {
+    color: #8CCBFF !important;
+  }
+
+  [data-theme="dark"] .hero__floating-note span:last-child {
+    color: #AFC5DE !important;
+  }
+
+  [data-theme="dark"] .hero__actions .hero__text-link {
+    color: #F8FAFC !important;
+    background: #253448 !important;
+    border-color: #46566B !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  [data-theme="dark"] .hero__actions .hero__text-link:hover {
+    color: #3979c6 !important;
+    background: #314157 !important;
+    border-color: #3979c6 !important;
+  }
+
+  [data-theme="dark"] .hero__feature-item {
+    color: #F8FAFC !important;
+    background: #314157 !important;
+    border-color: #46566B !important;
+  }
+
+  [data-theme="dark"] .hero__feature-icon {
+    color: #3979c6 !important;
   }
 
   .hero__floating-kicker {
@@ -3821,6 +3898,26 @@ body.no-scroll {
   .page-intro h1 {
     font-size: clamp(28px, 7vw, 38px);
     margin-top: 14px;
+  }
+
+  html[lang="hi"] .hero__copy > h1,
+  html[lang="hi"] .hero h1,
+  :root[lang="hi"] .hero__copy > h1,
+  :root[lang="hi"] .hero h1,
+  [lang="hi"] .hero__copy > h1,
+  [lang="hi"] .hero h1 {
+    text-align: left !important;
+    align-self: flex-start !important;
+    width: 100% !important;
+  }
+
+  html[lang="hi"] .hero__copy > h1 em,
+  html[lang="hi"] .hero h1 em,
+  :root[lang="hi"] .hero__copy > h1 em,
+  :root[lang="hi"] .hero h1 em,
+  [lang="hi"] .hero__copy > h1 em,
+  [lang="hi"] .hero h1 em {
+    text-align: left !important;
   }
 
   .hero__description {
@@ -4555,7 +4652,23 @@ body.no-scroll {
     color: #F8FAFC !important;
   }
 
-  html[lang="hi"][data-theme="dark"] .hero__copy > h1 {
+  html[lang="hi"] .hero__copy > h1,
+  html[lang="hi"] .hero h1,
+  :root[lang="hi"] .hero__copy > h1,
+  :root[lang="hi"] .hero h1,
+  [lang="hi"] .hero__copy > h1,
+  [lang="hi"] .hero h1 {
+    text-align: left !important;
+    align-self: flex-start !important;
+    width: 100% !important;
+  }
+
+  html[lang="hi"] .hero__copy > h1 em,
+  html[lang="hi"] .hero h1 em,
+  :root[lang="hi"] .hero__copy > h1 em,
+  :root[lang="hi"] .hero h1 em,
+  [lang="hi"] .hero__copy > h1 em,
+  [lang="hi"] .hero h1 em {
     text-align: left !important;
   }
 
@@ -4999,7 +5112,7 @@ body.no-scroll {
 }
 
 [data-theme="dark"] .category-card__description {
-  color: #D1DCE9;
+  color: #F8FAFC;
 }
 
 [data-theme="dark"] .category-art--blue,
