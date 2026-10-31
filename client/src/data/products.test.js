@@ -79,3 +79,13 @@ test('every product retains fallback display even when API is unreachable', () =
     assert.ok(Object.keys(displayedProduct.specifications).length > 0);
   }
 });
+
+test('resolveApiBaseUrl normalizes origin and ensures /api path', async () => {
+  const { resolveApiBaseUrl } = await import('../services/api.js');
+  assert.equal(resolveApiBaseUrl(undefined), '/api');
+  assert.equal(resolveApiBaseUrl(''), '/api');
+  assert.equal(resolveApiBaseUrl('/api'), '/api');
+  assert.equal(resolveApiBaseUrl('http://localhost:3001'), 'http://localhost:3001/api');
+  assert.equal(resolveApiBaseUrl('https://backend.vercel.app'), 'https://backend.vercel.app/api');
+  assert.equal(resolveApiBaseUrl('https://backend.vercel.app/api'), 'https://backend.vercel.app/api');
+});

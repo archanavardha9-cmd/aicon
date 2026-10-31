@@ -43,40 +43,50 @@ export async function createMongoDatabase(mongoUri, { recoverInterruptedJobs = t
   const { Enquiry } = await import('./models/Enquiry.js');
   const { EmailOutbox } = await import('./models/EmailOutbox.js');
 
-  // Seed categories idempotently
-  for (const cat of seedCategoriesList) {
-    await Category.updateOne(
-      { _id: cat.id },
-      {
-        $set: {
-          label: cat.label,
-          terms: cat.terms,
-          icon: cat.icon,
-          tone: cat.tone,
-          image: cat.image,
-          description: cat.description,
+  // Seed categories idempotently in a single bulk operation
+  if (seedCategoriesList.length > 0) {
+    await Category.bulkWrite(
+      seedCategoriesList.map((cat) => ({
+        updateOne: {
+          filter: { _id: cat.id },
+          update: {
+            $set: {
+              label: cat.label,
+              terms: cat.terms,
+              icon: cat.icon,
+              tone: cat.tone,
+              image: cat.image,
+              description: cat.description,
+            },
+          },
+          upsert: true,
         },
-      },
-      { upsert: true }
+      })),
+      { ordered: false }
     );
   }
 
-  // Seed products idempotently
-  for (const prod of seedProductsList) {
-    await Product.updateOne(
-      { _id: prod.id },
-      {
-        $set: {
-          categoryId: prod.categoryId,
-          name: prod.name,
-          description: prod.description,
-          modelNumber: prod.modelNumber || null,
-          imagePath: prod.imagePath || null,
-          specifications: prod.specifications || {},
-          active: true,
+  // Seed products idempotently in a single bulk operation
+  if (seedProductsList.length > 0) {
+    await Product.bulkWrite(
+      seedProductsList.map((prod) => ({
+        updateOne: {
+          filter: { _id: prod.id },
+          update: {
+            $set: {
+              categoryId: prod.categoryId,
+              name: prod.name,
+              description: prod.description,
+              modelNumber: prod.modelNumber || null,
+              imagePath: prod.imagePath || null,
+              specifications: prod.specifications || {},
+              active: true,
+            },
+          },
+          upsert: true,
         },
-      },
-      { upsert: true }
+      })),
+      { ordered: false }
     );
   }
 

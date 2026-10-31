@@ -128,7 +128,16 @@ export function createApp({
   app.use(cors({
     origin(origin, callback) {
       const normalizedOrigin = origin ? origin.replace(/\/$/, '') : null;
-      if (!origin || allowedOrigins.has(origin) || (normalizedOrigin && allowedOrigins.has(normalizedOrigin))) {
+      const isAllowed =
+        !origin ||
+        allowedOrigins.has('*') ||
+        allowedOrigins.has(origin) ||
+        (normalizedOrigin && allowedOrigins.has(normalizedOrigin)) ||
+        /^https:\/\/([a-zA-Z0-9_-]+\.)?vercel\.app$/.test(origin) ||
+        /^http:\/\/localhost(:\d+)?$/.test(origin) ||
+        /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(origin);
+
+      if (isAllowed) {
         callback(null, true);
       } else {
         const error = new Error('This origin is not allowed to access the API.');

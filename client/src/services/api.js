@@ -1,8 +1,19 @@
 import axios from 'axios';
 
+export function resolveApiBaseUrl(rawUrl = (typeof import.meta !== 'undefined' ? import.meta.env?.VITE_API_BASE_URL : undefined)) {
+  if (!rawUrl || typeof rawUrl !== 'string' || rawUrl.trim() === '') {
+    return '/api';
+  }
+  const trimmed = rawUrl.trim().replace(/\/+$/, '');
+  // If user provided origin like 'https://backend.vercel.app' or 'http://localhost:3001',
+  // ensure it ends with '/api' so all endpoint calls (/enquiries, /contact, etc.)
+  // correctly target the backend's /api namespace.
+  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+}
+
 const api = axios.create({
-  baseURL: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) || '/api',
-  timeout: 12_000,
+  baseURL: resolveApiBaseUrl(),
+  timeout: 15_000,
   headers: { Accept: 'application/json' },
 });
 
@@ -41,10 +52,19 @@ async function request(config) {
       throw error;
     }
 
-    throw new ApiError(
-      error.response?.data?.error?.message ||
+    const isHtmlError =
+      typeof error.response?.data === 'string' &&
+      (error.response.data.trim().startsWith('<') ||
+        error.response.headers?.['content-type']?.includes('text/html'));
+
+    const message = isHtmlError
+      ? 'The API service is temporarily unavailable or misconfigured. Please try again.'
+      : error.response?.data?.error?.message ||
         error.message ||
-        'The service is temporarily unavailable. Please try again.',
+        'The service is temporarily unavailable. Please try again.';
+
+    throw new ApiError(
+      message,
       error.response?.status || error.status || 0,
       error.response?.data?.error?.code || error.code || 'NETWORK_ERROR',
     );

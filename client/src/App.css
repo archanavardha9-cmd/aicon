@@ -5866,3 +5866,8 @@ body.no-scroll {
     border-color: #46566B;
   }
 }
+
+/* Dark mode background for TV image container */
+[data-theme="dark"] .hero__product-image {
+  background: #f0f0f0 !important;
+}
