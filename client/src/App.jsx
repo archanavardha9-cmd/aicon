@@ -4,6 +4,7 @@ import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-do
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import WebsitePreviewPopup from './components/WebsitePreviewPopup';
+import { PROJECT_PREVIEW_POPUP_ENABLED } from './data/contact';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
@@ -83,7 +84,9 @@ function AppLayout() {
       </Routes>
       <ScrollRestoration />
       <Footer />
-      {!isPreviewMode && <WebsitePreviewPopup isPreviewMode={isPreviewMode} />}
+      {PROJECT_PREVIEW_POPUP_ENABLED && !isPreviewMode && (
+        <WebsitePreviewPopup isPreviewMode={isPreviewMode} />
+      )}
     </div>
   );
 }

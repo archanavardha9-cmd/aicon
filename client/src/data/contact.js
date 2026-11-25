@@ -16,6 +16,13 @@ export const facebookUrl =
 export const projectBrandName = 'AICON Smart Appliances';
 
 /**
+ * Central feature flag for the website preview and activation popup.
+ * Set to `false` after the 50% kickoff payment is confirmed to completely
+ * disable the popup, its previews, and its footer scroll trigger across all routes.
+ */
+export const PROJECT_PREVIEW_POPUP_ENABLED = true;
+
+/**
  * Central international digits-only WhatsApp contact for the website preview
  * and kickoff booking popup actions (10-digit 9670111167 with India code 91).
  */
@@ -69,7 +76,7 @@ export function buildWhatsAppUrl(number, message) {
  * Builds the editable WhatsApp drafts for the website preview popup.
  */
 export function buildPreviewWhatsAppDrafts() {
-  const activateMessage = `Hi, I’ve reviewed the ${projectBrandName} website preview and would like to discuss activating the business website, finalising the package, and the next steps for the 50% kickoff payment. Please share how to proceed. Thank you.`;
+  const activateMessage = `Hi, I’ve reviewed the ${projectBrandName} website preview and would like to discuss activating the business website. I understand that the kickoff payment is 50% of our agreed project fee. Please share the next steps for the remaining development work and launch. Thank you.`;
 
   const changesMessage = `Hi, I’ve reviewed the ${projectBrandName} website preview. I’d like to request a few changes before proceeding. The changes I’d like are: `;
 

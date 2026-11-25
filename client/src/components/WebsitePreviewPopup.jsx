@@ -11,6 +11,7 @@ import {
   buildPreviewWhatsAppDrafts,
   buildWhatsAppUrl,
   getFormattedPreviewDeadline,
+  PROJECT_PREVIEW_POPUP_ENABLED,
   previewBookingWhatsAppNumber,
   previewRetentionPolicy,
   projectBrandName,
@@ -91,9 +92,10 @@ function ScaledDeviceIframe({ src, title, logicalWidth, logicalHeight }) {
 export default function WebsitePreviewPopup({ isPreviewMode = false }) {
   const location = useLocation();
   const routeKey = `${location.pathname}${location.search}`;
+  const isDisabled = !PROJECT_PREVIEW_POPUP_ENABLED || isPreviewMode;
   const { isOpen, close } = useFooterTrigger({
     routeKey,
-    disabled: isPreviewMode,
+    disabled: isDisabled,
     footerSelector: '.site-footer',
   });
 
@@ -154,7 +156,7 @@ export default function WebsitePreviewPopup({ isPreviewMode = false }) {
     };
   }, [isOpen, close]);
 
-  if (isPreviewMode || !isOpen) {
+  if (isDisabled || !isOpen) {
     return null;
   }
 

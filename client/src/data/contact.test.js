@@ -6,6 +6,7 @@ import {
   contactDetails,
   facebookUrl,
   getFormattedPreviewDeadline,
+  PROJECT_PREVIEW_POPUP_ENABLED,
   previewBookingWhatsAppNumber,
   previewRetentionPolicy,
   projectBrandName,
@@ -17,7 +18,8 @@ test('existing business contact details and Facebook page are retained', () => {
   assert.equal(facebookUrl, 'https://www.facebook.com/people/AICON/61560353601244/');
 });
 
-test('preview booking WhatsApp configuration, fixed deadline, and URL builder work', () => {
+test('preview booking WhatsApp configuration, feature flag, fixed deadline, and URL builder work', () => {
+  assert.equal(PROJECT_PREVIEW_POPUP_ENABLED, true);
   assert.equal(previewBookingWhatsAppNumber, '919670111167');
   assert.equal(projectBrandName, 'AICON Smart Appliances');
   assert.equal(previewRetentionPolicy.publicationDate, '2026-11-25');
@@ -31,7 +33,7 @@ test('preview booking WhatsApp configuration, fixed deadline, and URL builder wo
 test('preview WhatsApp drafts generate activation and changes-request messages', () => {
   const drafts = buildPreviewWhatsAppDrafts();
   assert.ok(drafts.activateMessage.includes('AICON Smart Appliances'));
-  assert.ok(drafts.activateMessage.includes('50% kickoff payment'));
+  assert.ok(drafts.activateMessage.includes('50% of our agreed project fee'));
   assert.ok(drafts.changesMessage.includes('AICON Smart Appliances'));
   assert.ok(drafts.changesMessage.endsWith('The changes I’d like are: '));
 });
