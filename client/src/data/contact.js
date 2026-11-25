@@ -22,10 +22,60 @@ export const projectBrandName = 'AICON Smart Appliances';
 export const previewBookingWhatsAppNumber = '919670111167';
 
 /**
+ * Central preview publication & retention configuration.
+ * Update `publicationDate` (ISO YYYY-MM-DD) and `retentionDays` to match
+ * the project owner's confirmed preview review window.
+ * The deadline is computed deterministically from this fixed date and never resets on page load.
+ */
+export const previewRetentionPolicy = {
+  publicationDate: '2026-11-25',
+  retentionDays: 30,
+  storageLocation: 'our preview hosting and project storage',
+};
+
+/**
+ * Computes the fixed calendar deadline string (e.g. "25 December 2026") from a
+ * static ISO publicationDate + retentionDays without resetting on page load.
+ */
+export function getFormattedPreviewDeadline(policy = previewRetentionPolicy) {
+  if (!policy?.publicationDate || !Number.isFinite(policy?.retentionDays)) {
+    return '';
+  }
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(policy.publicationDate).trim());
+  if (!match) return '';
+
+  const year = Number(match[1]);
+  const monthIndex = Number(match[2]) - 1;
+  const day = Number(match[3]);
+  const deadlineUtc = new Date(Date.UTC(year, monthIndex, day + policy.retentionDays));
+
+  return deadlineUtc.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+/**
  * Builds a standard wa.me link with an editable, URL-encoded pre-filled draft.
  */
 export function buildWhatsAppUrl(number, message) {
   const digitsOnly = String(number || '').replace(/\D/g, '');
   return `https://wa.me/${digitsOnly}?text=${encodeURIComponent(message)}`;
+}
+
+/**
+ * Builds the editable WhatsApp drafts for the website preview popup.
+ */
+export function buildPreviewWhatsAppDrafts() {
+  const activateMessage = `Hi, I’ve reviewed the ${projectBrandName} website preview and would like to discuss activating the business website, finalising the package, and the next steps for the 50% kickoff payment. Please share how to proceed. Thank you.`;
+
+  const changesMessage = `Hi, I’ve reviewed the ${projectBrandName} website preview. I’d like to request a few changes before proceeding. The changes I’d like are: `;
+
+  return {
+    activateMessage,
+    changesMessage,
+  };
 }
 

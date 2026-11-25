@@ -1,9 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MessageCircle, PencilLine, X } from 'lucide-react';
 import {
+  AlertTriangle,
+  Check,
+  MessageCircle,
+  PencilLine,
+  X,
+} from 'lucide-react';
+import {
+  buildPreviewWhatsAppDrafts,
   buildWhatsAppUrl,
+  getFormattedPreviewDeadline,
   previewBookingWhatsAppNumber,
+  previewRetentionPolicy,
   projectBrandName,
 } from '../data/contact';
 import { useFooterTrigger } from '../hooks/useFooterTrigger';
@@ -11,6 +20,12 @@ import './WebsitePreviewPopup.css';
 
 const LAPTOP_VIEWPORT = { width: 1280, height: 800 };
 const PHONE_VIEWPORT = { width: 390, height: 780 };
+
+const PROJECT_STAGES = [
+  { label: 'Frontend Website Preview', status: 'Ready', state: 'complete' },
+  { label: 'Enquiry System & Remaining Development', status: 'Not Started', state: 'current' },
+  { label: 'Business Website Launch', status: 'Pending', state: 'pending' },
+];
 
 function ScaledDeviceIframe({ src, title, logicalWidth, logicalHeight }) {
   const screenRef = useRef(null);
@@ -91,14 +106,20 @@ export default function WebsitePreviewPopup({ isPreviewMode = false }) {
     return `${location.pathname}?${params.toString()}`;
   }, [location.pathname, location.search]);
 
-  const primaryWhatsAppHref = useMemo(() => {
-    const message = `Hi, I’ve reviewed the ${projectBrandName} website preview and would like to discuss proceeding with the project. Please share the next steps for the 50% kickoff payment based on our agreed project fee and the remaining development work. Thank you.`;
-    return buildWhatsAppUrl(previewBookingWhatsAppNumber, message);
-  }, []);
+  const deadlineDate = useMemo(() => getFormattedPreviewDeadline(), []);
 
-  const secondaryWhatsAppHref = useMemo(() => {
-    const message = `Hi, I’ve reviewed the ${projectBrandName} website preview. I’d like to request a few changes before proceeding. The changes I’d like are: `;
-    return buildWhatsAppUrl(previewBookingWhatsAppNumber, message);
+  const { activateHref, changesHref } = useMemo(() => {
+    const { activateMessage, changesMessage } = buildPreviewWhatsAppDrafts();
+    return {
+      activateHref: buildWhatsAppUrl(
+        previewBookingWhatsAppNumber,
+        activateMessage,
+      ),
+      changesHref: buildWhatsAppUrl(
+        previewBookingWhatsAppNumber,
+        changesMessage,
+      ),
+    };
   }, []);
 
   useEffect(() => {
@@ -148,7 +169,6 @@ export default function WebsitePreviewPopup({ isPreviewMode = false }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="preview-popup-title"
-        aria-describedby="preview-popup-description"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="preview-popup__topbar">
@@ -202,45 +222,79 @@ export default function WebsitePreviewPopup({ isPreviewMode = false }) {
             </span>
 
             <h2 id="preview-popup-title" className="preview-popup__title">
-              Your Website Is Ready for the <em>Next Step</em>
+              A Preview Can Impress. An Active Website Can <em>Work for Your Business.</em>
             </h2>
 
-            <p id="preview-popup-description" className="preview-popup__subtitle">
-              You’ve reviewed the frontend preview. Let’s discuss the next phase of development.
-            </p>
+            <ol className="preview-tracker" aria-label="Project progress tracker">
+              {PROJECT_STAGES.map((stage, index) => {
+                const isLast = index === PROJECT_STAGES.length - 1;
+                const isComplete = stage.state === 'complete';
+                const isCurrent = stage.state === 'current';
 
-            <div className="preview-popup__payment-card">
-              <div className="preview-popup__payment-header">
-                <span className="preview-popup__payment-kicker">RESERVE YOUR PROJECT</span>
-                <span className="preview-popup__payment-label">Kickoff Booking Deposit</span>
+                return (
+                  <li
+                    key={stage.label}
+                    className={`preview-tracker__step ${
+                      isComplete ? 'is-complete' : isCurrent ? 'is-current' : 'is-pending'
+                    }`}
+                    aria-current={isCurrent ? 'step' : undefined}
+                  >
+                    <div className="preview-tracker__rail" aria-hidden="true">
+                      <span className="preview-tracker__dot">
+                        {isComplete && <Check size={10} strokeWidth={3} />}
+                      </span>
+                      {!isLast && <span className="preview-tracker__line" />}
+                    </div>
+
+                    <div className="preview-tracker__row">
+                      <span className="preview-tracker__label">{stage.label}</span>
+                      <span className="preview-tracker__status">{stage.status}</span>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+
+            {deadlineDate && (
+              <div className="preview-popup__deadline-notice" role="note">
+                <AlertTriangle size={14} className="preview-popup__deadline-icon" aria-hidden="true" />
+                <div>
+                  <p className="preview-popup__deadline-heading">
+                    PREVIEW DEADLINE: {deadlineDate}
+                  </p>
+                  <p className="preview-popup__deadline-body">
+                    If the 50% kickoff payment is not received by this date, this website preview
+                    and its associated project data may be removed from{' '}
+                    {previewRetentionPolicy.storageLocation}. Continuing afterward may require a
+                    new project setup and fee.
+                  </p>
+                </div>
               </div>
-              <p className="preview-popup__payment-amount">
-                50% of the agreed project fee
-              </p>
-              <p className="preview-popup__payment-note">
-                Applied toward the total project cost; the remaining balance follows the agreed proposal.
-              </p>
-            </div>
+            )}
 
             <div className="preview-popup__actions">
               <a
                 className="button preview-popup__btn-primary"
-                href={primaryWhatsAppHref}
+                href={activateHref}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessageCircle size={16} aria-hidden="true" />
-                <span>Discuss on WhatsApp</span>
+                <MessageCircle size={15} aria-hidden="true" />
+                <span>ACTIVATE MY BUSINESS WEBSITE</span>
               </a>
 
+              <p className="preview-popup__action-caption">
+                Discuss your package and finalise project booking.
+              </p>
+
               <a
-                className="button preview-popup__btn-secondary"
-                href={secondaryWhatsAppHref}
+                className="preview-popup__link-secondary"
+                href={changesHref}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <PencilLine size={15} aria-hidden="true" />
-                <span>I’d like to request a few changes</span>
+                <PencilLine size={12} aria-hidden="true" />
+                <span>I’d Like to Request Changes</span>
               </a>
             </div>
           </div>
