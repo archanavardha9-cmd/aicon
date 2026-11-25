@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import WebsitePreviewPopup from './components/WebsitePreviewPopup';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
@@ -58,22 +59,39 @@ function ScrollRestoration() {
   return null;
 }
 
+function AppLayout() {
+  const location = useLocation();
+  const isPreviewMode = new URLSearchParams(location.search).get('preview') === '1';
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('is-preview-mode', isPreviewMode);
+    return () => {
+      document.documentElement.classList.remove('is-preview-mode');
+    };
+  }, [isPreviewMode]);
+
+  return (
+    <div className="app-frame">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <ScrollRestoration />
+      <Footer />
+      {!isPreviewMode && <WebsitePreviewPopup isPreviewMode={isPreviewMode} />}
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="app-frame">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:productId" element={<ProductDetails />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        <ScrollRestoration />
-        <Footer />
-      </div>
+      <AppLayout />
     </BrowserRouter>
   );
 }

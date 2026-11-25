@@ -13,3 +13,19 @@ export const contactDetails = {
 export const facebookUrl =
   'https://www.facebook.com/people/AICON/61560353601244/';
 
+export const projectBrandName = 'AICON Smart Appliances';
+
+/**
+ * Central international digits-only WhatsApp contact for the website preview
+ * and kickoff booking popup actions (10-digit 9670111167 with India code 91).
+ */
+export const previewBookingWhatsAppNumber = '919670111167';
+
+/**
+ * Builds a standard wa.me link with an editable, URL-encoded pre-filled draft.
+ */
+export function buildWhatsAppUrl(number, message) {
+  const digitsOnly = String(number || '').replace(/\D/g, '');
+  return `https://wa.me/${digitsOnly}?text=${encodeURIComponent(message)}`;
+}
+
